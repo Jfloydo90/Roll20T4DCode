@@ -1,0 +1,1490 @@
+/* ===== OVERALL SHEET THEME (AOE STYLE — DARKER PASS) ===== */
+.sheet-container {
+  font-family: "Garamond", serif;
+  font-size: 14px;
+  color: #2b1a05;
+  background: url('https://www.transparenttextures.com/patterns/paper-fibers.png'), #ede2c5;
+  border: 3px solid #8b5e3c;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+  padding: 12px;
+}
+
+/* ===== GLOBAL HEADINGS ===== */
+h1, h2, h3 {
+  font-family: "Cinzel", serif;
+  color: #3a240c;
+  text-shadow: 1px 1px 0 #e1c48d;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+/* ===== H1 - Major Titles ===== */
+h1 {
+  font-size: 28px;
+  text-transform: uppercase;
+  border-bottom: 4px double #c19c5e;
+  padding-bottom: 6px;
+  margin: 10px auto 5px auto;
+}
+
+/* ===== H2 - Section Titles ===== */
+h2.section-title {
+  font-size: 22px;
+  text-transform: uppercase;
+  background: linear-gradient(to right, #d2a25e, #a97b44);
+  color: #1a1103;
+  padding: 8px 12px;
+  border: 2px solid #8c6c41;
+  border-radius: 6px;
+  text-shadow: 0 1px 0 #fef6e8;
+  box-shadow: inset 0 0 4px #b78b57;
+  margin: 4px auto 2px auto;
+  width: 95%;
+  text-align: center;
+}
+
+/* ===== H3 - Subsection Titles ===== */
+h3.section-subtitle {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Cinzel", serif;
+  background-color: #d2b48c;
+  color: #2a1a0c;
+  text-align: center;
+  padding: 6px 10px;
+  border: 2px solid #8c6433;
+  border-radius: 6px;
+  margin: 4px auto 2px auto;
+  box-shadow: inset 0 0 3px rgba(0,0,0,0.15);
+  width: 95%;
+}
+
+/* ===== FACTION ATTRIBUTE BLOCK ===== */
+.sheet-primary-attributes-faction,
+.sheet-secondary-attributes-faction {
+  background: #f6ecd3;
+  border: 2px solid #9f7c4d;
+  border-radius: 6px;
+  padding: 10px 12px;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 16px;
+  flex: 1 1 50%;
+  min-width: 340px;
+  max-width: 100%;
+  min-height: 350px;
+  box-sizing: border-box;
+  margin: 16px auto;
+}
+
+.sheet-attr-2colrow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0px; /* No flex gap */
+  margin-bottom: 16px;
+}
+
+.sheet-attr-2colrow .sheet-col {
+  flex: 1 1 40%; /* Ever-so-slightly under 50 */
+  max-width: 49%;
+  min-width: 340px;
+  box-sizing: border-box;
+  padding: 0; /* No right padding */
+}
+
+/* Attribute Tables */
+.sheet-attribute-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 6px;
+  table-layout: fixed;
+}
+
+.sheet-attribute-table thead th {
+  background-color: #d5b98e;
+  color: #2a1a0c;
+  font-family: "Cinzel", serif;
+  font-weight: bold;
+  font-size: 11px;
+  padding: 4px 6px;
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 2px solid #8c6433;
+  white-space: nowrap;
+  text-shadow: 0 1px 0 #f7f2e1;
+  min-width: 80px;
+}
+
+.sheet-attribute-table td {
+  background-color: rgba(255, 255, 240, 0.94);
+  padding: 4px;
+  text-align: center;
+  border: 1px solid #cbb890;
+}
+
+/* Inputs */
+.sheet-attribute-table input[type="number"] {
+  width: 100%;
+  padding: 3px 4px;
+  font-size: 12px;
+  text-align: center;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background-color: #fdf9ed;
+  height: 26px;
+}
+
+/* Roll Buttons */
+.sheet-attribute-table button[type="roll"] {
+  width: 24px;
+  height: 24px;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px;
+  border: 1px solid #7d5433;
+  background: linear-gradient(to bottom, #5e3d1a, #2e1c0d);
+  color: #f3e5c0;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.sheet-attribute-table button[type="roll"]:hover {
+  background: #7c532a;
+  color: #fff7d0;
+  cursor: pointer;
+}
+
+/* FP Summary Row */
+.sheet-fp-summary {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f3e8d2;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+.sheet-fp-label {
+  font-weight: bold;
+  color: #4a361d;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sheet-fp-label input[type="number"] {
+  width: 70px;
+  text-align: center;
+  padding: 4px;
+  font-weight: bold;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  background-color: #fef7e9;
+}
+
+/* ===== 3-COLUMN HYBRID LAYOUT ===== */
+.sheet-3colrow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.sheet-3colrow .sheet-col {
+  flex: 1 1 33%;
+  min-width: 280px;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+
+/* ===== COMMON BLOCK STYLE: Saves, Status, Strain ===== */
+.sheet-saves-block,
+.sheet-status-block,
+.sheet-strain-block {
+  background: #f4e5c8;
+  border: 2px solid #a98252;
+  border-radius: 6px;
+  padding: 10px;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
+  min-height: 320px;
+  min-width: 95%;
+}
+
+.sheet-saves-block h3,
+.sheet-status-block h3,
+.sheet-strain-block h3 {
+  font-size: 16px;
+  font-family: "Cinzel", serif;
+  background-color: #d2b48c;
+  color: #2a1a0c;
+  text-align: center;
+  padding: 6px 10px;
+  border: 2px solid #8c6433;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.15);
+  transform:translate(-5px);
+}
+
+/* ===== TABLES: Saves & Status ===== */
+.sheet-save-table thead th,
+.sheet-status-table thead th {
+  background-color: #d3b98b;
+  color: #2a1a0c;
+  font-family: "Cinzel", serif;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  padding: 2px 4px;
+  border-bottom: 2px solid #8c6433;
+  text-shadow: 0 1px 0 #f7f2e1;
+  white-space: nowrap;
+  min-width: 60px;
+}
+
+.sheet-save-table td,
+.sheet-status-table td {
+  background-color: rgba(255, 255, 240, 0.96);
+  border: 1px solid #cbb890;
+  padding: 2px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.sheet-save-table input[type="number"],
+.sheet-status-table input[type="number"] {
+  width: 100%;
+  padding: 1px;
+  font-size: 12px;
+  text-align: center;
+  border: 0.5px solid #999;
+  border-radius: 4px;
+  background-color: #fffdf4;
+  height: 26px;
+}
+
+
+/* ===== SAVE NAME + BUTTON CELL ===== */
+.sheet-save-table td:first-child {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px;
+  font-weight: bold;
+  font-size: 10px;
+  font-family: "Garamond", serif;
+  color: #3a240c;
+}
+
+
+/* ===== ROLL BUTTONS ===== */
+.sheet-save-table button[type="roll"] {
+  padding: 3px;
+  font-size: 11px;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #7d5433;
+  background: linear-gradient(to bottom, #5e3d1a, #2e1c0d);
+  color: #f3e5c0;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sheet-save-table button[type="roll"]:hover {
+  background: #7c532a;
+  color: #fffbd0;
+  cursor: pointer;
+}
+
+/* ===== STRAIN BLOCK ===== */
+.sheet-strain-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 1px;
+}
+
+.sheet-strain-select {
+  width: 100%;
+  padding: 6px;
+  font-size: 13px;
+  border: 1px solid #8a6b4b;
+  border-radius: 4px;
+  background-color: #fffdf2;
+  color: #2e1a0f;
+  margin-top: 1px;
+}
+
+.sheet-strain-penalty {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sheet-strain-label {
+  font-weight: bold;
+  font-family: "Garamond", serif;
+  color: #3e280b;
+}
+
+.sheet-strain-penalty input[type="number"] {
+  width: 70px;
+  text-align: center;
+  padding: 3px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  background-color: #fdf9ed;
+  height: 26px;
+}
+
+/* ===== FACTION ADVANCEMENT WRAPPER ===== */
+.sheet-advancement-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  margin: 14px 0 20px 0;
+}
+
+.sheet-advancement-wrapper .sheet-col {
+  flex: 1 1 33%;
+  min-width: 300px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* ===== ADVANCEMENT BLOCKS: POP / TL / RES ===== */
+.sheet-pop-block,
+.sheet-tl-block,
+.sheet-res-block {
+  background: #f4e5c8;
+  border: 2px solid #a98252;
+  border-radius: 6px;
+  padding: 12px 14px;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
+  min-height: 320px;
+  min-width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Space between block header and table */
+.sheet-pop-block table,
+.sheet-tl-block table,
+.sheet-res-block table {
+  margin-top: 6px;
+}
+
+/* ===== ADVANCEMENT TABLE ===== */
+.sheet-status-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.sheet-status-table td {
+  background-color: rgba(255, 255, 240, 0.96);
+  padding: 2px 3px;
+  text-align: center;
+  border: 1px solid #cbb890;
+}
+
+.sheet-status-table input[type="number"] {
+  width: 100%;
+  padding: 3px;
+  font-size: 12px;
+  text-align: center;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background-color: #fffdf4;
+  height: 26px;
+}
+
+/* ===== ADVANCE BUTTON ROW ALIGNMENT ===== */
+.sheet-status-table tr:last-child td {
+  padding-top: 10px;
+  vertical-align: middle;
+}
+
+/* ===== ADVANCE BUTTONS ===== */
+.sheet-status-table button[type="roll"] {
+  padding: 3px 6px;
+  font-size: 10px;
+  font-weight: bold;
+  border: 1px solid #7d5433;
+  background: linear-gradient(to bottom, #5e3d1a, #2e1c0d);
+  color: #f3e5c0;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  width: 100%;
+  max-width: 80px;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  transform: translateY(-5px);
+}
+
+.sheet-status-table button[type="roll"]:hover {
+  background: #7c532a;
+  color: #fffbd0;
+  cursor: pointer;
+}
+
+/* ===== LEADER SELECTION ROW ===== */
+.sheet-2colrow {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 12px;
+}
+
+.sheet-2colrow .sheet-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* <- Center labels and inputs */
+  text-align: center;
+}
+
+.sheet-2colrow label {
+  display: block;
+  font-weight: bold;
+  font-family: "Garamond", serif;
+  font-size: 16px;
+  color: #3e280b;
+  margin-bottom: 0px;
+  text-align: center;
+}
+
+.sheet-2colrow select,
+.sheet-2colrow input[type="text"] {
+  width: 200px;
+  padding: 4px;
+  font-size: 13px;
+  border: 1px solid #8a6b4b;
+  border-radius: 4px;
+  background-color: #fffdf2;
+  color: #2e1a0f;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* Section Title (Brown Header Bar) */
+.section-title {
+  background-color: #c59b6d;
+  color: #3e280b;
+  font-family: "Garamond", serif;
+  font-size: 1.4em;
+  font-weight: bold;
+  text-align: center;
+  padding: 0.5em 0;
+  margin-bottom: 0.75em;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 2px #8a6b4b;
+}
+.section-subtitle {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #5a3e21;
+  margin: 0.5em 0 0.75em 0;
+  text-align: center;
+  border-bottom: 2px solid #d6b88d;
+  padding-bottom: 4px;
+}
+.sheet-leader-selectbox {
+  background-color: #f4e5c8;
+  border: 2px solid #a67c52;
+  border-radius: 8px;
+  padding: 1em;
+  margin-bottom: 1em;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== INFRASTRUCTURE SECTION WRAPPER ===== */
+
+.sheet-BuildingTop {
+  background-color: #f4e5c8;
+  border: 2px solid #a67c52;
+  border-radius: 8px;
+  padding: 1em;
+  margin-bottom: 1em;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.sheet-buildings-wrapper {
+  background: #f4e5c8;
+  border: 2px solid #a98252;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-top: 4px;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== 4-COLUMN LAYOUT FOR STATS/BUILDINGS ===== */
+.sheet-4colrow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 4px;
+}
+
+/* Each column */
+.sheet-4colrow .sheet-col {
+  flex: 1 1 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* ===== INDIVIDUAL BUILDING ENTRY BLOCK ===== */
+.sheet-building-entry {
+  background: #fffaf0;
+  border: 1px solid #c8b88a;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 4px;
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== LABELS ===== */
+.sheet-4colrow label,
+.sheet-building-entry label,
+.sheet-effects-row label {
+  font-weight: bold;
+  font-size: 13px;
+  font-family: "Garamond", serif;
+  color: #3a240c;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+/* ===== INPUTS ===== */
+.sheet-4colrow input[type="number"],
+.sheet-4colrow input[type="text"],
+.sheet-building-entry input[type="number"],
+.sheet-building-entry input[type="text"] {
+  width: 100%;
+  max-width: 160px;
+  padding: 4px;
+  font-size: 13px;
+  text-align: center;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background-color: #fffdf4;
+}
+
+/* ===== CHECKBOXES ===== */
+.sheet-building-entry input[type="checkbox"] {
+  margin-top: 4px;
+  transform: scale(1.1);
+  accent-color: #6b4a2f;
+}
+
+/* ===== EFFECTS TEXTAREA ===== */
+.sheet-effects-row {
+  margin-top: 4px;
+}
+
+.sheet-effects-row textarea {
+  width: 99%;
+  padding: 6px;
+  font-size: 12px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  background-color: #fffef5;
+  resize: vertical;
+  min-height: 20px;
+  height: 20px;
+  font-family: "Garamond", serif;
+}
+.sheet-building-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 in the top row */
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.sheet-building-grid > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers label and input */
+  text-align: center;
+}
+
+.sheet-building-grid label {
+  margin-bottom: 4px;
+  font-weight: bold;
+  font-family: "Garamond", serif;
+  font-size: 13px;
+  color: #3a240c;
+}
+
+.sheet-building-grid input[type="text"],
+.sheet-building-grid input[type="number"] {
+  width: 100%;
+  max-width: 140px;
+  padding: 4px;
+  font-size: 13px;
+  text-align: center;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background-color: #fffdf4;
+}
+
+/* ===== LEADER CARD CONTAINER ===== */
+.sheet-leader-card {
+  background: #f4e5c8;
+  border: 2px solid #a98252;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== HEADER: Name / Number / Status ===== */
+.sheet-leader-header-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.sheet-leader-header-row .sheet-col {
+  flex: 1 1 30%;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ===== Header Label/Input ===== */
+.sheet-leader-header-row label {
+  font-weight: bold;
+  font-family: "Garamond", serif;
+  font-size: 13px;
+  color: #3a240c;
+  margin-bottom: 2px;
+}
+
+.sheet-leader-header-row input,
+.sheet-leader-header-row select {
+  width: 100%;
+  padding: 4px;
+  font-size: 13px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background-color: #fffdf4;
+}
+
+/* ===== FACTION SKILLS WRAPPER ===== */
+.sheet-theme-faction {
+  background: #f9f1dc;
+  border: 2px solid #b88d58;
+  border-radius: 6px;
+  padding: 10px;
+  margin-top: 12px;
+}
+
+/* ===== Skill Group: Layout + Labeling ===== */
+.sheet-skillgroup-combat,
+.sheet-skillgroup-detection {
+  background: #fff9ed;
+  border: 1px solid #d2b085;
+  border-radius: 4px;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+/* Grid layout */
+.sheet-skill-header,
+.sheet-skill-entry {
+  display: grid;
+  grid-template-columns: 30px 1fr 60px 60px;
+  gap: 6px;
+  align-items: center;
+}
+
+/* ===== Skill Headers ===== */
+.sheet-skill-header {
+  background-color: #ead6ac;
+  font-family: "Cinzel", serif;
+  font-weight: bold;
+  font-size: 12px;
+  color: #3e280b;
+  padding: 4px 6px;
+  border-bottom: 1px solid #a68454;
+  border-radius: 4px;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+/* ===== Skill Inputs ===== */
+.sheet-skill-entry input[type="text"],
+.sheet-skill-entry input[type="number"] {
+  font-size: 12px;
+  padding: 3px;
+  text-align: center;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  background-color: #fffdf4;
+  width: 100%;
+}
+
+/* Skill Roll Button */
+.sheet-skill-entry button[type="roll"] {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(to bottom, #5e3d1a, #2e1c0d);
+  color: #f3e5c0;
+  border: 1px solid #7d5433;
+  border-radius: 4px;
+  font-size: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== LEADER COMMANDS BLOCK ===== */
+.sheet-leader-commands {
+  background: #fffaf0;
+  border: 2px solid #b88d58;
+  border-radius: 6px;
+  padding: 10px;
+  margin-top: 12px;
+}
+
+/* Command Grid */
+.sheet-command-header,
+.sheet-command-grid {
+  display: grid;
+  grid-template-columns: 30px 1fr 60px 60px 60px 120px 1fr;
+  gap: 6px;
+  align-items: center;
+  text-align: center;
+}
+
+.sheet-command-header {
+  background-color: #e3c79b;
+  font-family: "Cinzel", serif;
+  font-size: 12px;
+  font-weight: bold;
+  color: #3a240c;
+  padding: 4px 6px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+/* Command Inputs */
+.sheet-command-row input[type="text"],
+.sheet-command-row input[type="number"],
+.sheet-command-row select {
+  width: 100%;
+  padding: 4px;
+  font-size: 12px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background-color: #fffdf4;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.sheet-command-row select {
+  transform: translateY(2px);
+}
+
+/* Command Roll Button */
+.sheet-command-row button[type="roll"] {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(to bottom, #5e3d1a, #2e1c0d);
+  color: #f3e5c0;
+  border: 1px solid #7d5433;
+  border-radius: 4px;
+  font-size: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Notes Box */
+.sheet-command-notes-row textarea.sheet-command-notes {
+  width: 99%;
+  font-family: "Garamond", serif;
+  font-size: 12px;
+  background-color: #fffef3;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  padding: 6px;
+  margin-top: 6px;
+  resize: vertical;
+  height: 40px;
+  box-sizing: border-box;
+}
+/* Fix vertical centering in Leader Commands grid */
+.sheet-command-row select,
+.sheet-command-row input[type="text"],
+.sheet-command-row input[type="number"] {
+  margin-top: 0; /* reset any unexpected spacing */
+  vertical-align: middle;
+  align-self: center;
+  line-height: normal;
+}
+
+/* Remove unwanted translation from select */
+.sheet-command-row select {
+  transform: none;
+}
+.sheet-command-row input,
+.sheet-command-row select {
+  height: 24px;
+}
+
+/* ===== UNITS SECTION CONTAINER ===== */
+.sheet-units-overview {
+  padding: 12px;
+  background: #f9f2dc; /* updated to match sheet-theme-faction */
+  border: 2px solid #b88d58;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+
+/* ===== INDIVIDUAL UNIT CARD ===== */
+.sheet-unit-entry {
+  margin-bottom: 18px;
+  padding: 12px 14px;
+  border: 2px solid #b88d58;
+  border-radius: 6px;
+  background-color: #f9f2dc; /* <- Match themed background */
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== LABELS ===== */
+.sheet-unit-entry label {
+  font-weight: bold;
+  font-family: "Garamond", serif;
+  font-size: 13px;
+  color: #3a240c;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* ===== INPUTS & SELECTS ===== */
+.sheet-unit-entry input[type="text"],
+.sheet-unit-entry input[type="number"],
+.sheet-unit-entry select,
+.sheet-unit-entry textarea {
+  width: 100%;
+  padding: 4px;
+  font-size: 13px;
+  text-align: center;
+  background-color: #fffdf4;
+  border: 1px solid #999;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 6px;
+}
+
+.sheet-unit-entry input[disabled] {
+  background-color: #eee;
+  color: #333;
+  font-weight: bold;
+}
+
+/* ===== BUTTON: UNIT ROLL ===== */
+.sheet-unit-entry button[type="roll"] {
+  margin-top: 8px;
+  width: 100%;
+  padding: 5px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  background: linear-gradient(to bottom, #5e3d1a, #2e1c0d);
+  color: #f3e5c0;
+  border: 1px solid #7d5433;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.sheet-unit-entry button[type="roll"]:hover {
+  background: #7c532a;
+  color: #fffbd0;
+  cursor: pointer;
+}
+
+.sheet-unit-entry textarea {
+  resize: vertical;
+  min-height: 20px;
+  height: 20px; /* start as small as allowed */
+  font-family: "Garamond", serif;
+  line-height: 1.3;
+}
+
+
+/* ===== LAYOUT ROWS (GRIDS) ===== */
+.sheet-5colrow {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  align-items: end;
+  margin-bottom: 10px;
+}
+
+.sheet-5colrow label {
+  font-weight: bold;
+  font-size: 0.85em;
+  margin-bottom: 2px;
+}
+
+.sheet-5colrow input,
+.sheet-5colrow select {
+  width: 100%;
+  padding: 4px;
+  font-size: 0.85em;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.sheet-4colrow,
+.sheet-3colrow,
+.sheet-2colrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.sheet-4colrow .sheet-col {
+  flex: 1 1 23%;
+  min-width: 160px;
+}
+
+.sheet-3colrow .sheet-col {
+  flex: 1 1 100%;
+  min-width: 160px;
+}
+
+.sheet-2colrow .sheet-col {
+  flex: 1 1 48%;
+  min-width: 160px;
+}
+
+/* ===== FACTION OVERVIEW STYLING (SHARED) ===== */
+.sheet-theme-faction {
+  background: #f9f2dc;
+  border: 2px solid #b88d58;
+  border-radius: 6px;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== SUBSECTION WRAPPER & TITLES ===== */
+.sheet-subsection-block {
+  margin-bottom: 16px;
+}
+
+.sheet-subsection-block h3.section-subtitle {
+  font-size: 15px;
+  font-weight: bold;
+  font-family: "Cinzel", serif;
+  background-color: #e6d3a7;
+  color: #3e280b;
+  padding: 6px 10px;
+  border-left: 4px solid #8c6433;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+/* ===== DESCRIPTION / NOTES BOXES ===== */
+.sheet-desc-box,
+.sheet-bg-box,
+.sheet-notes-box {
+  width: 100%;
+  min-height: 20px;
+  height: 20px;
+  padding: 8px;
+  font-family: "Garamond", serif;
+  font-size: 13px;
+  background-color: #fffef5;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  resize: vertical;
+  line-height: 1.4;
+  box-sizing: border-box;
+  color: #2b1a05;
+}
+
+/* Optional: Placeholder legibility */
+.sheet-desc-box::placeholder,
+.sheet-bg-box::placeholder,
+.sheet-notes-box::placeholder {
+  color: #9c8b6b;
+  font-style: italic;
+}
+
+/* Roll20 CustomRoll Templates */
+.sheet-rolltemplate-t4d,
+.sheet-rolltemplate-t4d_attack {
+  --header-bg: #1d3557;
+  --header-color: #ffffff;
+  --box-bg: #f1f3f4;
+  --text-color: #1d1d1d;
+  --border-color: #457b9d;
+  --highlight-bg: #ffeaa7;
+  --highlight-color: #2d3436;
+  font-family: 'Roboto', sans-serif;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 12px;
+  background: var(--box-bg);
+  color: var(--text-color);
+  margin-bottom: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.sheet-template-header,
+.sheet-template-title {
+  background: linear-gradient(to right, var(--header-bg), #2a9d8f);
+  color: var(--header-color);
+  font-size: 1.3em;
+  font-weight: bold;
+  text-align: center;
+  padding: 8px 12px;
+  border-radius: 10px 10px 0 0;
+  margin: -12px -12px 12px -12px;
+  text-shadow: 1px 1px 1px #000;
+}
+
+/* Attack & General shared line formatting */
+.sheet-template-line,
+.sheet-template-result-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 1em;
+  border-bottom: 1px dashed #ccc;
+}
+
+.sheet-template-line:last-child,
+.sheet-template-result-block:last-child {
+  border-bottom: none;
+}
+
+.sheet-template-line .label,
+.sheet-template-label {
+  font-weight: bold;
+  margin-right: 10px;
+  color: #2c3e50;
+}
+
+/* Blinged out result number */
+/* Shared blinged-out result for both t4d and t4d_attack */
+.sheet-rolltemplate-t4d .sheet-template-result,
+.sheet-rolltemplate-t4d_attack .sheet-template-result {
+  font-size: 1em;
+  font-weight: bold;
+  background: #ADD8E6;
+  color: #2d3436;
+  padding: 4px 10px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.sheet-rolltemplate-t4d .sheet-template-result-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: 1em;
+}
+.sheet-rolltemplate-t4d_attack .sheet-template-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 1em;
+  border-bottom: 1px dashed #ccc;
+}
+
+.sheet-rolltemplate-t4d_attack .sheet-template-line:last-child {
+  border-bottom: none;
+}
+
+.sheet-rolltemplate-t4d_attack .sheet-template-result {
+  font-size: 1em;
+  font-weight: bold;
+  background: #ADD8E6;
+  color: #2d3436;
+  padding: 4px 10px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.sheet-rolltemplate-t4d .sheet-template-character {
+  font-size: 1em;
+  color: #2d3436;
+  margin-bottom: 6px;
+}
+
+/* === Sheet Mode Toggle === */
+.sheet-container.sheet-faction,
+.sheet-container.sheet-army {
+  display: none;
+}
+
+input[type="radio"][name="attr_sheet_mode"][value="faction"]:checked ~ .sheet-container.sheet-faction,
+input[type="radio"][name="attr_sheet_mode"][value="army"]:checked ~ .sheet-container.sheet-army {
+  display: block;
+}
+
+/* === Army Block Container === */
+.sheet-army-block {
+  border: 2px solid #4a4a4a;
+  padding: 12px;
+  margin-bottom: 20px;
+  background: linear-gradient(to bottom, #e7ebe5, #dce1dc);
+  border-radius: 8px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* === Header Row === */
+.sheet-army-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-bottom: 10px;
+  padding: 0 8px;
+}
+
+.sheet-army-header label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1.1em;
+  white-space: nowrap;
+  flex: 1 1 33%;
+  min-width: 0;
+  color: #2e3b2f;
+}
+
+.sheet-army-header input[type="text"],
+.sheet-army-header select {
+  padding: 5px 6px;
+  font-size: 0.9em;
+  border-radius: 4px;
+  border: 1px solid #aaa;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #f4f7f3;
+  color: #333;
+}
+
+.sheet-army-header select {
+  transform: translateY(7px);
+}
+
+/* === Leader Skills === */
+.sheet-army-leader-skills {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 12px;
+}
+
+.sheet-army-leader-skills div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sheet-army-leader-skills label {
+  font-weight: bold;
+  font-size: 0.85em;
+  margin-bottom: 2px;
+  text-align: center;
+  color: #3e4d3f;
+}
+
+.sheet-army-leader-skills input {
+  width: 50px;
+  height: 28px;
+  text-align: center;
+  padding: 2px;
+  box-sizing: border-box;
+  background-color: #f4f7f3;
+  border: 1px solid #999;
+  border-radius: 4px;
+  color: #333;
+}
+
+/* === Faction Stats === */
+.sheet-army-faction-values {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 12px;
+}
+
+.sheet-army-faction-values div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sheet-army-faction-values label {
+  font-weight: bold;
+  font-size: 0.85em;
+  margin-bottom: 2px;
+  text-align: center;
+  color: #3e4d3f;
+}
+
+.sheet-army-faction-values input {
+  width: 70px;
+  height: 28px;
+  text-align: center;
+  padding: 2px;
+  box-sizing: border-box;
+  background-color: #f4f7f3;
+  border: 1px solid #999;
+  border-radius: 4px;
+  color: #333;
+}
+
+/* === Units Styling === */
+.sheet-unit-block {
+  margin-bottom: 12px;
+}
+
+.sheet-unit-labels,
+.sheet-unit-inputs {
+  display: grid;
+  grid-template-columns: 2fr 1fr .5fr .5fr 2fr .5fr .5fr .5fr 1fr;
+  gap: 4px;
+  align-items: center;
+  text-align: center;
+}
+
+.sheet-unit-labels {
+  font-weight: bold;
+  font-size: 0.85em;
+  padding: 2px 0;
+}
+
+.sheet-unit-inputs {
+  padding: 2px 0 6px;
+}
+
+.sheet-unit-inputs input[type="text"],
+.sheet-unit-inputs input[type="number"] {
+  width: 100%;
+  padding: 2px 4px;
+  text-align: center;
+  font-size: 0.9em;
+  height: 28px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border: 1px solid #999;
+  border-radius: 4px;
+}
+
+.sheet-unit-inputs button[type="roll"] {
+  text-align: center;
+  padding: 4px;
+  background-color: #ddd;
+  border: 1px solid #999;
+  height: 40%;
+  width: 70%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(7px);
+}
+
+.sheet-unit-block:nth-child(even) {
+  background-color: #f5f7f5;
+  border-radius: 4px;
+  padding: 6px 6px 2px;
+}
+
+.sheet-unit-inputs button[type="roll"]:hover {
+  background-color: #c1d5b0;
+  border-color: #889d7c;
+}
+/* === Combined Leader + Faction Stats Row === */
+.sheet-army-stats-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 12px;
+}
+
+.sheet-army-stats-row div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sheet-army-stats-row label {
+  font-weight: bold;
+  font-size: 0.85em;
+  margin-bottom: 2px;
+  text-align: center;
+  color: #3e4d3f;
+}
+
+.sheet-army-stats-row input {
+  width: 60px;
+  height: 28px;
+  text-align: center;
+  padding: 2px;
+  box-sizing: border-box;
+  background-color: #f4f7f3;
+  border: 1px solid #999;
+  border-radius: 4px;
+  color: #333;
+}
+
+/* REMOVE THESE OLD BLOCKS IF NOT REUSED */
+.sheet-army-leader-skills,
+.sheet-army-faction-values {
+  display: none;
+}
+
+.sheet-roll-button-group {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.sheet-roll-button-group button {
+  margin: 0 5px;
+}
+
+.sheet-command-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sheet-command-toprow {
+  display: grid;
+  grid-template-columns: auto 1fr repeat(3, 80px) 150px 120px;
+  gap: 8px;
+  align-items: end;
+}
+
+.sheet-command-toprow div {
+  display: flex;
+  flex-direction: column;
+}
+
+.sheet-command-toprow label {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2px;
+  font-size: 14px;
+}
+
+.sheet-command-secondrow {
+  display: flex;
+}
+
+.sheet-command-secondrow input[type="text"] {
+  flex: 1;
+}
+
+textarea[name="attr_leadercommandnotes"] {
+  height: 2em;
+  resize: vertical;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.sheet-command-toprow select[name="attr_advancedcommandcoreskill"] {
+transform: translateY(10px);
+}
+
+.sheet-core-skill-select label,
+.sheet-core-skill-label {
+transform: translateY(10px);
+}
+
+.sheet-army-stats-rows input[type="number"] {
+  width: 100%;
+  text-align: center;
+}
+
+.sheet-army-stats-rows label {
+  display: block;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2px;
+}
+.sheet-army-stats-rows div {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers everything horizontally */
+  justify-content: center;
+}
+
+.sheet-army-stats-rows label {
+  font-weight: bold;
+  margin-bottom: 1px;
+  text-align: center;
+}
+
+.sheet-army-stats-rows input[type="number"] {
+  text-align: center;
+  width: 60px; /* or whatever looks clean */
+}
+
+.sheet-army-stats-rows {
+  padding-bottom: 1rem;
+}
+
+.repcontainer[data-groupname="repeating_basiccommands"] .repitem textarea[name="attr_basiccommandnotes"] {
+  width: 100%;
+  min-height: 1em;
+  max-height: 2.25em;
+  resize: vertical;
+  padding: 0.25em;
+  font-size: 0.9em;
+  box-sizing: border-box;
+}
+
+select[name="attr_basiccommandcoreskill"] {
+  transform: translateY(10px);

@@ -1,0 +1,1438 @@
+<!-- Sheet mode switcher -->
+<input type="radio" name="attr_sheet_mode" value="faction" checked /> Faction
+<input type="radio" name="attr_sheet_mode" value="army" /> Army
+
+<!-- Faction Mode -->
+<div class="sheet-container sheet-faction">
+
+    <!-- ===== FACTION ATTRIBUTE BLOCK ===== -->
+    <div class="sheet-section-block">
+      <h2 class="section-title">Faction Attributes</h2>
+      <div class="sheet-attr-2colrow">
+
+        <!-- ===== PRIMARY ATTRIBUTES ===== -->
+        <div class="sheet-col">
+          <div class="sheet-primary-attributes-faction">
+            <h3 class="section-subtitle">Primary Attributes</h3>
+            <div class="sheet-attribute-wrapper">
+              <table class="sheet-attribute-table">
+                <thead>
+                  <tr>
+                    <th>Attribute</th>
+                    <th>Score</th>
+                    <th>Modifier</th>
+                    <th>FP to Next</th>
+                    <th>FP Spent</th>
+                    <th>Temp Mod</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>IND</td>
+                    <td><input type="number" name="attr_IND" value="1" /></td>
+                    <td><input type="number" name="attr_INDMod" value="((floor(@{IND}/5))-2+@{INDTemp})" disabled /></td>
+                    <td><input type="number" name="attr_INDNext" value="(@{INDMod}+3)" disabled /></td>
+                    <td><input type="number" name="attr_INDSpent" value="1" readonly /></td>
+                    <td><input type="number" name="attr_INDTemp" value="0" /></td>
+                    <input type="hidden" name="attr_INDModCached" />
+                  </tr>
+                  <tr><td>LOG</td>
+                    <td><input type="number" name="attr_LOG" value="1" /></td>
+                    <td><input type="number" name="attr_LOGMod" value="((floor(@{LOG}/5))-2+@{LOGTemp})" disabled /></td>
+                    <td><input type="number" name="attr_LOGNext" value="(@{LOGMod}+3)" disabled /></td>
+                    <td><input type="number" name="attr_LOGSpent" value="1" readonly /></td>
+                    <td><input type="number" name="attr_LOGTemp" value="0" /></td>
+                    <input type="hidden" name="attr_LOGModCached" />
+                  </tr>
+                  <tr><td>STB</td>
+                    <td><input type="number" name="attr_STB" value="1" /></td>
+                    <td><input type="number" name="attr_STBMod" value="((floor(@{STB}/5))-2+@{STBTemp})" disabled /></td>
+                    <td><input type="number" name="attr_STBNext" value="(@{STBMod}+3)" disabled /></td>
+                    <td><input type="number" name="attr_STBSpent" value="1" readonly /></td>
+                    <td><input type="number" name="attr_STBTemp" value="0" /></td>
+                    <input type="hidden" name="attr_STBModCached" />
+                  </tr>
+                  <tr><td>INN</td>
+                    <td><input type="number" name="attr_INN" value="1" /></td>
+                    <td><input type="number" name="attr_INNMod" value="((floor(@{INN}/5))-2+@{INNTemp})" disabled /></td>
+                    <td><input type="number" name="attr_INNNext" value="(@{INNMod}+3)" disabled /></td>
+                    <td><input type="number" name="attr_INNSpent" value="1" readonly /></td>
+                    <td><input type="number" name="attr_INNTemp" value="0" /></td>
+                    <input type="hidden" name="attr_INNModCached" />
+                  </tr>
+                  <tr><td>GOV</td>
+                    <td><input type="number" name="attr_GOV" value="1" /></td>
+                    <td><input type="number" name="attr_GOVMod" value="((floor(@{GOV}/5))-2+@{GOVTemp})" disabled /></td>
+                    <td><input type="number" name="attr_GOVNext" value="(@{GOVMod}+3)" disabled /></td>
+                    <td><input type="number" name="attr_GOVSpent" value="1" readonly /></td>
+                    <td><input type="number" name="attr_GOVTemp" value="0" /></td>
+                    <input type="hidden" name="attr_GOVModCached" />
+                  </tr>
+                  <tr><td>DIP</td>
+                    <td><input type="number" name="attr_DIP" value="1" /></td>
+                    <td><input type="number" name="attr_DIPMod" value="((floor(@{DIP}/5))-2+@{DIPTemp})" disabled /></td>
+                    <td><input type="number" name="attr_DIPNext" value="(@{DIPMod}+3)" disabled /></td>
+                    <td><input type="number" name="attr_DIPSpent" value="1" readonly /></td>
+                    <td><input type="number" name="attr_DIPTemp" value="0" /></td>
+                    <input type="hidden" name="attr_DIPModCached" />
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== SECONDARY ATTRIBUTES ===== -->
+        <div class="sheet-col">
+          <div class="sheet-secondary-attributes-faction">
+            <h3 class="section-subtitle">Secondary Attributes</h3>
+            <div class="sheet-attribute-wrapper">
+              <table class="sheet-attribute-table">
+                <thead>
+                  <tr>
+                    <th>Attribute</th>
+                    <th>Score</th>
+                    <th>Modifier</th>
+                    <th>Temp Mod</th>
+                    <th>Roll</th>
+                  </tr>
+                </thead>
+                     <tbody>
+                <tr>
+                  <td>RSP</td>
+                  <td><input type="number" name="attr_RSP" value="(floor((@{LOG}+@{GOV})/2))" disabled /></td>
+                  <td><input type="number" name="attr_RSPMod" value="((floor(@{RSP}/5))-2+@{RSPTemp})" disabled /></td>
+                  <td><input type="number" name="attr_RSPTemp" value="0" /></td>
+                  <td>
+                    <input type="hidden" name="attr_RSPModCached" />
+                    <button type="roll" name="roll_RSP"
+                      value="&{template:t4d} {{theme=faction}} {{title=Response}} {{result=[[1d20 + @{RSPMod}]]}}"></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>EFF</td>
+                  <td><input type="number" name="attr_EFF" value="(floor((@{IND}+@{LOG})/2))" disabled /></td>
+                  <td><input type="number" name="attr_EFFMod" value="((floor(@{EFF}/5))-2+@{EFFTemp})" disabled /></td>
+                  <td><input type="number" name="attr_EFFTemp" value="0" /></td>
+                  <td>
+                    <input type="hidden" name="attr_EFFModCached" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>KNW</td>
+                  <td><input type="number" name="attr_KNW" value="(floor((@{INN}+@{GOV})/2))" disabled /></td>
+                  <td><input type="number" name="attr_KNWMod" value="((floor(@{KNW}/5))-2+@{KNWTemp})" disabled /></td>
+                  <td><input type="number" name="attr_KNWTemp" value="0" /></td>
+                  <td>
+                    <input type="hidden" name="attr_KNWModCached" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>RNG</td>
+                  <td><input type="number" name="attr_RNG" value="(@{EFF}*2)" disabled /></td>
+                  <td><input type="number" name="attr_RNGMod" value="(@{RNG} + @{RNGTemp})" disabled /></td>
+                  <td><input type="number" name="attr_RNGTemp" value="0" /></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>PRS</td>
+                  <td><input type="number" name="attr_PRS" value="(@{PRSBase})" /></td>
+                  <td><input type="number" name="attr_PRSMod" value="(@{PRSBase} + @{PRSTemp})" disabled /></td>
+                  <td><input type="number" name="attr_PRSTemp" value="0" /></td>
+                  <td>
+                    <button type="roll" name="roll_PRS"
+                      value="&{template:t4d} {{theme=faction}} {{title=Presence}} {{result=[[3d10 + @{PRSTemp}]]}}"></button>
+                  </td>
+                </tr>
+              </tbody>
+              </table>
+            </div>
+
+            <!-- ===== FP SUMMARY ===== -->
+            <div class="sheet-fp-summary">
+              <span class="sheet-fp-label">FP Spent:
+                <input type="number" name="attr_tFP" value="(@{INDSpent} + @{LOGSpent} + @{STBSpent} + @{INNSpent} + @{GOVSpent} + @{DIPSpent})" disabled />
+              </span>
+              <span class="sheet-fp-label">Unspent FP:
+                <input type="number" name="attr_uFP" value="150" />
+              </span>
+               <span class="sheet-fp-label">Luck:
+                <input type="number">
+              </span>
+              <button type="action" name="act_prepsync">Prep Sync</button>
+            </div>
+          </div>
+        </div>
+
+      </div> <!-- End .sheet-2colrow -->
+    </div> <!-- End .sheet-section-block -->
+
+<!-- ===== Faction Defense Cluster ===== -->
+<div class="sheet-section-block">
+  <h2 class="section-title">Faction Defense</h2>
+
+  <div class="sheet-3colrow">
+
+    <!-- ===== Faction Saving Throws ===== -->
+    <div class="sheet-col">
+      <div class="sheet-saves-block">
+        <h3 class="section-subtitle">Saving Throws</h3>
+        <div class="sheet-save-wrapper">
+          <table class="sheet-attribute-table sheet-save-table">
+            <thead>
+              <tr>
+                <th>Save</th>
+                <th>Score</th>
+                <th>Temp Mod</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <button type="roll" name="roll_FORSave"
+                    value="&{template:t4d} {{theme=faction}} {{title=Fortification Save}} {{result=[[1d20 + @{FORSave} + @{ForTemp} + ?{Other Modifiers|0}]]}}"></button>
+                  Fortification
+                </td>
+                <td><input type="number" name="attr_FORSave" value="(floor((@{IND} + @{STB}) / 4))" disabled /></td>
+                <td><input type="number" name="attr_ForTemp" value="0" /></td>
+              </tr>
+              <tr>
+                <td>
+                  <button type="roll" name="roll_CRISave"
+                    value="&{template:t4d} {{theme=faction}} {{title=Crisis Save}} {{result=[[1d20 + @{CRISave} + @{CriTemp} + ?{Other Modifiers|0}]]}}"></button>
+                  Crisis
+                </td>
+                <td><input type="number" name="attr_CRISave" value="(floor((@{STB} + @{GOV}) / 4))" disabled /></td>
+                <td><input type="number" name="attr_CriTemp" value="0" /></td>
+              </tr>
+              <tr>
+                <td>
+                  <button type="roll" name="roll_TACSave"
+                    value="&{template:t4d} {{theme=faction}} {{title=Tactical Save}}{{result=[[1d20 + @{TACSave} + @{TacTemp} + ?{Other Modifiers|0}]]}}"></button>
+                  Tactical
+                </td>
+                <td><input type="number" name="attr_TACSave" value="(floor((@{IND} + @{LOG}) / 4))" disabled /></td>
+                <td><input type="number" name="attr_TacTemp" value="0" /></td>
+              </tr>
+              <tr>
+                <td>
+                  <button type="roll" name="roll_DIPSave"
+                    value="&{template:t4d} {{theme=faction}} {{title=Diplomatic Save}}{{result=[[1d20 + @{DIPSave} + @{DipTemp} + ?{Other Modifiers|0}]]}}"></button>
+                  Diplomatic
+                </td>
+                <td><input type="number" name="attr_DIPSave" value="(floor((@{DIP} + @{GOV}) / 4))" disabled /></td>
+                <td><input type="number" name="attr_DipTemp" value="0" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Faction Status ===== -->
+    <div class="sheet-col">
+      <div class="sheet-status-block">
+        <h3 class="section-subtitle">Status</h3>
+        <div class="sheet-status-wrapper">
+          <table class="sheet-attribute-table sheet-status-table">
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Max</th>
+                <th>Current</th>
+                <th>Min</th>
+                <th>Temp</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>CHP</td>
+                <td><input type="number" name="attr_MAXCHP" value="(floor((@{IND}+@{STB})/2) + floor(@{POP}/2) + @{CHPTemp})" disabled /></td>
+                <td><input type="number" name="attr_CURCHP" value="0" /></td>
+                <td><input type="number" name="attr_MINCHP" value="0" disabled /></td>
+                <td><input type="number" name="attr_CHPTemp" value="0" /></td>
+              </tr>
+              <tr>
+                <td>CP</td>
+                <td><input type="number" name="attr_MAXCP" value="(floor((@{GOV}+@{STB})/2) + @{CPTemp})" disabled /></td>
+                <td><input type="number" name="attr_CURCP" value="0" /></td>
+                <td><input type="number" name="attr_MINCP" value="0" disabled /></td>
+                <td><input type="number" name="attr_CPTemp" value="0" /></td>
+              </tr>
+              <tr>
+                <td>AT</td>
+                <td><input type="number" name="attr_MAXAT" value="(3 + @{LOGMod} + @{ATTemp})" disabled /></td>
+                <td><input type="number" name="attr_CURAT" value="0" /></td>
+                <td><input type="number" name="attr_MINAT" value="0" disabled /></td>
+                <td><input type="number" name="attr_ATTemp" value="0" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Faction Strain ===== -->
+    <div class="sheet-col">
+      <div class="sheet-strain-block">
+        <h3 class="section-subtitle">Strain</h3>
+        <div class="sheet-strain-wrapper">
+          <label for="attr_StrainLevel">Strain Level</label>
+          <select class="sheet-strain-select" name="attr_StrainLevel">
+            <option value="0">Strain 0 (No penalty)</option>
+            <option value="-2">Strain 1 (–2)</option>
+            <option value="-5">Strain 2 (–5)</option>
+            <option value="-10">Strain 3 (–10)</option>
+            <option value="-15">Strain 4 (–15)</option>
+            <option value="2">Inspired (+2)</option>
+          </select>
+          <div class="sheet-strain-penalty">
+            <label class="sheet-strain-label" for="attr_StrainPenalty">Effect:</label>
+            <input type="number" name="attr_StrainPenalty" value="@{StrainLevel}" disabled />
+            <input type="hidden" name="attr_StrainPenaltyCached" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- End .sheet-3colrow -->
+</div> <!-- End .sheet-section-block -->
+
+<!-- ===== Faction Advancement ===== -->
+<div class="sheet-section-block">
+  <div class="sheet-group-title">
+    <h2 class="section-title">Faction Advancement</h2>
+  </div>
+
+<input type="hidden" name="attr_LeaderSkillTrigger" value="0" />
+
+  <!-- ===== Advancement Columns ===== -->
+  <div class="sheet-3colrow sheet-advancement-wrapper">
+
+    <!-- ===== POPULATION TRACKING ===== -->
+    <div class="sheet-col">
+      <div class="sheet-pop-block">
+        <h3 class="section-subtitle">Population (POP)</h3>
+        <table class="sheet-attribute-table sheet-status-table">
+          <tr>
+            <td>Current POP</td>
+            <td><input type="number" name="attr_POP" value="1" min="0" /></td>
+          </tr>
+          <tr>
+            <td>Max Leaders</td>
+            <td><input type="number" name="attr_MaxLeaders" value="(3 + floor(@{POP} / 5) + @{GOVMod})" disabled /></td>
+          </tr>
+          <tr>
+            <td>Growth Points / Turn</td>
+            <td><input type="number" name="attr_PopGrowthPerTurn" value="0" min="0" /></td>
+          </tr>
+          <tr>
+            <td>Growth Points</td>
+            <td><input type="number" name="attr_PopGrowth" value="0" min="0" /></td>
+          </tr>
+          <tr>
+            <td>Advance Roll</td>
+            <td>
+<button type="roll" name="roll_POPAdvance"
+  value="&{template:t4d} {{theme=faction}} {{title=POP Advancement}} {{result=[[3d10 + @{GOVMod} + @{StrainPenalty} + floor(@{SelectedLeaderInstinct}/4) + ?{Other Modifiers|0}]]}}">
+</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ===== TECH LEVEL TRACKING ===== -->
+    <div class="sheet-col">
+      <div class="sheet-tl-block">
+        <h3 class="section-subtitle">Tech Level (TL)</h3>
+        <table class="sheet-attribute-table sheet-status-table">
+          <tr>
+            <td>Current TL</td>
+            <td><input type="number" name="attr_TL" value="1" min="1" /></td>
+          </tr>
+          <tr>
+            <td>Innovation Points / Turn</td>
+            <td><input type="number" name="attr_TLInnovationPerTurn" value="0" min="0" /></td>
+          </tr>
+          <tr>
+            <td>Innovation Points</td>
+            <td><input type="number" name="attr_TLInnovation" value="0" min="0" /></td>
+          </tr>
+          <tr>
+            <td>Advance Roll</td>
+            <td>
+<button type="roll" name="roll_TLAdvance"
+  value="&{template:t4d} {{theme=faction}} {{title=Tech Level Advancement}} {{result=[[1d9 + @{INNMod} - @{TL} + @{StrainPenalty} + floor(@{SelectedLeaderOperations}/4) + ?{Other Modifiers|0}]]}}">
+</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ===== RESOURCE TRACKING ===== -->
+    <div class="sheet-col">
+      <div class="sheet-res-block">
+        <h3 class="section-subtitle">Resources (RES)</h3>
+        <table class="sheet-attribute-table sheet-status-table">
+          <tr>
+            <td>Current RES</td>
+            <td><input type="number" name="attr_RES" value="0" /></td>
+          </tr>
+          <tr>
+            <td>Income Tier</td>
+            <td><input type="number" name="attr_RESTier" value="3" min="0" /></td>
+          </tr>
+          <tr>
+            <td>Revenue Points / Turn</td>
+            <td><input type="number" name="attr_RevenuePerTurn" value="0" min="0" /></td>
+          </tr>
+            <tr>
+            <td>Revenue Points</td>
+            <td><input type="number" name="attr_RevenuePoints" value="0" min="0" /></td>
+          </tr>
+          <tr>
+            <td>Building Income Bonus</td>
+            <td><input type="number" name="attr_BuildingIncome" value="0" /></td>
+          </tr>
+          <tr>
+          <tr>
+            <td>Income / Turn</td>
+            <td>
+              <input type="number" name="attr_income" 
+                     value="((@{RESTier} * 2) + floor(@{POP} / 5) + (@{TL} - 1) + @{BuildingIncome} - ceil(@{UnitTotalCost} * 0.1))" 
+                     disabled />
+            </td>
+          </tr>
+          <tr>
+            <td>Army Upkeep (RES)</td>
+            <td>
+              <input type="number" name="attr_ArmyUpkeep" 
+                     value="ceil(@{UnitTotalCost} * 0.1)" 
+                     disabled />
+            </td>
+          </tr>
+            <td>Advance Roll</td>
+            <td>
+<button type="roll" name="roll_RESAdvance"
+  value="&{template:t4d} {{theme=faction}} {{title=Resource Advancement}} {{result=[[3d10 + @{INDMod} + @{StrainPenalty} + floor(@{SelectedLeaderOperations}/4) + ?{Other Modifiers|0}]]}}">
+</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div> <!-- End Advancement 3-column -->
+</div> <!-- End Faction Advancement -->
+
+<!-- ===== SELECTED LEADER SKILLS ===== -->
+<div class="sheet-section-block">
+  <h3 class="section-subtitle">Advancement Leader Skills</h3>
+ <div class="sheet-leader-selectbox">
+  <div class="sheet-2colrow">
+    <div class="sheet-col">
+      <label>Select Leader</label>
+      <select name="attr_SelectedLeader">
+        <option value="Leader 1">Leader 1</option>
+        <option value="Leader 2">Leader 2</option>
+        <option value="Leader 3">Leader 3</option>
+        <option value="Leader 4">Leader 4</option>
+        <option value="Leader 5">Leader 5</option>
+        <option value="Leader 6">Leader 6</option>
+        <option value="Leader 7">Leader 7</option>
+        <option value="Leader 8">Leader 8</option>
+        <option value="Leader 9">Leader 9</option>
+      </select>
+    </div>
+    <div class="sheet-col">
+      <label>Leader Name</label>
+      <input type="text" name="attr_SelectedLeaderName" readonly />
+    </div>
+  </div>
+
+  <div class="sheet-4colrow">
+    <div class="sheet-col">
+      <label>Command</label>
+      <input type="number" name="attr_SelectedLeaderCommand" readonly />
+    </div>
+    <div class="sheet-col">
+      <label>Operations</label>
+      <input type="number" name="attr_SelectedLeaderOperations" readonly />
+    </div>
+    <div class="sheet-col">
+      <label>Instinct</label>
+      <input type="number" name="attr_SelectedLeaderInstinct" readonly />
+    </div>
+    <div class="sheet-col">
+      <label>Awareness</label>
+      <input type="number" name="attr_SelectedLeaderAwareness" readonly />
+    </div>
+  </div>
+</div>
+</div>
+<!-- ===== FACTION INFRASTRUCTURE & BUILDINGS ===== -->
+<div class="sheet-section-block">
+  <div class="sheet-group-title">
+    <h2 class="section-title">Infrastructure & Buildings</h2>
+  </div>
+
+  <!-- === Top Row: Influence and Building Capacity (4 Columns) === -->
+  <div class="sheet-BuildingTop">
+    <div class="sheet-4colrow">
+      <div class="sheet-col">
+        <label>Control Radius</label>
+        <input type="number" name="attr_InfluenceLevel" value="floor(@{POP}/2)" disabled />
+      </div>
+      <div class="sheet-col">
+        <label>Max Buildings</label>
+        <input type="number" name="attr_BuildingCap" value="floor(@{POP}/2) + @{GOVMod}" disabled />
+      </div>
+      <div class="sheet-col">
+        <label>Buildings Used</label>
+        <input type="number" name="attr_BuildingUsed" value="0" />
+      </div>
+      <div class="sheet-col">
+        <label>Available Slots</label>
+        <input type="number" name="attr_BuildingSlots" value="(@{BuildingCap} - @{BuildingUsed})" disabled />
+      </div>
+    </div>
+  </div>
+
+  <!-- === Repeating Buildings Table === -->
+  <div class="sheet-buildings-wrapper">
+    <h3 class="section-subtitle">Buildings</h3>
+    <fieldset class="repeating_buildings">
+      <div class="sheet-building-entry">
+        <div class="sheet-building-grid">
+          <div>
+            <label>Name</label>
+            <input type="text" name="attr_BuildingName" />
+          </div>
+          <div>
+            <label>HP</label>
+            <input type="number" name="attr_BuildingHP" value="0" />
+          </div>
+          <div>
+            <label>RES Cost</label>
+            <input type="number" name="attr_BuildingCost" value="0" />
+          </div>
+          <div>
+            <label>Counts Toward Cap?</label>
+            <input type="hidden" name="attr_CountsCap" value="0" />
+            <input type="checkbox" name="attr_CountsCap" value="1" />
+          </div>
+          <div>
+            <label>Growth Points Per Turn</label>
+            <input type="number" name="attr_BuildingGrowthPoints" value="0" />
+          </div>
+          <div>
+            <label>Innovation Points Per Turn</label>
+            <input type="number" name="attr_BuildingInnovationPoints" value="0" />
+          </div>
+          <div>
+            <label>Revenue Points Per Turn</label>
+            <input type="number" name="attr_BuildingRevenuePoints" value="0" />
+          </div>
+        </div>
+
+        <!-- Effects Row -->
+        <div class="sheet-effects-row">
+          <label>Effects</label>
+          <textarea name="attr_BuildingEffects" rows="3"></textarea>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+<!-- ===== Leaders Section ===== -->
+<div class="sheet-section-block">
+  <div class="sheet-group-title">
+    <h2 class="section-title">Leaders</h2>
+  </div>
+
+  <!-- === REPEATING LEADER BLOCKS === -->
+  <fieldset class="repeating_leaders">
+
+    <div class="sheet-leader-card">
+
+      <!-- === Leader Header === -->
+      <div class="sheet-3colrow sheet-leader-header-row">
+        <div class="sheet-col">
+          <label for="attr_LeaderName">Leader Name</label>
+          <input type="text" name="attr_LeaderName" placeholder="Name" />
+        </div>
+
+        <div class="sheet-col">
+          <label for="attr_LeaderNumber">Leader Number</label>
+          <select name="attr_LeaderNumber">
+            <option value="Leader 1">Leader 1</option>
+            <option value="Leader 2">Leader 2</option>
+            <option value="Leader 3">Leader 3</option>
+            <option value="Leader 4">Leader 4</option>
+            <option value="Leader 5">Leader 5</option>
+            <option value="Leader 6">Leader 6</option>
+            <option value="Leader 7">Leader 7</option>
+            <option value="Leader 8">Leader 8</option>
+            <option value="Leader 9">Leader 9</option>
+          </select>
+        </div>
+
+        <div class="sheet-col">
+          <label for="attr_LeaderStatus">Status</label>
+          <select name="attr_LeaderStatus">
+            <option value="Active">Active</option>
+            <option value="Recovering">Recovering</option>
+            <option value="Captured">Captured</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- === Core Faction Skills === -->
+      <div class="sheet-section-block sheet-theme-faction">
+        <h3 class="section-subtitle">Faction Skills</h3>
+
+        <div class="sheet-2colrow sheet-skills-wrapper">
+          <!-- Combat Skills -->
+          <div class="sheet-col">
+            <div class="sheet-skillgroup-combat">
+              <h3 class="section-subtitle">Combat Skills</h3>
+              <div class="sheet-skill-header">
+                <span></span><span>Skill</span><span>Level</span><span>XP</span>
+              </div>
+              <input type="hidden" name="attr_LeaderSkillUsed" value="0" />
+
+              <div class="sheet-skill-entry">
+                <button type="roll" name="roll_LeaderCommand"
+                  value="&{template:t4d} {{theme=faction}} {{title=Command}} {{result=[[1d20 + @{LeaderCommandLevel} + ?{Other Modifiers|0}]]}}">
+                </button>
+                <input type="text" name="attr_LeaderCommandLabel" value="Command" disabled />
+                <input type="number" name="attr_LeaderCommandLevel" value="0" />
+                <input type="number" name="attr_LeaderCommandXP" value="0" />
+              </div>
+
+              <div class="sheet-skill-entry">
+                <button type="roll" name="roll_LeaderOperations"
+                  value="&{template:t4d} {{theme=faction}} {{title=Operations}} {{result=[[1d20 + @{LeaderOperationsLevel} + ?{Other Modifiers|0}]]}}">
+                </button>
+                <input type="text" name="attr_LeaderOperationsLabel" value="Operations" disabled />
+                <input type="number" name="attr_LeaderOperationsLevel" value="0" />
+                <input type="number" name="attr_LeaderOperationsXP" value="0" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Situational Skills -->
+          <div class="sheet-col">
+            <div class="sheet-skillgroup-detection">
+              <h3 class="section-subtitle">Situational Skills</h3>
+              <div class="sheet-skill-header">
+                <span></span><span>Skill</span><span>Level</span><span>XP</span>
+              </div>
+
+              <div class="sheet-skill-entry">
+                <button type="roll" name="roll_LeaderInstinct"
+                  value="&{template:t4d} {{theme=faction}} {{title=Instinct}} {{result=[[1d20 + @{LeaderInstinctLevel} + ?{Other Modifiers|0}]]}}">
+                </button>
+                <input type="text" name="attr_LeaderInstinctLabel" value="Instinct" disabled />
+                <input type="number" name="attr_LeaderInstinctLevel" value="0" />
+                <input type="number" name="attr_LeaderInstinctXP" value="0" />
+              </div>
+
+              <div class="sheet-skill-entry">
+                <button type="roll" name="roll_LeaderAwareness"
+                  value="&{template:t4d} {{theme=faction}} {{title=Awareness}} {{result=[[1d20 + @{LeaderAwarenessLevel} + ?{Other Modifiers|0}]]}}">
+                </button>
+                <input type="text" name="attr_LeaderAwarenessLabel" value="Awareness" disabled />
+                <input type="number" name="attr_LeaderAwarenessLevel" value="0" />
+                <input type="number" name="attr_LeaderAwarenessXP" value="0" />
+              </div>
+            </div>
+    </div>
+  </fieldset>
+</div>
+</div>
+<!-- ===== Units & Assignments ===== -->
+<div class="sheet-container sheet-faction">
+  <h2 class="section-title">Units</h2>
+  <fieldset class="repeating_units">
+    <div class="sheet-unit-entry sheet-theme-faction">
+
+<!-- Top Row -->
+<div class="sheet-5colrow">
+  <div class="sheet-col">
+    <label>Unit Name</label>
+    <input type="text" name="attr_UnitName" placeholder="e.g. 1st Mech Division" />
+  </div>
+
+  <div class="sheet-col">
+    <label>Unit Type</label>
+    <select name="attr_UnitType">
+      <option value="Infantry">Infantry</option>
+      <option value="Cavalry">Cavalry</option>
+      <option value="Vehicle">Vehicle</option>
+      <option value="Mech">Mech</option>
+      <option value="Aircraft">Aircraft</option>
+      <option value="Starship">Starship</option>
+      <option value="Support">Support</option>
+    </select>
+  </div>
+
+  <div class="sheet-col">
+    <label>Army Group</label>
+    <select name="attr_UnitArmyGroup">
+      <option value="1">Army 1</option>
+      <option value="2">Army 2</option>
+      <option value="3">Army 3</option>
+      <option value="4">Army 4</option>
+      <option value="5">Army 5</option>
+      <option value="6">Army 6</option>
+      <option value="7">Army 7</option>
+      <option value="8">Army 8</option>
+      <option value="9">Army 9</option>
+      <option value="unassigned" selected>Unassigned</option>
+    </select>
+  </div>
+
+  <div class="sheet-col">
+    <label>RES Cost</label>
+    <input type="number" name="attr_UnitCost" value="0" />
+  </div>
+</div>
+
+      <!-- Hidden Copied Leader Stats -->
+      <div style="display: none;">
+        <input type="number" name="attr_UnitLeaderCommand" placeholder="0" />
+        <input type="number" name="attr_UnitLeaderOperations" placeholder="0" />
+        <input type="number" name="attr_UnitLeaderInstinct" placeholder="0" />
+        <input type="number" name="attr_UnitLeaderAwareness" placeholder="0" />
+        <input type="hidden" name="attr_UnitLeaderSkillUsed" placeholder="0" />
+      </div>
+
+      <!-- Stats Block -->
+      <div class="sheet-3colrow">
+
+        <!-- Config -->
+        <div class="sheet-col">
+          <label>Tech Level</label>
+          <input type="number" name="attr_UnitTL" value="1" min="1" max="9" />
+
+          <label>Unit Size (HP Mult)</label>
+          <select name="attr_UnitSizeMult">
+            <option value="0.5">Tiny (×0.5)</option>
+            <option value="0.75">Small (×0.75)</option>
+            <option value="1" selected>Medium (×1.0)</option>
+            <option value="1.5">Large (×1.5)</option>
+            <option value="2">Huge (×2.0)</option>
+            <option value="3">Titanic (×3.0)</option>
+          </select>
+
+          <label>Size MVMT Mod</label>
+          <select name="attr_UnitSizeMVMTMod">
+            <option value="10">Tiny (+10)</option>
+            <option value="5">Small (+5)</option>
+            <option value="0" selected>Medium</option>
+            <option value="-5">Large (-5)</option>
+            <option value="-10">Huge (-10)</option>
+            <option value="-15">Titanic (-15)</option>
+          </select>
+
+          <label>Size INIT Mod</label>
+          <select name="attr_UnitSizeInitMod">
+            <option value="2">Tiny (+2)</option>
+            <option value="1">Small (+1)</option>
+            <option value="0" selected>Medium</option>
+            <option value="-1">Large (-1)</option>
+            <option value="-2">Huge (-2)</option>
+            <option value="-3">Titanic (-3)</option>
+          </select>
+
+          <label>Size DMG Bonus</label>
+          <select name="attr_UnitSizeDMGDice">
+            <option value="">+0</option>
+            <option value=" + 1d4">+1d4</option>
+            <option value=" + 1d6">+1d6</option>
+            <option value=" + 2d6">+2d6</option>
+          </select>
+        </div>
+
+        <!-- Base -->
+        <div class="sheet-col">
+          <label>Base HP</label>
+          <input type="number" name="attr_UnitBaseHP" value="10" />
+
+          <label>Base Attack</label>
+          <input type="text" name="attr_UnitBaseDMG" placeholder="e.g. 2d6" />
+
+          <label>Base Attack Bonus</label>
+          <input type="number" name="attr_UnitAttackBonus" value="0" />
+
+          <label>Base MVMT</label>
+          <input type="number" name="attr_UnitBaseMVMT" value="6" />
+
+          <label>Base INIT</label>
+          <input type="number" name="attr_UnitBaseINIT" value="0" />
+        </div>
+
+        <!-- Final -->
+        <div class="sheet-col">
+          <label>Final HP</label>
+          <input type="number" name="attr_UnitMaxHP" readonly />
+
+          <label>Final Attack</label>
+          <input type="text" name="attr_UnitDMG" readonly />
+
+<button type="roll" name="roll_Attack"
+  value="&{template:t4d_attack} {{title=@{UnitName} Attack Roll}} {{character=@{character_name}}} {{Hit=[[1d20 + @{UnitAttackBonusFinal} + @{StrainPenalty} + floor((?{Which Skill?|Command,@{UnitLeaderCommand}|Operations,@{UnitLeaderOperations}|Instinct,@{UnitLeaderInstinct}|Awareness,@{UnitLeaderAwareness}})/4) + @{LOGMod} + ?{Other Modifiers|0}]]}} {{Damage=[[@{UnitDMG}]]}}">
+  Attack Roll
+</button>
+          <label>Final Attack Bonus</label>
+          <input type="number" name="attr_UnitAttackBonusFinal" readonly />
+
+          <label>Final MVMT</label>
+          <input type="number" name="attr_UnitMVMT" readonly />
+
+          <label>Final INIT</label>
+          <input type="number" name="attr_UnitInitiative" readonly />
+        </div>
+      </div>
+
+      <!-- Notes -->
+      <div>
+        <label>Unit Notes</label>
+        <textarea name="attr_UnitNotes" placeholder="Optional notes about this unit..."></textarea>
+      </div>
+
+    </div>
+  </fieldset>
+</div>
+
+<!-- ===== FACTION OVERVIEW / DESCRIPTION / NOTES BLOCK ===== -->
+<div class="sheet-container sheet-faction">
+  <div class="sheet-group-title">
+    <h2 class="section-title">Faction Overview</h2>
+  </div>
+
+  <div class="sheet-subsection-block sheet-faction-group sheet-faction-desc">
+    <h3 class="section-subtitle">Faction Identity & Philosophy</h3>
+    <div class="sheet-profile-notes-row">
+      <textarea class="sheet-desc-box" name="attr_FactionDescription"
+        placeholder="Describe the faction’s theme, government style, core values, or ideology."></textarea>
+    </div>
+  </div>
+
+  <div class="sheet-subsection-block sheet-faction-group sheet-faction-history">
+    <h3 class="section-subtitle">Origin & Historical Context</h3>
+    <div class="sheet-profile-notes-row">
+      <textarea class="sheet-bg-box" name="attr_FactionHistory"
+        placeholder="Describe the faction’s founding, major events, wars, or evolution."></textarea>
+    </div>
+  </div>
+
+  <div class="sheet-subsection-block sheet-faction-group sheet-faction-notes">
+    <h3 class="section-subtitle">Notes</h3>
+    <div class="sheet-profile-notes-row">
+      <textarea class="sheet-notes-box" name="attr_FactionNotes"
+        placeholder="Misc. notes, story hooks, alliance plans, session details, or directives."></textarea>
+    </div>
+  </div>
+  </div>
+
+<!-- ==ArmyRadioToggle===--->
+<div class="sheet-container sheet-army">
+  <div class="sheet-army-block">
+
+<div class="sheet-army-header" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+
+  <!-- Leader Side (Left) -->
+  <div>
+    <label>Assigned Leader
+      <select name="attr_ArmyLeader">
+        <option value="">None</option>
+        <option value="Leader 1">Leader 1</option>
+        <option value="Leader 2">Leader 2</option>
+        <option value="Leader 3">Leader 3</option>
+        <option value="Leader 4">Leader 4</option>
+        <option value="Leader 5">Leader 5</option>
+        <option value="Leader 6">Leader 6</option>
+        <option value="Leader 7">Leader 7</option>
+        <option value="Leader 8">Leader 8</option>
+        <option value="Leader 9">Leader 9</option>
+      </select>
+    </label>
+
+    <label>Leader Name
+      <input type="text" name="attr_ArmyLeaderName" readonly />
+    </label>
+  </div>
+
+  <!-- Army Side (Right) -->
+  <div>
+    <label>Army Number
+      <select name="attr_ArmyNumber">
+        <option value="1">Army 1</option>
+        <option value="2">Army 2</option>
+        <option value="3">Army 3</option>
+        <option value="4">Army 4</option>
+        <option value="5">Army 5</option>
+        <option value="6">Army 6</option>
+        <option value="7">Army 7</option>
+        <option value="8">Army 8</option>
+        <option value="9">Army 9</option>
+      </select>
+    </label>
+
+    <label>Army Name
+      <input type="text" name="attr_ArmyName" />
+    </label>
+  </div>
+
+</div>
+
+
+<div class="sheet-army-stats-wrapper">
+  <h3 class="section-subtitle">Army Stats</h3>
+<div class="sheet-army-stats-rows" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;">
+
+  <!-- Row 1: Leader Skills -->
+  <div><label>CMD</label><input type="number" name="attr_ArmyLeaderCommand" readonly /></div>
+  <div><label>OPS</label><input type="number" name="attr_ArmyLeaderOperations" readonly /></div>
+  <div><label>INST</label><input type="number" name="attr_ArmyLeaderInstinct" readonly /></div>
+  <div><label>AWR</label><input type="number" name="attr_ArmyLeaderAwareness" readonly /></div>
+
+  <!-- Row 2: Primary Mods -->
+  <div><label>IND Mod</label><input type="number" name="attr_ArmyINDMod" /></div>
+  <div><label>LOG Mod</label><input type="number" name="attr_ArmyLOGMod" /></div>
+  <div><label>STB Mod</label><input type="number" name="attr_ArmySTBMod" /></div>
+  <div><label>INN Mod</label><input type="number" name="attr_ArmyINNMod" /></div>
+
+  <!-- Row 3: Primary/Secondary Mods -->
+  <div><label>GOV Mod</label><input type="number" name="attr_ArmyGOVMod" /></div>
+  <div><label>DIP Mod</label><input type="number" name="attr_ArmyDIPMod" /></div>
+  <div><label>RSP Mod</label><input type="number" name="attr_ArmyRSPMod" /></div>
+  <div><label>EFF Mod</label><input type="number" name="attr_ArmyEFFMod" /></div>
+
+<!-- Row 4: Secondary/Other -->
+<div>
+  <label>KNW Mod</label>
+  <input type="number" name="attr_ArmyKNWMod" />
+</div>
+
+<div>
+  <label>Strain Penalty</label>
+  <input type="number" name="attr_ArmyStrainPenalty" value="0" />
+</div>
+
+<div>
+  <label>Tactical Save</label>
+  <button type="roll" name="roll_TacticalSave"
+    value="&{template:t4d} {{title=Tactical Save}} {{character=@{character_name}}} {{result=[[1d20 + @{ArmyLOGMod} + floor(@{ArmyLeaderCommand} / 4) + ?{Other Modifiers|0}]]}}">
+    Roll
+  </button>
+</div>
+
+<div>
+  <label>Morale Save</label>
+  <button type="roll" name="roll_MoraleSave"
+    value="&{template:t4d} {{title=Morale Save}} {{character=@{character_name}}} {{result=[[1d20 + @{ArmyGOVMod} + floor(@{ArmyLeaderInstinct} / 4) + ?{Other Modifiers|0}]]}}">
+    Roll
+  </button>
+</div>
+</div>
+
+<!-- === Out-of-Supply Army CP Tracking === -->
+<div class="sheet-army-block">
+  <h3 class="section-subtitle">Out-of-Supply CP Tracking</h3>
+  <div class="sheet-2colrow">
+    <div class="sheet-col">
+      <label>Current CP</label>
+      <input type="number" name="attr_OOSCurrentCP" value="0" />
+    </div>
+    <div class="sheet-col">
+      <label>Max CP</label>
+      <input type="number" name="attr_OOSMaxCP" value="0" />
+    </div>
+  </div>
+</div>
+<!-- === Repeating Units (Synced) === -->
+<div class="sheet-army-units">
+
+  <h3 class="section-subtitle">Army Units</h3>
+
+  <fieldset class="repeating_units">
+    <div class="sheet-unit-block">
+      <div class="sheet-unit-labels">
+        <span>Unit</span><span>Army</span><span>HP</span><span>Max</span>
+        <span>Atk</span><span>Bonus</span><span>MVMT</span><span>INIT</span><span>Roll</span>
+      </div>
+      <div class="sheet-unit-inputs">
+        <input type="text" name="attr_UnitName" readonly />
+        <input type="text" name="attr_UnitArmyGroup" readonly />
+        <input type="number" name="attr_UnitCurrentHP" /> 
+        <input type="number" name="attr_UnitMaxHP" readonly /> 
+        <input type="text" name="attr_UnitDMG" readonly />
+        <input type="number" name="attr_UnitAttackBonus" readonly />
+        <input type="number" name="attr_UnitMVMT" readonly />
+        <input type="number" name="attr_UnitINIT" readonly />
+        <button type="roll" name="roll_UnitAttack"
+  value="&{template:t4d_attack} {{title=@{UnitName} Attack Roll}} {{character=@{character_name}}} {{Hit=[[1d20 + @{UnitAttackBonus} + @{ArmyStrainPenalty} + floor((?{Which Skill?|Command,@{ArmyLeaderCommand}|Operations,@{ArmyLeaderOperations}|Instinct,@{ArmyLeaderInstinct}|Awareness,@{ArmyLeaderAwareness}})/4) + @{ArmyLOGMod} + ?{Other Modifiers|0}]]}} {{Damage=[[@{UnitDMG}]]}}">
+</button>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+<!-- === Army Basic Commands === -->
+<div class="sheet-army-block">
+  <h3 class="section-subtitle">Basic Leader Commands</h3>
+  <div class="sheet-basiccommand-block">
+
+    <fieldset class="repeating_basiccommands">
+      <div class="sheet-command-row">
+
+        <!-- Row 1 -->
+        <div class="sheet-command-toprow">
+<button type="roll" name="roll_BasicCommand"
+value="&{template:t4d} {{title=@{basiccommandname} Basic Command}} {{character=@{ArmyLeaderName}}} {{result=[[1d20 + @{basiccommandlevel} + @{ArmyStrainPenalty} + (?{Which Skill?|Command,@{ArmyLeaderCommand}|Operations,@{ArmyLeaderOperations}|Instinct,@{ArmyLeaderInstinct}|Awareness,@{ArmyLeaderAwareness}}/4) + ?{Faction Stat|Industry,@{ArmyINDMod}|Logistics,@{ArmyLOGMod}|Stability,@{ArmySTBMod}|Innovation,@{ArmyINNMod}|Governance,@{ArmyGOVMod}|Diplomacy,@{ArmyDIPMod}} + ?{Other Modifiers|0}]]}}"></button>
+          <div>
+            <label>Command Name</label>
+            <input type="text" name="attr_basiccommandname" placeholder="Command Name" />
+          </div>
+
+          <div><label>CP</label><input type="number" name="attr_basiccommandcp" value="1" /></div>
+          <div><label>Level</label><input type="number" name="attr_basiccommandlevel" value="1" /></div>
+          <div><label>XP</label><input type="number" name="attr_basiccommandxp" value="0" /></div>
+
+          <div class="sheet-core-skill-select">
+            <label class="sheet-core-skill-label">Core Skill</label>
+            <select name="attr_basiccommandcoreskill">
+              <option value="Command">Command</option>
+              <option value="Operations">Operations</option>
+              <option value="Instinct">Instinct</option>
+              <option value="Awareness">Awareness</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Leader</label>
+            <input type="text" name="attr_basiccommandleadername" placeholder="Leader" />
+          </div>
+        </div>
+
+        <textarea name="attr_basiccommandnotes" placeholder="Command effects, requirements, etc."></textarea>
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+<!-- === Army Advanced Commands === -->
+<div class="sheet-army-block">
+      <h3 class="section-subtitle">Advanced Leader Commands</h3>
+  <div class="sheet-advancedcommand-block">
+
+    <fieldset class="repeating_advancedcommands">
+      <div class="sheet-command-row">
+
+        <!-- Row 1 -->
+        <div class="sheet-command-toprow">
+<button type="roll" name="roll_AdvancedCommand"
+value="&{template:t4d} {{title=@{advancedcommandname} Advanced Command}} {{character=@{ArmyLeaderName}}} {{result=[[1d20 + (?{Leader Skill|Command,@{ArmyLeaderCommand}|Operations,@{ArmyLeaderOperations}|Instinct,@{ArmyLeaderInstinct}|Awareness,@{ArmyLeaderAwareness}}/4) + ?{Faction Stat|Industry,@{ArmyINDMod}|Logistics,@{ArmyLOGMod}|Stability,@{ArmySTBMod}|Innovation,@{ArmyINNMod}|Governance,@{ArmyGOVMod}|Diplomacy,@{ArmyDIPMod}} + @{advancedcommandlevel} + ?{Other Modifiers|0}]]}}"></button>
+                    <div>
+            <label>Command Name</label>
+            <input type="text" name="attr_advancedcommandname" placeholder="Command Name" />
+          </div>
+
+          <div><label>CP</label><input type="number" name="attr_advancedcommandcp" value="1" /></div>
+          <div><label>Level</label><input type="number" name="attr_advancedcommandlevel" value="1" /></div>
+          <div><label>XP</label><input type="number" name="attr_advancedcommandxp" value="0" /></div>
+
+<div class="sheet-core-skill-select">
+  <label class="sheet-core-skill-label">Core Skill</label>
+  <select name="attr_advancedcommandcoreskill">
+    <option value="Command">Command</option>
+    <option value="Operations">Operations</option>
+    <option value="Instinct">Instinct</option>
+    <option value="Awareness">Awareness</option>
+  </select>
+</div>
+          <div>
+            <label>Leader</label>
+            <input type="text" name="attr_commandleadername" placeholder="Leader" />
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="sheet-command-secondrow">
+          <input type="text" name="attr_advancedcommandcomponents" placeholder="Required Commands" />
+        </div>
+
+        <!-- Notes -->
+        <textarea name="attr_leadercommandnotes" placeholder="Command effects, requirements, etc."></textarea>
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+<rolltemplate class="sheet-rolltemplate-t4d">
+  <div class="sheet-template-box">
+    <div class="sheet-template-header">{{title}}</div>
+
+    <div class="sheet-template-character">{{character}}</div>
+
+    <div class="sheet-template-result-block">
+      <div class="sheet-template-label">Result:</div>
+      <div class="sheet-template-result">{{result}}</div>
+    </div>
+  </div>
+</rolltemplate>
+
+
+<rolltemplate class="sheet-rolltemplate-t4d_attack">
+  <div class="sheet-template-box">
+    <div class="sheet-template-title">{{title}}</div>
+    {{#faction}}
+      <div class="sheet-template-line">
+        <span class="label">Faction:</span>
+        <span>{{faction}}</span>
+      </div>
+    {{/faction}}
+    {{#Hit}}
+      <div class="sheet-template-line">
+        <span class="label">Hit Roll:</span>
+        <span class="sheet-template-result">{{Hit}}</span>
+      </div>
+    {{/Hit}}
+    {{#Damage}}
+      <div class="sheet-template-line">
+        <span class="label">Damage:</span>
+        <span class="sheet-template-result">{{Damage}}</span>
+      </div>
+    {{/Damage}}
+  </div>
+</rolltemplate>
+</div>
+
+<script type="text/worker">
+// === Utility Constants ===
+const FpTable = [
+  '1','2','3','4','5','7','9','11','13','15','18','21','24','27','30','34','38','42','46','50',
+  '55','60','65','70','75','81','87','93','99','105','112','119','126','133','140','148','156',
+  '164','172','180','189','198','207','216','225','235','245','255','265','275','286','297','308',
+  '319','330','342','354','366','378','390','403','416','429','442','455','469','483','497','511',
+  '525','540','555','570','585','600','616','632','648','664','680','697','714','731','748','765',
+  '783','801','819','837','855','874','893','912','931','950'
+];
+
+const TL_BONUS = {
+  1: [-5, -2, -5, -2, -3],
+  2: [-3, -1, -5, -1, -2],
+  3: [-1, -1, -5, -1, -1],
+  4: [0, 0, 0, 0, 0],
+  5: [2, 1, 2, 1, 1],
+  6: [5, 2, 5, 2, 2],
+  7: [10, 4, 5, 2, 3],
+  8: [15, 8, 10, 3, 4],
+  9: [20, 15, 15, 3, 5]
+};
+
+// === Unit Cost and Upkeep Calculation ===
+on("change:repeating_units remove:repeating_units", function () {
+  getSectionIDs("repeating_units", function (ids) {
+    const fields = ids.map(id => `repeating_units_${id}_UnitCost`);
+    getAttrs(fields, function (values) {
+      const total = fields.reduce((sum, field) => sum + (parseFloat(values[field]) || 0), 0);
+      const upkeep = Math.ceil(total * 0.10);
+      setAttrs({ UnitTotalCost: total, UnitUpkeep: upkeep });
+    });
+  });
+});
+
+// === FP Cost Calculation ===
+const factionStats = ["IND", "LOG", "STB", "INN", "GOV", "DIP"];
+on(`change:${factionStats.join(" change:")}`, function () {
+  getAttrs(factionStats, function (v) {
+    const updates = {};
+    let total = 0;
+    factionStats.forEach(stat => {
+      const level = parseInt(v[stat]) || 0;
+      const cost = (level > 0 && level <= FpTable.length) ? parseInt(FpTable[level - 1]) : 0;
+      updates[`${stat}Spent`] = cost;
+      total += cost;
+    });
+    updates.tFP = total;
+    setAttrs(updates);
+  });
+});
+
+// === Selected Leader Global Fields Update ===
+on("sheet:opened change:SelectedLeader", function() {
+  getSectionIDs("repeating_leaders", function(ids) {
+    if (!ids.length) return;
+    getAttrs(["SelectedLeader"], function(values) {
+      const selected = values.SelectedLeader;
+      const fields = ids.flatMap(id => [
+        `repeating_leaders_${id}_LeaderNumber`,
+        `repeating_leaders_${id}_LeaderName`,
+        `repeating_leaders_${id}_LeaderCommandLevel`,
+        `repeating_leaders_${id}_LeaderOperationsLevel`,
+        `repeating_leaders_${id}_LeaderInstinctLevel`,
+        `repeating_leaders_${id}_LeaderAwarenessLevel`
+      ]);
+      getAttrs(fields, function(all) {
+        for (let id of ids) {
+          if (all[`repeating_leaders_${id}_LeaderNumber`] === selected) {
+            setAttrs({
+              SelectedLeaderName: all[`repeating_leaders_${id}_LeaderName`] || "",
+              SelectedLeaderCommand: parseInt(all[`repeating_leaders_${id}_LeaderCommandLevel`]) || 0,
+              SelectedLeaderOperations: parseInt(all[`repeating_leaders_${id}_LeaderOperationsLevel`]) || 0,
+              SelectedLeaderInstinct: parseInt(all[`repeating_leaders_${id}_LeaderInstinctLevel`]) || 0,
+              SelectedLeaderAwareness: parseInt(all[`repeating_leaders_${id}_LeaderAwarenessLevel`]) || 0
+            });
+            break;
+          }
+        }
+      });
+    });
+  });
+});
+
+// === Auto-Assign Leader Stats to Units ===
+on("sheet:opened change:repeating_units:AssignedLeaderName", function(eventInfo) {
+  const rowId = eventInfo?.sourceAttribute?.split('_')[2];
+  if (!rowId) return;
+  const prefix = `repeating_units_${rowId}_`;
+
+  getSectionIDs("repeating_leaders", function(leaderIDs) {
+    if (!leaderIDs.length) return;
+    getAttrs([`${prefix}AssignedLeaderName`], function(v) {
+      const assigned = v[`${prefix}AssignedLeaderName`];
+      const fields = leaderIDs.flatMap(id => [
+        `repeating_leaders_${id}_LeaderNumber`,
+        `repeating_leaders_${id}_LeaderCommandLevel`,
+        `repeating_leaders_${id}_LeaderOperationsLevel`,
+        `repeating_leaders_${id}_LeaderInstinctLevel`,
+        `repeating_leaders_${id}_LeaderAwarenessLevel`
+      ]);
+      getAttrs(fields, function(all) {
+        for (let id of leaderIDs) {
+          if (all[`repeating_leaders_${id}_LeaderNumber`] === assigned) {
+            setAttrs({
+              [`${prefix}UnitLeaderCommand`]: parseInt(all[`repeating_leaders_${id}_LeaderCommandLevel`]) || 0,
+              [`${prefix}UnitLeaderOperations`]: parseInt(all[`repeating_leaders_${id}_LeaderOperationsLevel`]) || 0,
+              [`${prefix}UnitLeaderInstinct`]: parseInt(all[`repeating_leaders_${id}_LeaderInstinctLevel`]) || 0,
+              [`${prefix}UnitLeaderAwareness`]: parseInt(all[`repeating_leaders_${id}_LeaderAwarenessLevel`]) || 0
+            });
+            break;
+          }
+        }
+      });
+    });
+  });
+});
+
+// === Final Unit Stat Calculations ===
+on("sheet:opened change:repeating_units:UnitTL change:repeating_units:UnitBaseHP change:repeating_units:UnitBaseDMG change:repeating_units:UnitSizeMult change:repeating_units:UnitSizeDMGDice change:repeating_units:UnitBaseMVMT change:repeating_units:UnitBaseINIT change:repeating_units:UnitSizeMVMTMod change:repeating_units:UnitSizeInitMod change:repeating_units:UnitAttackBonus", function(eventInfo) {
+  const rowId = eventInfo?.sourceAttribute?.split("_")[2];
+  if (!rowId) return;
+  const prefix = `repeating_units_${rowId}_`;
+
+  const fields = [
+    `${prefix}UnitTL`, `${prefix}UnitBaseHP`, `${prefix}UnitBaseDMG`,
+    `${prefix}UnitSizeMult`, `${prefix}UnitSizeDMGDice`,
+    `${prefix}UnitBaseMVMT`, `${prefix}UnitBaseINIT`,
+    `${prefix}UnitSizeMVMTMod`, `${prefix}UnitSizeInitMod`,
+    `${prefix}UnitAttackBonus`
+  ];
+
+  getAttrs(fields, function(v) {
+    const tl = parseInt(v[`${prefix}UnitTL`]) || 0;
+    const baseHP = parseInt(v[`${prefix}UnitBaseHP`]) || 0;
+    const baseDMG = v[`${prefix}UnitBaseDMG`] || "";
+    const sizeMult = parseFloat(v[`${prefix}UnitSizeMult`]) || 1;
+    const sizeDMG = v[`${prefix}UnitSizeDMGDice`] || "";
+    const baseMVMT = parseInt(v[`${prefix}UnitBaseMVMT`]) || 0;
+    const baseINIT = parseInt(v[`${prefix}UnitBaseINIT`]) || 0;
+    const mvmtMod = parseInt(v[`${prefix}UnitSizeMVMTMod`]) || 0;
+    const initMod = parseInt(v[`${prefix}UnitSizeInitMod`]) || 0;
+    const baseAttackBonus = parseInt(v[`${prefix}UnitAttackBonus`]) || 0;
+
+    const [hpBonus = 0, dmgBonus = 0, mvmtBonus = 0, toHitBonus = 0, initBonus = 0] = TL_BONUS[tl] || [];
+    const finalHP = Math.floor((baseHP + hpBonus) * sizeMult);
+    const finalDMG = `${baseDMG}${sizeDMG}${dmgBonus ? ` + ${dmgBonus}` : ""}`;
+    const finalMVMT = baseMVMT + mvmtMod + mvmtBonus;
+    const finalINIT = baseINIT + initMod + initBonus;
+    const finalAttackBonus = baseAttackBonus + toHitBonus;
+
+    setAttrs({
+      [`${prefix}UnitMaxHP`]: finalHP,
+      [`${prefix}UnitDMG`]: finalDMG,
+      [`${prefix}UnitMVMT`]: finalMVMT,
+      [`${prefix}UnitInitiative`]: finalINIT,
+      [`${prefix}UnitAttackBonusFinal`]: finalAttackBonus
+    });
+  });
+});
+
+// === Total Building Output Calculation ===
+on("change:repeating_buildings change:repeating_buildings:BuildingGrowthPoints change:repeating_buildings:BuildingInnovationPoints change:repeating_buildings:BuildingRevenuePoints remove:repeating_buildings", function () {
+  getSectionIDs("repeating_buildings", function (ids) {
+    const fields = ids.flatMap(id => [
+      `repeating_buildings_${id}_BuildingGrowthPoints`,
+      `repeating_buildings_${id}_BuildingInnovationPoints`,
+      `repeating_buildings_${id}_BuildingRevenuePoints`
+    ]);
+    getAttrs(fields, function (values) {
+      let growth = 0, innovation = 0, revenue = 0;
+      ids.forEach(id => {
+        growth += parseInt(values[`repeating_buildings_${id}_BuildingGrowthPoints`] || "0", 10);
+        innovation += parseInt(values[`repeating_buildings_${id}_BuildingInnovationPoints`] || "0", 10);
+        revenue += parseInt(values[`repeating_buildings_${id}_BuildingRevenuePoints`] || "0", 10);
+      });
+      setAttrs({
+        PopGrowthPerTurn: growth,
+        TLInnovationPerTurn: innovation,
+        RevenuePerTurn: revenue
+      });
+    });
+  });
+});
+
+// === MODIFIER CACHING WORKERS (Moved outside prepsync) ===
+const generateModWorker = (stat) => {
+  on(`change:${stat} change:${stat}Temp`, function() {
+    getAttrs([stat, `${stat}Temp`], function(v) {
+      const base = parseInt(v[stat], 10) || 0;
+      const temp = parseInt(v[`${stat}Temp`], 10) || 0;
+      const mod = Math.floor(base / 5) - 2 + temp;
+      const update = {};
+      update[`${stat}ModCached`] = mod;
+      setAttrs(update);
+    });
+  });
+};
+
+["IND", "LOG", "STB", "INN", "GOV", "DIP"].forEach(generateModWorker);
+
+on("change:StrainLevel", function() {
+  getAttrs(["StrainLevel"], function(v) {
+    setAttrs({
+      StrainPenaltyCached: parseInt(v.StrainLevel, 10) || 0
+    });
+  });
+});
+
+// === Derived Secondary Stat Calculators ===
+on("change:LOG change:GOV change:RSPTemp", () => {
+  getAttrs(["LOG", "GOV", "RSPTemp"], v => {
+    const base = Math.floor(((+v.LOG || 0) + (+v.GOV || 0)) / 2);
+    const mod = Math.floor(base / 5) - 2 + (+v.RSPTemp || 0);
+    setAttrs({
+      RSP: base,
+      RSPModCached: mod
+    });
+  });
+});
+
+on("change:IND change:LOG change:EFFTemp", () => {
+  getAttrs(["IND", "LOG", "EFFTemp"], v => {
+    const base = Math.floor(((+v.IND || 0) + (+v.LOG || 0)) / 2);
+    const mod = Math.floor(base / 5) - 2 + (+v.EFFTemp || 0);
+    setAttrs({
+      EFF: base,
+      EFFModCached: mod
+    });
+  });
+});
+
+on("change:INN change:GOV change:KNWTemp", () => {
+  getAttrs(["INN", "GOV", "KNWTemp"], v => {
+    const base = Math.floor(((+v.INN || 0) + (+v.GOV || 0)) / 2);
+    const mod = Math.floor(base / 5) - 2 + (+v.KNWTemp || 0);
+    setAttrs({
+      KNW: base,
+      KNWModCached: mod
+    });
+  });
+});
+
+// === SHEET OPENED INITIALIZATION ===
+on("sheet:opened", function() {
+  const statFields = [
+    "IND", "INDTemp", "LOG", "LOGTemp", "STB", "STBTemp", "INN", "INNTemp",
+    "GOV", "GOVTemp", "DIP", "DIPTemp", "RSPTemp", "EFFTemp", "KNWTemp", "StrainLevel"
+  ];
+  getAttrs(statFields, function(v) {
+    const calc = (attr, temp) => Math.floor((+v[attr] || 0) / 5) - 2 + (+v[temp] || 0);
+
+    const RSPBase = Math.floor(((+v.LOG || 0) + (+v.GOV || 0)) / 2);
+    const EFFBase = Math.floor(((+v.IND || 0) + (+v.LOG || 0)) / 2);
+    const KNWBase = Math.floor(((+v.INN || 0) + (+v.GOV || 0)) / 2);
+
+    setAttrs({
+      INDModCached: calc("IND", "INDTemp"),
+      LOGModCached: calc("LOG", "LOGTemp"),
+      STBModCached: calc("STB", "STBTemp"),
+      INNModCached: calc("INN", "INNTemp"),
+      GOVModCached: calc("GOV", "GOVTemp"),
+      DIPModCached: calc("DIP", "DIPTemp"),
+      RSP: RSPBase,
+      RSPModCached: Math.floor(RSPBase / 5) - 2 + (+v.RSPTemp || 0),
+      EFF: EFFBase,
+      EFFModCached: Math.floor(EFFBase / 5) - 2 + (+v.EFFTemp || 0),
+      KNW: KNWBase,
+      KNWModCached: Math.floor(KNWBase / 5) - 2 + (+v.KNWTemp || 0),
+      StrainPenaltyCached: +v.StrainLevel || 0
+    });
+  });
+});
+
+// === PREP SYNC BUTTON HANDLER (remains unchanged) ===
+on("clicked:prepsync", function() {
+  // Wake up unit stat rows
+  getSectionIDs("repeating_units", function(unitIDs) {
+    unitIDs.forEach(id => {
+      const prefix = `repeating_units_${id}_`;
+      const fields = [
+        `${prefix}UnitTL`, `${prefix}UnitBaseHP`, `${prefix}UnitBaseDMG`,
+        `${prefix}UnitSizeMult`, `${prefix}UnitSizeDMGDice`,
+        `${prefix}UnitBaseMVMT`, `${prefix}UnitSizeMVMTMod`,
+        `${prefix}UnitBaseINIT`, `${prefix}UnitSizeInitMod`,
+        `${prefix}UnitAttackBonus`
+      ];
+      getAttrs(fields, function(values) {
+        const echo = {};
+        fields.forEach(f => echo[f] = values[f] || '');
+        setAttrs(echo); // Re-trigger stat calc
+      });
+    });
+  });
+
+  // Wake up leader number dropdowns
+  getSectionIDs("repeating_leaders", function(leaderIDs) {
+    leaderIDs.forEach(id => {
+      const prefix = `repeating_leaders_${id}_`;
+      const fields = [`${prefix}LeaderNumber`];
+      getAttrs(fields, function(v) {
+        const echo = {};
+        fields.forEach(f => echo[f] = v[f] || '');
+        setAttrs(echo); // Wake up leader number select
+      });
+    });
+  });
+});
+
+on("sheet:opened", function() {
+  getSectionIDs("repeating_units", function(ids) {
+    ids.forEach(id => {
+      const prefix = `repeating_units_${id}_`;
+      getAttrs([`${prefix}UnitAttackBonusFinal`, `${prefix}UnitInitiative`], function(v) {
+        setAttrs({
+          [`${prefix}UnitAttackBonus`]: v[`${prefix}UnitAttackBonusFinal`] || '',
+          [`${prefix}UnitINIT`]: v[`${prefix}UnitInitiative`] || ''
+        });
+      });
+    });
+  });
+});
+
+</script>

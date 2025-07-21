@@ -1,0 +1,3299 @@
+/* ====== TOGGLE VISIBILITY ====== */
+.sheet-theme-bio,
+.sheet-theme-ai {
+  display: none;
+}
+
+input[name="attr_AI_Mode"]:not(:checked) ~ .sheet-theme-bio {
+  display: block;
+}
+
+input[name="attr_AI_Mode"]:checked ~ .sheet-theme-ai {
+  display: block;
+}
+
+/* ==== Hide the Raw Checkbox ==== */
+.sheet-toggle {
+  opacity: 0;
+  position: absolute;
+}
+
+/* ===== TOGGLE WRAPPER ===== */
+.sheet-toggle-wrapper {
+  position: relative;
+}
+
+/* ===== TOGGLE TRACK ===== */
+.sheet-toggle-label {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 32px;
+  background: linear-gradient(to right, #4a0000, #800000, #4a0000);
+  border-radius: 32px;
+  border: 1px solid #800000;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  box-shadow: 0 0 10px #ff003380, inset 0 0 8px #2a0000;
+  transform: translateX(-5px);
+}
+
+/* ===== TOGGLE KNOB (BIO MODE) ===== */
+.sheet-toggle-label::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 26px;
+  height: 26px;
+  background: radial-gradient(circle at center, #ff4444, #800000);
+  border-radius: 50%;
+  box-shadow: 0 0 8px #ff0000aa;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* ===== TOGGLE TRACK: AI MODE ===== */
+.sheet-toggle:checked + .sheet-toggle-label {
+  background: linear-gradient(to right, #00ffff, #00b0c0, #003a4a);
+  box-shadow: 0 0 12px #00ffffaa, inset 0 0 6px #003a4a;
+  border: 1px solid #00ffff;
+}
+
+/* ===== TOGGLE KNOB: AI MODE ===== */
+.sheet-toggle:checked + .sheet-toggle-label::before {
+  transform: translateX(2925%);
+  background: radial-gradient(circle at center, #00ffff, #00aacc);
+  box-shadow: 0 0 8px #00ffffaa;
+}
+
+/* ===== CENTERED LABEL TEXT ===== */
+.sheet-toggle-state {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #ffffff;
+  pointer-events: none;
+  z-index: 1;
+  letter-spacing: 1px;
+  text-shadow: 0 0 4px #ffcccc;
+}
+
+.sheet-toggle:checked + .sheet-toggle-label .sheet-toggle-state {
+  text-shadow: 0 0 4px #00ffff;
+}
+
+/* ===== BIO ATTRIBUTES COLUMN WRAPPER ===== */
+.sheet-theme-bio .sheet-2colrow {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ===== PANEL WRAPPER – DARKER, GLOWY BLOOD CORE ===== */
+.sheet-theme-bio .sheet-primary-attributes-bio,
+.sheet-theme-bio .sheet-secondary-attributes-bio {
+  background: linear-gradient(to bottom right, #1a0000, #2a0000, #0f0000);
+  border: 1px solid #aa4444;
+  border-radius: 16px;
+  padding: 14px 18px;
+  margin-bottom: 14px;
+  flex: 1 1 48%;
+  min-width: 320px;
+  box-sizing: border-box;
+  box-shadow: 0 0 14px #4a000088, inset 0 0 10px #2a000040;
+}
+
+/* ===== SECTION TITLE – RICH + READABLE ===== */
+.sheet-theme-bio .section-title {
+  display: block;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: linear-gradient(to right, #4a0000, #900000, #4a0000);
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid #cc4444;
+  text-align: center;
+  margin-bottom: 14px;
+  box-sizing: border-box;
+  text-shadow: 0 0 6px #ff4444aa;
+  box-shadow: 0 0 10px #c44a4a88, inset 0 0 8px #4a0000;
+}
+
+/* ===== SUBTITLES – BLOOD VELVET STYLE ===== */
+.sheet-theme-bio .section-subtitle {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #ffffff;
+  background: linear-gradient(to right, #600000, #a40000);
+  padding: 8px 14px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  text-align: center;
+  border: 1px solid #c66;
+  box-shadow: 0 0 6px #ff555533, inset 0 0 4px #300000;
+  letter-spacing: 0.8px;
+}
+
+/* ===== TABLE STYLING ===== */
+.sheet-theme-bio .sheet-attribute-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: linear-gradient(to bottom, #300000, #1a0000);
+  border: 1px solid #a04444;
+  margin-bottom: 6px;
+  border-radius: 12px;
+  font-size: 10px;
+  text-align: center;
+  box-shadow: inset 0 0 8px #ffdddd33, 0 0 6px #60000044;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+.sheet-theme-bio .sheet-attribute-table thead {
+  background: linear-gradient(to right, #900000, #5a0000);
+  color: #fff;
+  text-shadow: 0 0 4px #300000;
+  border-bottom: 1px solid #aa6666;
+}
+
+.sheet-theme-bio .sheet-attribute-table th,
+.sheet-theme-bio .sheet-attribute-table td {
+  padding: 5px 6px;
+  height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+/* ===== BIO INPUTS – HIGH-CONTRAST & CLEAN ===== */
+.sheet-theme-bio input[type="number"],
+.sheet-theme-bio input[type="text"] {
+  width: 100%;
+  padding: 4px 6px;
+  border: 1px solid #aa5555;
+  border-radius: 8px;
+  background: linear-gradient(to bottom, #fff8f8, #ffeaea);
+  color: #330000;
+  text-align: center;
+  font-size: 12px;
+  box-shadow: inset 0 0 6px #ffcccc88;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.sheet-theme-bio input[type="number"]:focus,
+.sheet-theme-bio input[type="text"]:focus {
+  border-color: #ff6666;
+  box-shadow: 0 0 4px #ffaaaa, inset 0 0 8px #ffe0e0;
+}
+
+/* ===== BIO ROLL BUTTON ===== */
+.sheet-theme-bio button[type="roll"] {
+  position: relative;
+  height: 16px;
+  width: 16px;
+  border: 1px solid #870018;
+  border-radius: 50%;
+  color: #870018;
+  background-color: transparent;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  font-family: pictos;
+  text-align: center;
+  line-height: 20px;
+  box-shadow: 0 0 2px rgba(176, 0, 32, 0.4);
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 1;
+  transform: translateX(10px);
+}
+
+.sheet-theme-bio button[type="roll"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: transparent;
+  border-radius: 50%;
+  z-index: -1;
+  transition: background-color 0.3s ease;
+}
+
+.sheet-theme-bio button[type="roll"]:hover::before {
+  background-color: #870018;
+}
+
+.sheet-theme-bio button[type="roll"]:hover {
+  color: #ffffff;
+  border-color: #870018;
+}
+/* ===== FIX HEADER ROUNDING FOR BIO TABLES ===== */
+.sheet-theme-bio .sheet-attribute-table thead {
+  background: linear-gradient(to right, #900000, #5a0000);
+  color: #ffffff;
+  border-bottom: 1px solid #aa6666;
+  text-shadow: 0 0 4px #300000;
+}
+
+.sheet-theme-bio .sheet-attribute-table thead tr th:first-child {
+  border-top-left-radius: 12px;
+}
+.sheet-theme-bio .sheet-attribute-table thead tr th:last-child {
+  border-top-right-radius: 12px;
+}
+
+/* ===== IMPROVE BIO TABLE TEXT CONTRAST ===== */
+.sheet-theme-bio .sheet-attribute-table th {
+  font-weight: 700;
+  color: #fff;
+  background-color: transparent;
+  text-shadow: 0 0 4px #660000;
+}
+
+.sheet-theme-bio .sheet-attribute-table td {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+  text-shadow: 0 0 3px #400000;
+}
+/* ===== AP SUMMARY PANEL ===== */
+.sheet-theme-bio .sheet-ap-summary {
+  margin-top: 10px;
+  padding: 2px 4px;
+  background: linear-gradient(to right, #200000, #300000);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 12px;
+  box-shadow: inset 0 0 6px #70000088;
+}
+
+.sheet-theme-bio .sheet-ap-label {
+  color: #ffffff !important;
+  text-shadow: 0 0 3px #a00000;
+}
+
+.sheet-theme-bio .sheet-ap-label input[type="number"] {
+  width: 60px;
+  height: 24px;
+  padding: 2px 4px;
+  font-size: 12px;
+  text-align: center;
+  background-color: #fff8f8;
+  border: 1px solid #d8b1b1;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #300000;
+}
+
+/* ===== BIO STABILITY WRAPPER ===== */
+.sheet-theme-bio .sheet-stability-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  background: linear-gradient(to bottom right, #2a0000, #1a0000);
+  border: 1px solid #a22;
+  border-radius: 10px;
+  padding: 1px 2px;
+  margin-bottom: 4px;
+  margin-top: 1px;
+  padding-right: 25px;
+  box-shadow: 0 0 10px #50001033, inset 0 0 6px #30000044;
+  overflow: visible;
+}
+
+/* ===== STABILITY SUB-BLOCKS ===== */
+.sheet-theme-bio .sheet-saves-block,
+.sheet-theme-bio .sheet-status-block,
+.sheet-theme-bio .sheet-stress-block {
+  background: linear-gradient(to bottom, #3a0000, #1a0000);
+  border: 1px solid #c44;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 1px;
+  flex: 1;
+  min-width: 250px;
+  box-shadow: inset 0 0 6px #ff999933;
+  overflow-x: auto;
+  box-sizing: border-box;
+}
+
+/* ===== SUBSECTION TITLES ===== */
+.sheet-theme-bio .sheet-subsection-block h3.section-subtitle,
+.sheet-theme-bio .section-subtitle {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(to right, #900000, #600000);
+  padding: 6px 12px;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  border: 1px solid #c66;
+  text-shadow: 0 0 4px #300000;
+}
+
+/* ===== SAVE & STATUS TABLES ===== */
+.sheet-theme-bio .sheet-save-table,
+.sheet-theme-bio .sheet-status-table {
+  width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.sheet-theme-bio .sheet-save-table thead,
+.sheet-theme-bio .sheet-status-table thead {
+  background: linear-gradient(to right, #b00, #700);
+  color: #fff;
+  text-shadow: 0 0 3px #400000;
+}
+
+.sheet-theme-bio .sheet-save-table th,
+.sheet-theme-bio .sheet-save-table td,
+.sheet-theme-bio .sheet-status-table th,
+.sheet-theme-bio .sheet-status-table td {
+  padding: 2px 4px;
+  text-align: center;
+  border-bottom: 1px solid #eacaca;
+  font-size: 12px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.04);
+  text-shadow: 0 0 2px #200000;
+}
+
+/* ===== SAVE & STATUS INPUTS ===== */
+.sheet-theme-bio .sheet-save-table input[type="number"],
+.sheet-theme-bio .sheet-status-table input[type="number"] {
+  background: linear-gradient(to bottom, #fffafa, #ffeaea);
+  border: 1px solid #d8b1b1;
+  border-radius: 4px;
+  padding: 2px 4px;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: center;
+  color: #300000;
+  box-sizing: border-box;
+  min-height: 28px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 40px;
+  box-shadow: inset 0 0 4px #ffdddd88;
+}
+
+/* ===== STRESS WRAPPER ===== */
+.sheet-theme-bio .sheet-stress-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ===== STRESS SELECT INPUT ===== */
+.sheet-theme-bio .sheet-stress-select {
+  padding: 6px;
+  border: 1px solid #d6b1b1;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, #fffafa, #ffeaea);
+  color: #800000;
+  font-weight: bold;
+  font-size: 13px;
+  box-sizing: border-box;
+  width: 100%;
+  box-shadow: inset 0 0 4px #ffcccc66;
+}
+
+/* ===== STRESS PENALTY LINE ===== */
+.sheet-theme-bio .sheet-stress-penalty {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+  font-size: 13px;
+  width: 100%;
+}
+
+/* ===== STRESS LABEL ===== */
+.sheet-theme-bio .sheet-stress-label {
+  font-weight: bold;
+  color: #ffcccc;
+  text-shadow: 0 0 2px #400000;
+}
+
+/* ===== STRESS PENALTY INPUT ===== */
+.sheet-theme-bio .sheet-stress-penalty input[type="number"] {
+  width: 60px;
+  min-width: 50px;
+  text-align: right;
+  background: linear-gradient(to bottom, #fff8f8, #ffeaea);
+  border: 1px solid #d8b1b1;
+  border-radius: 4px;
+  padding: 4px;
+  font-size: 12px;
+  color: #300000;
+  box-shadow: inset 0 0 4px #ffddddaa;
+}
+
+/* ===== BIO SKILLS SECTION ===== */
+.sheet-theme-bio .sheet-skills-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: linear-gradient(to bottom right, #2a0000, #150000);
+  border: 1px solid #c44;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 24px;
+  box-shadow: inset 0 0 6px #ffdddd55;
+}
+
+/* ===== FIX BIO ATTRIBUTES TWO-COLUMN LAYOUT CLIPPING ===== */
+.sheet-theme-bio .sheet-2colrow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ===== ADJUST INDIVIDUAL BIO COLUMNS ===== */
+.sheet-theme-bio .sheet-2colrow .sheet-col {
+  flex: 1 1 100%;
+  min-width: 300px;
+  max-width: 49%;
+  padding: 0 8px;
+  box-sizing: border-box;
+  transform: translateX(5px);
+}
+/* Skill Group Containers */
+.sheet-theme-bio .sheet-skillgroup-combat,
+.sheet-theme-bio .sheet-skillgroup-detection,
+.sheet-theme-bio .sheet-skillgroup-training {
+  background: linear-gradient(to bottom, #3a0000, #1a0000);
+  border: 1px solid #c66;
+  border-radius: 8px;
+  padding: 10px;
+  flex: 1;
+  min-width: 260px;
+  box-shadow: inset 0 0 6px #ff999933;
+}
+
+/* Section Subtitles */
+.sheet-theme-bio .section-subtitle {
+  color: #ffffff;
+  background: linear-gradient(to right, #900000, #5a0000);
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 5px;
+  border: 1px solid #daa;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  font-size: 15px;
+  text-shadow: 0 0 4px #400000;
+}
+
+/* Header Row Labels */
+.sheet-theme-bio .sheet-skill-header {
+  display: grid;
+  grid-template-columns: 40px 1.5fr 0.75fr 0.75fr;
+  align-items: center;
+  font-weight: bold;
+  background: linear-gradient(to right, #900000, #700000);
+  color: #fff;
+  padding: 4px 6px;
+  border: 1px solid #ddb;
+  margin-bottom: 6px;
+  border-radius: 4px;
+  font-size: 13px;
+  text-shadow: 0 0 2px #300000;
+}
+
+/* Make header text centered */
+.sheet-theme-bio .sheet-skill-header span {
+  text-align: center;
+  display: block;
+}
+
+/* Skill Entry Layout */
+.sheet-theme-bio .sheet-skill-entry {
+  display: grid;
+  grid-template-columns: 40px 1.5fr 0.75fr 0.75fr;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0;
+  border-bottom: 1px dashed #e1b1b1;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Inputs in Entries */
+.sheet-theme-bio .sheet-skill-entry input[type="text"],
+.sheet-theme-bio .sheet-skill-entry input[type="number"] {
+  padding: 3px 5px;
+  font-size: 12px;
+  background: linear-gradient(to bottom, #fff6f6, #ffeaea);
+  border: 1px solid #d7b1b1;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  height: 24px;
+  color: #330000;
+  box-shadow: inset 0 0 4px #ffccccaa;
+}
+
+/* Padding around each main section block */
+.sheet-theme-bio .sheet-section-block {
+  padding: 12px 0;
+  margin-top: 10px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+/* Add space above and below H2 headers */
+.sheet-theme-bio .section-title {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+/* ===== Training Package Specific ===== */
+.sheet-theme-bio .repcontainer[data-groupname="repeating_skills"] .repitem {
+  margin-bottom: 12px;
+}
+
+.sheet-theme-bio .sheet-skill-entry textarea.sheet-training-notes {
+  grid-column: 1 / -1;
+  margin-top: 4px;
+  width: 100%;
+  height: 40px;
+  font-size: 12px;
+  background: linear-gradient(to bottom, #fffafc, #ffe6e6);
+  border: 1px solid #e0b0b0;
+  border-radius: 4px;
+  padding: 4px 6px;
+  box-sizing: border-box;
+  resize: vertical;
+  color: #330000;
+  box-shadow: inset 0 0 4px #ffdddd88;
+}
+
+/* ===== BIO GEAR SECTION WRAPPER ===== */
+.sheet-theme-bio .sheet-gear-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0.75em;
+  background: linear-gradient(to bottom right, #2a0000, #150000);
+  border: 1px solid #c44;
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(255, 200, 200, 0.1);
+}
+
+/* ===== BLOCKS: SUMMARY & TIERS ===== */
+.sheet-theme-bio .sheet-gear-summary,
+.sheet-theme-bio .sheet-gear-tiers {
+  display: grid;
+  gap: 10px;
+  padding: 8px 10px;
+  background: linear-gradient(to bottom, #3a0000, #1a0000);
+  border: 1px solid #d88;
+  border-radius: 8px;
+  box-shadow: inset 0 0 6px rgba(255, 200, 200, 0.15);
+}
+
+.sheet-theme-bio .sheet-gear-summary {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.sheet-theme-bio .sheet-gear-tiers {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+/* ===== LABEL + INPUT STACKS ===== */
+.sheet-theme-bio .sheet-gear-block .sheet-gear-label {
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  color: #ffcccc;
+  font-size: 0.7em;
+  margin-bottom: 2px;
+  letter-spacing: 0.2px;
+  text-shadow: 0 0 2px #400000;
+}
+
+/* ===== GEAR INPUTS ===== */
+.sheet-theme-bio .sheet-gear-block input[type="number"] {
+  display: block;
+  margin: 0 auto;
+  width: 50px;
+  height: 26px;
+  padding: 1px 4px;
+  font-size: 0.8em;
+  text-align: center;
+  border: 1px solid #e0b0b0;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, #fffafa, #ffeaea);
+  box-shadow: inset 0 0 4px #ffcccc88;
+  box-sizing: border-box;
+  color: #300000;
+}
+
+/* ===== BIO WEAPONS WRAPPER ===== */
+.sheet-theme-bio .sheet-weapon-wrapper {
+  background: linear-gradient(to bottom right, #2a0000, #1a0000);
+  border: 1px solid #dca9a9;
+  padding: 1em;
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(255, 200, 200, 0.08);
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+/* ===== HEADER ===== */
+.sheet-theme-bio .sheet-weapon-header {
+  display: grid;
+  grid-template-columns: 40px 100px 90px repeat(12, 1fr);
+  gap: 6px;
+  background: linear-gradient(to right, #900000, #600000);
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.75em;
+  padding: 4px 6px;
+  border: 1px solid #e3b2b2;
+  border-radius: 6px;
+  text-align: center;
+  align-items: center;
+  text-shadow: 0 0 2px #400000;
+}
+
+/* ===== ENTRY ROW ===== */
+.sheet-theme-bio .sheet-weapon-entry {
+  display: grid;
+  grid-template-columns: 40px 100px 90px repeat(12, 1fr);
+  gap: 6px;
+  align-items: center;
+  padding: 6px;
+  margin-bottom: 0px;
+  background: linear-gradient(to bottom right, #2a0000, #1a0000);
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px #70000088, 0 0 4px #300000;
+}
+
+/* ===== BIO WEAPON NOTES (SEPARATE ROW) ===== */
+.sheet-theme-bio .sheet-weapon-notes {
+  grid-column: 1 / -1; /* Add this! */
+  width: 100%;
+  height: 48px;
+  max-height: 120px;
+  resize: vertical;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-family: inherit;
+  line-height: 1.4;
+  color: #330000;
+  box-sizing: border-box;
+  overflow: auto;
+  
+  background: linear-gradient(to bottom, #fffafc, #ffe6e6);
+  border: 1px solid #e0b0b0;
+  border-radius: 6px;
+  box-shadow:
+    inset 0 0 6px #ffccccaa,
+    0 0 4px #66000033;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+
+/* ===== Input Styling ===== */
+.sheet-theme-bio .sheet-weapon-entry input[type="text"],
+.sheet-theme-bio .sheet-weapon-entry input[type="number"] {
+  font-size: 0.85em;
+  padding: 3px 6px;
+  text-align: center;
+  border: 1px solid #debcbc;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, #fffdfd, #ffeaea);
+  width: 100%;
+  height: 28px;
+  box-sizing: border-box;
+  line-height: 1.2;
+  vertical-align: middle;
+  color: #300000;
+  box-shadow: inset 0 0 4px #ffcccc88;
+}
+
+/* ===== Select Styling ===== */
+.sheet-theme-bio .sheet-weapon-entry select {
+  font-size: 0.85em;
+  padding: 2px 4px;
+  height: 28px;
+  line-height: 24px;
+  background: linear-gradient(to bottom, #fffdfd, #ffeaea);
+  border: 1px solid #debcbc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align-last: center;
+  vertical-align: middle;
+  transform: translateY(4.5px);
+  color: #330000;
+  box-shadow: inset 0 0 4px #ffcccc88;
+}
+
+/* ===== BIO CUSTOM CHECKBOXES (Readied / Carried) ===== */
+.sheet-theme-bio .sheet-weapon-entry input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #900000;
+  border-radius: 4px;
+  background-color: #fff0f0;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  box-shadow: inset 0 0 4px #50000055;
+  transition: all 0.2s ease-in-out;
+  transform: translateX(5px);
+}
+
+.sheet-theme-bio .sheet-weapon-entry input[type="checkbox"]:hover {
+  box-shadow: 0 0 6px #ffaaaa;
+  border-color: #c00;
+}
+
+.sheet-theme-bio .sheet-weapon-entry input[type="checkbox"]:checked {
+  background-color: #900000;
+  border-color: #c00;
+  box-shadow: 0 0 4px #ffaaaa inset;
+}
+
+.sheet-theme-bio .sheet-weapon-entry input[type="checkbox"]::after {
+  content: "✓";
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 18px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.sheet-theme-bio .sheet-weapon-entry input[type="checkbox"]:checked::after {
+  opacity: 1;
+}
+
+/* ===== BIO ARMOR WRAPPER ===== */
+.sheet-theme-bio .sheet-armor-wrapper {
+  background: linear-gradient(to bottom right, #2a0000, #1a0000);
+  border: 1px solid #dca9a9;
+  padding: 1em;
+  border-radius: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+  box-shadow: inset 0 0 6px rgba(255, 200, 200, 0.08);
+}
+
+.sheet-theme-bio .sheet-armor-header,
+.sheet-theme-bio .sheet-armor-entry {
+  display: grid;
+  grid-template-columns:
+  minmax(180px, 1.5fr)  /* Armor Name */
+  50px                   /* Max */
+  50px                   /* Current */
+  50px                   /* Init Mod */
+  50px                   /* Enc */
+  50px                   /* Cost */
+  50px                   /* Readied */
+  50px;                  /* Carried */
+  gap: 6px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* ===== HEADER STYLE ===== */
+.sheet-theme-bio .sheet-armor-header {
+  background: linear-gradient(to right, #900000, #600000);
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.75em;
+  padding: 0;
+  border: 1px solid #e3b2b2;
+  border-radius: 6px 6px 0 0;
+  text-align: center;
+  height: 32px;
+  text-shadow: 0 0 2px #400000;
+}
+
+/* ===== ENTRY ROW ===== */
+.sheet-theme-bio .sheet-armor-entry {
+  padding: 6px;
+  background: linear-gradient(to bottom right, #2a0000, #1a0000);
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px #70000088, 0 0 4px #300000;
+  grid-auto-rows: 32px; /* <--this line fixes the alignment */
+}
+
+/* ===== ALIGN HEADER CELLS ===== */
+.sheet-theme-bio .sheet-armor-header > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1;
+  padding: 0 2px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* ===== FIX ALIGNMENT FOR INPUTS & CHECKBOXES IN ENTRY ===== */
+.sheet-theme-bio .sheet-armor-entry > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px; /* or match to your preferred header height */
+  box-sizing: border-box;
+}
+
+/* For checkboxes specifically */
+.sheet-theme-bio .sheet-armor-entry input[type="checkbox"] {
+  align-self: center;
+}
+
+/* ===== NOTES ROW ===== */
+.sheet-theme-bio .sheet-armor-notes-row {
+  background: linear-gradient(to right, #2a0000, #1a0000);
+  border-top: none;
+  padding: 6px;
+  border-radius: 0 0 4px 4px;
+}
+
+/* ===== TEXTAREA ===== */
+.sheet-theme-bio .sheet-armor-notes {
+  grid-column: 1 / -1;
+  height: 48px;
+  max-height: 120px;
+  font-size: 12px;
+  background: linear-gradient(to bottom, #fffafc, #ffe6e6);
+  border: 1px solid #e0b0b0;
+  border-radius: 6px;
+  padding: 6px 10px;
+  box-sizing: border-box;
+  width: 100%;
+  resize: vertical;
+  line-height: 1.4;
+  font-family: inherit;
+  overflow: auto;
+  color: #330000;
+  box-shadow: inset 0 0 6px #ffccccaa, 0 0 4px #66000033;
+}
+
+/* ===== INPUTS & SELECTS ===== */
+.sheet-theme-bio .sheet-armor-entry input,
+.sheet-theme-bio .sheet-armor-entry select {
+  appearance: textfield;
+  -moz-appearance: textfield;
+  width: 100%;
+  height: 28px;
+  font-size: 14px;
+  padding: 2px 4px;
+  margin: 0;
+  text-align: center;
+  border: 1px solid #debcbc;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, #fffdfd, #ffeaea);
+  color: #300000;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 4px #ffcccc88;
+  line-height: normal;
+}
+
+.sheet-theme-bio .sheet-armor-entry input[type="number"]::-webkit-inner-spin-button,
+.sheet-theme-bio .sheet-armor-entry input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* ===== FORCE ARMOR CHECKBOX TO MATCH WEAPON STYLE ===== */
+.sheet-theme-bio .sheet-armor-entry input[type="checkbox"] {
+  all: unset; /* remove everything Roll20 might inject */
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #900000;
+  border-radius: 4px;
+  background-color: #fff0f0;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  box-shadow: inset 0 0 4px #50000055;
+  transition: all 0.2s ease-in-out;
+  transform: translateX(15px);
+}
+
+.sheet-theme-bio .sheet-armor-entry input[type="checkbox"]:hover {
+  box-shadow: 0 0 6px #ffaaaa;
+  border-color: #c00;
+}
+
+.sheet-theme-bio .sheet-armor-entry input[type="checkbox"]:checked {
+  background-color: #900000;
+  border-color: #c00;
+  box-shadow: 0 0 4px #ffaaaa inset;
+}
+
+.sheet-theme-bio .sheet-armor-entry input[type="checkbox"]::after {
+  content: "✓";
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 18px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.sheet-theme-bio .sheet-armor-entry input[type="checkbox"]:checked::after {
+  opacity: 1;
+}
+
+/* ===== BIO ITEMS WRAPPER ===== */
+.sheet-theme-bio .sheet-items-wrapper {
+  background: linear-gradient(to bottom right, #2a0000, #1a0000);
+  border: 1px solid #dca9a9;
+  padding: 1em;
+  border-radius: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+  box-shadow: inset 0 0 6px rgba(255, 200, 200, 0.08);
+}
+
+/* ===== GRID STRUCTURE (HEADER, ENTRY, NOTES) ===== */
+.sheet-theme-bio .sheet-items-header,
+.sheet-theme-bio .sheet-items-entry,
+.sheet-theme-bio .sheet-items-notes-row {
+  display: grid;
+  grid-template-columns:
+    minmax(180px, 1.5fr)   /* Item Name */
+    minmax(70px, 1fr)      /* # */
+    minmax(120px, 1.2fr)   /* Location */
+    minmax(70px, 1fr)      /* Enc */
+    70px                   /* Readied */
+    70px;                  /* Carried */
+  gap: 2px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* ===== HEADER STYLE ===== */
+.sheet-theme-bio .sheet-items-header {
+  background: linear-gradient(to right, #900000, #600000);
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.75em;
+  padding: 0;
+  border: 1px solid #e3b2b2;
+  border-radius: 6px 6px 0 0;
+  text-align: center;
+  height: 32px;
+  text-shadow: 0 0 2px #400000;
+}
+
+.sheet-theme-bio .sheet-items-header > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1;
+  padding: 0 2px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* ===== ENTRY ROW ===== */
+.sheet-theme-bio .sheet-items-entry {
+  padding: 6px;
+  background: linear-gradient(to bottom right, #2a0000, #1a0000);
+  box-shadow: inset 0 0 6px #70000088, 0 0 4px #300000;
+}
+
+.sheet-theme-bio .sheet-items-entry > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+}
+
+/* ===== NOTES ROW ===== */
+.sheet-theme-bio .sheet-items-notes-row {
+  padding: 6px;
+  background: linear-gradient(to right, #2a0000, #1a0000);
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+}
+
+/* ===== TEXTAREA STYLE ===== */
+.sheet-theme-bio .sheet-item-notes {
+  grid-column: 1 / -1;
+  height: 48px;
+  max-height: 120px;
+  font-size: 12px;
+  background: linear-gradient(to bottom, #fffafc, #ffe6e6);
+  border: 1px solid #e0b0b0;
+  border-radius: 6px;
+  padding: 6px 10px;
+  box-sizing: border-box;
+  width: 100%;
+  resize: vertical;
+  line-height: 1.4;
+  font-family: inherit;
+  overflow: auto;
+  color: #330000;
+  box-shadow: inset 0 0 6px #ffccccaa, 0 0 4px #66000033;
+}
+
+/* ===== INPUTS ===== */
+.sheet-theme-bio .sheet-items-entry input[type="text"],
+.sheet-theme-bio .sheet-items-entry input[type="number"] {
+  font-size: 0.85em;
+  padding: 3px 6px;
+  text-align: center;
+  border: 1px solid #debcbc;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, #fffdfd, #ffeaea);
+  width: 100%;
+  height: 28px;
+  box-sizing: border-box;
+  line-height: 1.2;
+  vertical-align: middle;
+  color: #300000;
+  box-shadow: inset 0 0 4px #ffcccc88;
+}
+
+.sheet-theme-bio .sheet-items-entry input[type="number"]::-webkit-inner-spin-button,
+.sheet-theme-bio .sheet-items-entry input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ===== CHECKBOXES ===== */
+.sheet-theme-bio .sheet-items-entry input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #900000;
+  border-radius: 4px;
+  background-color: #fff0f0;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  box-shadow: inset 0 0 4px #50000055;
+  transition: all 0.2s ease-in-out;
+  transform: translateX(30px);
+}
+
+.sheet-theme-bio .sheet-items-entry input[type="checkbox"]:hover {
+  box-shadow: 0 0 6px #ffaaaa;
+  border-color: #c00;
+}
+
+.sheet-theme-bio .sheet-items-entry input[type="checkbox"]:checked {
+  background-color: #900000;
+  border-color: #c00;
+  box-shadow: 0 0 4px #ffaaaa inset;
+}
+
+.sheet-theme-bio .sheet-items-entry input[type="checkbox"]::after {
+  content: "✓";
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 18px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.sheet-theme-bio .sheet-items-entry input[type="checkbox"]:checked::after {
+  opacity: 1;
+}
+
+/* ===== BIO NANITE GROUP WRAPPER ===== */
+.sheet-theme-bio .sheet-nanite-group {
+  background: linear-gradient(to bottom right, #2a0000, #1a0000);
+  border: 1px solid #dca9a9;
+  padding: 1em;
+  border-radius: 10px;
+  margin-top: 1em;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+  box-shadow: inset 0 0 6px rgba(255, 200, 200, 0.08);
+}
+
+/* ===== NANITE GRID TEMPLATE ===== */
+.sheet-theme-bio .sheet-nanite-header,
+.sheet-theme-bio .sheet-nanite-entry,
+.sheet-theme-bio .sheet-nanite-notes-row {
+  display: grid;
+  grid-template-columns:
+    30px                     /* Roll */
+    minmax(160px, 1.5fr)     /* Accelerator Name */
+    90px;                    /* Type Dropdown */
+  gap: 2px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* ===== NANITE HEADER STYLE ===== */
+.sheet-theme-bio .sheet-nanite-header {
+  background: linear-gradient(to right, #900000, #600000);
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.75em;
+  padding: 0;
+  border: 1px solid #e3b2b2;
+  border-radius: 6px 6px 0 0;
+  height: 32px;
+  text-shadow: 0 0 2px #400000;
+}
+
+.sheet-theme-bio .sheet-nanite-header > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  width: 100%;
+  font-size: 13px;
+  line-height: 1;
+  padding: 0 2px;
+  text-align: center;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* ===== NANITE ENTRY ROW ===== */
+.sheet-theme-bio .sheet-nanite-entry {
+  padding: 6px;
+  background: linear-gradient(to bottom right, #2a0000, #1a0000);
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px #70000088, 0 0 4px #300000;
+}
+
+.sheet-theme-bio .sheet-nanite-entry > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+}
+
+/* ===== DROPDOWN STYLING ===== */
+.sheet-theme-bio .sheet-nanite-entry select {
+  width: 100%;
+  height: 28px;
+  font-size: 14px;
+  padding: 2px 6px;
+  border: 1px solid #debcbc;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, #fffdfd, #ffeaea);
+  color: #330000;
+  box-sizing: border-box;
+  text-align-last: center;
+  appearance: none;
+  -webkit-appearance: none;
+  transform: translateY(4px);
+  box-shadow: inset 0 0 4px #ffcccc88;
+}
+
+/* ===== NOTES SECTION ===== */
+.sheet-theme-bio .sheet-nanite-notes-row {
+  padding: 6px;
+  background: linear-gradient(to right, #2a0000, #1a0000);
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  margin-top: -6px;
+}
+
+.sheet-theme-bio .sheet-nanite-notes {
+  grid-column: 1 / -1;
+  height: 40px;
+  font-size: 12px;
+  background: linear-gradient(to bottom, #fffafc, #ffe6e6);
+  border: 1px solid #e0b0b0;
+  border-radius: 6px;
+  padding: 6px 10px;
+  box-sizing: border-box;
+  width: 100%;
+  resize: vertical;
+  line-height: 1.4;
+  font-family: inherit;
+  color: #330000;
+  box-shadow: inset 0 0 6px #ffccccaa, 0 0 4px #66000033;
+}
+.sheet-theme-bio .sheet-nanite-group .section-subtitle {
+  color: #ffffff !important;
+  font-size: 1.25em;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 4px;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  text-shadow: 0 0 2px #400000;
+}
+
+/* ===== BASIC NANITE TECH (BIO THEME) ===== */
+.sheet-theme-bio .sheet-basic-nanite-header,
+.sheet-theme-bio .sheet-basic-nanite-entry,
+.sheet-theme-bio .sheet-basic-nanite-notes-row {
+  display: grid;
+  grid-template-columns:
+    30px                 /* Roll Button */
+    1.5fr                /* Reaction */
+    60px                 /* MP */
+    60px                 /* Speed */
+    60px                 /* Level */
+    60px;                /* XP */
+  gap: 2px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* ===== HEADER ===== */
+.sheet-theme-bio .sheet-basic-nanite-header {
+  background: linear-gradient(to right, #900000, #600000);
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.75em;
+  padding: 0;
+  border: 1px solid #e3b2b2;
+  border-radius: 6px 6px 0 0;
+  height: 32px;
+  text-shadow: 0 0 2px #400000;
+}
+
+.sheet-theme-bio .sheet-basic-nanite-header > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 13px;
+  line-height: 1;
+  padding: 0 2px;
+  text-align: center;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+/* ===== ENTRY ===== */
+.sheet-theme-bio .sheet-basic-nanite-entry {
+  padding: 6px;
+  background: linear-gradient(to bottom right, #2a0000, #1a0000);
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px #70000088, 0 0 4px #300000;
+}
+
+.sheet-theme-bio .sheet-basic-nanite-entry > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== NOTES ===== */
+.sheet-theme-bio .sheet-basic-nanite-notes-row {
+  padding: 6px;
+  background: linear-gradient(to right, #2a0000, #1a0000);
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  margin-top: -6px;
+}
+
+.sheet-theme-bio .sheet-basic-nanite-notes {
+  grid-column: 1 / -1;
+  height: 40px;
+  font-size: 12px;
+  background: linear-gradient(to bottom, #fffafc, #ffe6e6);
+  border: 1px solid #e0b0b0;
+  border-radius: 6px;
+  padding: 4px 6px;
+  box-sizing: border-box;
+  width: 100%;
+  resize: vertical;
+  line-height: 1.3em;
+  font-family: inherit;
+  color: #330000;
+  box-shadow:
+    inset 0 0 6px #ffccccaa,
+    0 0 4px #66000033;
+}
+
+/* ===== INPUTS ===== */
+.sheet-theme-bio .sheet-basic-nanite-entry input[type="text"],
+.sheet-theme-bio .sheet-basic-nanite-entry input[type="number"] {
+  width: 100%;
+  height: 30px;
+  font-size: 14px;
+  padding: 2px 6px;
+  margin: 0;
+  line-height: normal;
+  text-align: center;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, #fffdfd, #ffeaea);
+  color: #300000;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 4px #ffcccc88;
+}
+
+/* ===== ADVANCED NANITE TECH (BIO THEME) ===== */
+.sheet-theme-bio .sheet-advanced-nanite-header,
+.sheet-theme-bio .sheet-advanced-nanite-entry,
+.sheet-theme-bio .sheet-advanced-nanite-notes-row {
+  display: grid;
+  grid-template-columns:
+    30px                 /* Roll Button */
+    1.4fr                /* Reaction */
+    60px                 /* MP */
+    60px                 /* Speed */
+    60px                 /* Level */
+    60px                 /* XP */
+    1.5fr;               /* Components */
+  gap: 2px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* ===== HEADER ===== */
+.sheet-theme-bio .sheet-advanced-nanite-header {
+  background: linear-gradient(to right, #900000, #600000);
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.75em;
+  padding: 0;
+  border: 1px solid #e3b2b2;
+  border-radius: 6px 6px 0 0;
+  height: 32px;
+  text-shadow: 0 0 2px #400000;
+}
+
+.sheet-theme-bio .sheet-advanced-nanite-header > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 13px;
+  line-height: 1;
+  padding: 0 2px;
+  text-align: center;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+/* ===== SUBSECTION TITLE ===== */
+.sheet-theme-bio .sheet-subsection-block h3.section-subtitle {
+  background: linear-gradient(to right, #900000, #600000);
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1em;
+  margin: 0 0 8px 0;
+  padding: 6px 12px;
+  border: 1px solid #e3b2b2;
+  border-radius: 6px;
+  text-transform: uppercase;
+  text-shadow: 0 0 2px #400000;
+}
+
+/* ===== ENTRY ===== */
+.sheet-theme-bio .sheet-advanced-nanite-entry {
+  padding: 6px;
+  background: linear-gradient(to bottom right, #2a0000, #1a0000);
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px #70000088, 0 0 4px #300000;
+}
+
+.sheet-theme-bio .sheet-advanced-nanite-entry > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== NOTES ===== */
+.sheet-theme-bio .sheet-advanced-nanite-notes-row {
+  padding: 6px;
+  background: linear-gradient(to right, #2a0000, #1a0000);
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  margin-top: -6px;
+}
+
+.sheet-theme-bio .sheet-advanced-nanite-notes {
+  grid-column: 1 / -1;
+  height: 40px;
+  font-size: 12px;
+  background: linear-gradient(to bottom, #fffafc, #ffe6e6);
+  border-radius: 6px;
+  padding: 4px 6px;
+  box-sizing: border-box;
+  width: 100%;
+  resize: vertical;
+  line-height: 1.3em;
+  font-family: inherit;
+  color: #330000;
+  box-shadow:
+    inset 0 0 6px #ffccccaa,
+    0 0 4px #66000033;
+}
+
+/* ===== INPUTS ===== */
+.sheet-theme-bio .sheet-advanced-nanite-entry input[type="text"],
+.sheet-theme-bio .sheet-advanced-nanite-entry input[type="number"] {
+  width: 100%;
+  height: 30px;
+  font-size: 14px;
+  padding: 2px 6px;
+  margin: 0;
+  line-height: normal;
+  text-align: center;
+  border: 1px solid #debcbc;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, #fffdfd, #ffeaea);
+  color: #300000;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 4px #ffcccc88;
+}
+
+/* ===== NUDGE ROLL BUTTON ===== */
+.sheet-theme-bio .sheet-nanite-accelerator button[type="roll"],
+.sheet-theme-bio .sheet-basic-nanite-entry button[type="roll"],
+.sheet-theme-bio .sheet-advanced-nanite-entry button[type="roll"] {
+  margin-left: -10px;
+}
+
+/* ===== BIO PROFILE SECTION WRAPPER ===== */
+.sheet-theme-bio .sheet-profile-group {
+  margin-bottom: 1em;
+  padding: 1em;
+  background: linear-gradient(to bottom right, #2a0000, #1a0000);
+  border: 1px solid #a04444;
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(112, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+/* ===== SUBTITLES IN PROFILE (e.g., Description / Notes) ===== */
+.sheet-theme-bio .sheet-profile-group .section-subtitle {
+  font-size: 1em;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 0.5em;
+  padding-bottom: 4px;
+  text-shadow: 0 0 4px #400000;
+  border-bottom: 1px solid #c44;
+  background: linear-gradient(to right, #600000, #900000);
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+/* ===== TEXTAREA WRAPPER TO MATCH OTHER NOTE STYLES ===== */
+.sheet-theme-bio .sheet-textarea-wrapper {
+  padding: 6px;
+  background: linear-gradient(to right, #2a0000, #1a0000);
+  border: 1px dashed #a05555;
+  border-radius: 6px;
+  box-sizing: border-box;
+  margin-top: 0.5em;
+  box-shadow: inset 0 0 4px #70000066;
+}
+
+/* ===== PROFILE TEXTAREAS (Compact and Consistent) ===== */
+.sheet-theme-bio textarea.sheet-desc-box,
+.sheet-theme-bio textarea.sheet-bg-box,
+.sheet-theme-bio textarea.sheet-notes-box {
+  width: 100%;
+  height: 40px;
+  max-height: 120px;
+  font-size: 12px;
+  padding: 4px 6px;
+  border: 1px solid #e0b0b0;
+  background: linear-gradient(to bottom, #fffafc, #ffe6e6);
+  border-radius: 6px;
+  color: #330000;
+  resize: vertical;
+  box-sizing: border-box;
+  line-height: 1.3em;
+  font-family: inherit;
+  box-shadow:
+    inset 0 0 6px #ffccccaa,
+    0 0 4px #66000033;
+}
+
+/* ===== AI ATTRIBUTE WRAPPER: COLUMNS ===== */
+.sheet-theme-ai .sheet-2colrow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ===== AI ATTRIBUTE PANELS ===== */
+.sheet-theme-ai .sheet-primary-attributes-ai,
+.sheet-theme-ai .sheet-secondary-attributes-ai {
+  background: linear-gradient(to bottom right, #00141d, #003b47);
+  border: 1px solid #00cfff;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  flex: 1 1 48%;
+  min-width: 320px;
+  box-sizing: border-box;
+  box-shadow: 0 0 12px #00eaff55, inset 0 0 8px #00303d;
+  overflow: hidden;
+  transform: translateX(-4.25px);
+}
+
+/* ===== FIX SECTION HEADERS INSIDE AI VITAL BLOCKS ===== */
+.sheet-theme-ai .sheet-group-title h2.section-title,
+.sheet-theme-ai h2.section-title {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  margin: 0 0 12px 0;
+  padding: 10px 16px;
+  font-size: 20px;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: center;
+  color: #ffffff !important;
+  background: linear-gradient(to right, #007fa3, #00eaff, #007fa3);
+  border: 1px solid #00cfff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #00eaff88, inset 0 0 6px #004452;
+  text-shadow: 0 0 8px #00faff;
+  box-sizing: border-box;
+}
+
+/* ===== FIX AI ATTRIBUTE SECTION HEADERS ===== */
+.sheet-theme-ai .sheet-primary-attributes-ai .section-subtitle,
+.sheet-theme-ai .sheet-secondary-attributes-ai .section-subtitle {
+  background: linear-gradient(to right, #028ca5, #0fd9f9);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
+  border: 1px solid #30c9e5;
+  border-radius: 10px;
+  box-shadow: 0 0 6px #00d0ff66, inset 0 0 4px #003a4a;
+  letter-spacing: 0.8px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 6px #00f0ff;
+}
+
+/* ===== AI ATTRIBUTE TABLE ===== */
+.sheet-theme-ai .sheet-attribute-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background: linear-gradient(to bottom, #001a26, #002733);
+  color:#ffffff;
+  border-radius: 12px;
+  font-size: 10px;
+  text-align: center;
+  overflow: hidden;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 6px #00eaff22;
+  margin-bottom: 6px;
+}
+
+/* ===== TABLE HEADERS ===== */
+.sheet-theme-ai .sheet-attribute-table thead th {
+  background: #00728B;
+  color: #ffffff !important;
+  font-weight: bold;
+  border: none !important;
+}
+
+/* ===== Remove borders and set background for all cells ===== */
+.sheet-theme-ai .sheet-attribute-table th,
+.sheet-theme-ai .sheet-attribute-table td {
+  border: none !important;
+  padding: 5px 6px;
+  height: 24px;
+  text-align: center;
+  vertical-align: middle;
+  box-sizing: border-box;
+  background-color: #001a26;
+  color: #ffffff;
+}
+
+/* ===== INPUT FIELDS ===== */
+.sheet-theme-ai input[type="number"],
+.sheet-theme-ai input[type="text"],
+.sheet-theme-ai select,
+.sheet-theme-ai textarea {
+  width: 100%;
+  padding: 4px 6px;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background: linear-gradient(to bottom, #001b24, #001015);
+  color: #00eaff;
+  border: 1px solid #00cfff;
+  box-shadow: inset 0 0 5px #00faff33;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+  overflow: visible;
+}
+
+.sheet-theme-ai input[type="number"]:focus,
+.sheet-theme-ai input[type="text"]:focus,
+.sheet-theme-ai select:focus,
+.sheet-theme-ai textarea:focus {
+  outline: none;
+  border-color: #00faff;
+  box-shadow: 0 0 6px #00faff99, inset 0 0 8px #00faff33;
+}
+
+.sheet-theme-ai input[disabled] {
+  background-color: #00141a;
+  color: #66cce0;
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+/* ===== ROLL BUTTONS ===== */
+.sheet-theme-ai button[type="roll"] {
+  position: relative;
+  height: 16px;
+  width: 16px;
+  border: 1px solid #00d0ff;
+  border-radius: 50%;
+  color: #00d0ff;
+  background-color: transparent;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  font-family: pictos;
+  text-align: center;
+  line-height: 20px;
+  box-shadow: 0 0 2px rgba(0, 200, 255, 0.4);
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transform: translateX(10px);
+  z-index: 1;
+}
+
+.sheet-theme-ai button[type="roll"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: transparent;
+  border-radius: 50%;
+  z-index: -1;
+  transition: background-color 0.3s ease;
+}
+
+.sheet-theme-ai button[type="roll"]:hover::before {
+  background-color: #00d0ff;
+}
+
+.sheet-theme-ai button[type="roll"]:hover {
+  color: #ffffff;
+  border-color: #00d0ff;
+}
+
+/* ===== AP SUMMARY PANEL - AI THEME ===== */
+.sheet-theme-ai .sheet-ap-summary {
+  margin-top: 10px;
+  padding: 2px 4px;
+  background: linear-gradient(to bottom right, #00141d, #000e16);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 12px;
+  box-shadow: 0 0 10px #00faff33, inset 0 0 6px #003a4a44;
+  border: 1px solid #00aacc;
+}
+
+.sheet-theme-ai .sheet-ap-label {
+  color: #ffffff !important;
+  text-shadow: 0 0 4px #00eaff;
+  background: linear-gradient(to bottom, #001820, #000e16);
+  border: 1px solid #00cfff;
+  border-radius: 6px;
+  padding: 4px 6px;
+  box-shadow: inset 0 0 6px #00faff33;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sheet-theme-ai .sheet-ap-label input[type="number"] {
+  width: 60px;
+  height: 24px;
+  padding: 2px 4px;
+  font-size: 12px;
+  text-align: center;
+  background: linear-gradient(to bottom, #001b24, #001015);
+  border: 1px solid #00cfff;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #00eaff;
+  box-shadow: inset 0 0 4px #00faff88;
+}
+
+/* ===== LEFTMOST LABEL CELL ===== */
+.sheet-theme-ai .sheet-attribute-table td:first-child {
+  color: #00eaff !important;
+  font-weight: bold;
+  text-shadow: 0 0 4px #00cfff88;
+}
+
+/* ===== AI STABILITY WRAPPER (Vitals Main Container) ===== */
+.sheet-theme-ai .sheet-vitals-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  background: linear-gradient(to bottom right, #00141d, #000e16);
+  border: 1px solid #00aacc;
+  border-radius: 10px;
+  padding: 1px 2px;
+  margin-bottom: 4px;
+  margin-top: 1px;
+  padding-right: 25px;
+  box-shadow: 0 0 10px #00faff33, inset 0 0 6px #003a4a44;
+  overflow: visible;
+}
+
+/* ===== STABILITY SUB-BLOCKS ===== */
+.sheet-theme-ai .sheet-saves-block-ai,
+.sheet-theme-ai .sheet-status-block-ai,
+.sheet-theme-ai .sheet-fragment-block {
+  background: linear-gradient(to bottom, #001820, #000e16);
+  border: 1px solid #00cfff;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 1px;
+  flex: 1;
+  min-width: 250px;
+  box-shadow: inset 0 0 6px #00faff33;
+  overflow-x: auto;
+  box-sizing: border-box;
+}
+
+/* ===== SUBSECTION TITLES ===== */
+.sheet-theme-ai .sheet-subsection-block h3.section-subtitle,
+.sheet-theme-ai .section-subtitle {
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #ffffff!important;
+  text-align: center;
+  background: linear-gradient(to right, #028ca5, #003b47);
+  padding: 6px 12px;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  border: 1px solid #30c9e5;
+  text-shadow: 0 0 4px #00eaff;
+}
+
+/* ===== SAVE & STATUS TABLES ===== */
+.sheet-theme-ai .sheet-save-table,
+.sheet-theme-ai .sheet-status-table {
+  width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.sheet-theme-ai .sheet-save-table thead,
+.sheet-theme-ai .sheet-status-table thead {
+  background: linear-gradient(to right, #00bcd4, #00728b);
+  color: #ffffff;
+  text-shadow: 0 0 3px #00faff;
+}
+
+/* ===== SAVE & STATUS CELL STYLES ===== */
+.sheet-theme-ai .sheet-save-table th,
+.sheet-theme-ai .sheet-save-table td,
+.sheet-theme-ai .sheet-status-table th,
+.sheet-theme-ai .sheet-status-table td {
+  padding: 2px 4px;
+  text-align: center;
+  border-bottom: 1px solid #003d4f;
+  font-size: 12px;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.02);
+  text-shadow: 0 0 2px #00faff;
+}
+
+/* ===== INPUTS INSIDE TABLES ===== */
+.sheet-theme-ai .sheet-save-table input[type="number"],
+.sheet-theme-ai .sheet-status-table input[type="number"] {
+  background: linear-gradient(to bottom, #001b24, #001015);
+  border: 1px solid #00cfff;
+  border-radius: 4px;
+  padding: 2px 4px;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: center;
+  color: #00eaff;
+  box-sizing: border-box;
+  min-height: 28px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 40px;
+  box-shadow: inset 0 0 4px #00faff88;
+}
+
+/* ===== STRESS/FRAGMENT WRAPPER (AI) ===== */
+.sheet-theme-ai .sheet-fragment-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ===== FRAGMENT SELECT INPUT ===== */
+.sheet-theme-ai .sheet-fragment-select {
+  padding: 6px;
+  border: 1px solid #00aacc;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, #001b24, #001015);
+  color: #00eaff;
+  font-weight: bold;
+  font-size: 13px;
+  box-sizing: border-box;
+  width: 100%;
+  box-shadow: inset 0 0 4px #00faff66;
+}
+
+/* ===== PENALTY LINE (LABEL + INPUT) ===== */
+.sheet-theme-ai .sheet-fragment-penalty {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  font-size: 13px;
+  width: 100%;
+}
+
+.sheet-theme-ai .sheet-fragment-label {
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 0 2px #00faff;
+}
+
+/* ===== PENALTY INPUT FIELD ===== */
+.sheet-theme-ai .sheet-fragment-penalty input[type="number"] {
+  width: 60px;
+  min-width: 50px;
+  text-align: right;
+  background: linear-gradient(to bottom, #001b24, #001015);
+  border: 1px solid #00cfff;
+  border-radius: 4px;
+  padding: 4px;
+  font-size: 12px;
+  color: #00eaff;
+  box-shadow: inset 0 0 4px #00faffaa;
+}
+
+/* ===== AI SKILLS SECTION WRAPPER ===== */
+.sheet-theme-ai .sheet-skills-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: linear-gradient(to bottom right, #00141d, #003b47);
+  border: 1px solid #00cfff;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 24px;
+  box-shadow: inset 0 0 6px #00eaff55;
+}
+
+/* ===== AI COLUMN LAYOUT ===== */
+.sheet-theme-ai .sheet-2colrow .sheet-col {
+  flex: 1 1 100%;
+  min-width: 300px;
+  max-width: 49%;
+  padding: 0 8px;
+  box-sizing: border-box;
+  transform: translateX(5px);
+}
+.sheet-theme-ai .sheet-2colrow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* ===== AI SKILL PANELS ===== */
+.sheet-theme-ai .sheet-skillgroup-combat-ai,
+.sheet-theme-ai .sheet-skillgroup-detection-ai,
+.sheet-theme-ai .sheet-skillgroup-training-ai {
+  background: linear-gradient(to bottom, #00242f, #00141d);
+  border: 1px solid #00aacc;
+  border-radius: 10px;
+  padding: 10px;
+  flex: 1;
+  min-width: 260px;
+  box-shadow: inset 0 0 6px #00eaff44;
+}
+
+/* ===== AI SECTION SUBTITLES ===== */
+.sheet-theme-ai .section-subtitle {
+  color: #ffffff;
+  background: linear-gradient(to right, #00bcd4, #007a99);
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #30c9e5;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-size: 15px;
+  text-shadow: 0 0 5px #00eaff;
+  text-align: center;
+}
+
+/* ===== AI SKILL HEADER ===== */
+.sheet-theme-ai .sheet-skill-header {
+  display: grid;
+  grid-template-columns: 40px 1.5fr 0.75fr 0.75fr;
+  align-items: center;
+  font-weight: bold;
+  background: linear-gradient(to right, #00728B, #004a5a);
+  color: #ffffff;
+  padding: 4px 6px;
+  border: 1px solid #00cfff;
+  margin-bottom: 6px;
+  border-radius: 4px;
+  font-size: 13px;
+  text-shadow: 0 0 3px #00f0ff88;
+}
+
+.sheet-theme-ai .sheet-skill-header span {
+  text-align: center;
+  display: block;
+}
+
+/* ===== AI SKILL ENTRY ROWS ===== */
+.sheet-theme-ai .sheet-skill-entry {
+  display: grid;
+  grid-template-columns: 40px 1.5fr 0.75fr 0.75fr;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ===== AI INPUT FIELDS ===== */
+.sheet-theme-ai .sheet-skill-entry input[type="text"],
+.sheet-theme-ai .sheet-skill-entry input[type="number"] {
+  padding: 3px 5px;
+  font-size: 12px;
+  background: linear-gradient(to bottom, #001b24, #001015);
+  border: 1px solid #00aacc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  height: 24px;
+  color: #00eaff;
+  box-shadow: inset 0 0 4px #00eaff88;
+}
+
+/* ===== AI TRAINING NOTES TEXTAREA ===== */
+.sheet-theme-ai .sheet-skill-entry textarea.sheet-training-notes {
+  grid-column: 1 / -1;
+  margin-top: 4px;
+  width: 100%;
+  height: 40px;
+  font-size: 12px;
+  background: linear-gradient(to bottom, #001d28, #001015);
+  border: 1px solid #00aacc;
+  border-radius: 4px;
+  padding: 4px 6px;
+  box-sizing: border-box;
+  resize: vertical;
+  color: #00eaff;
+  box-shadow: inset 0 0 4px #00f0ff66;
+}
+
+/* === FORCE SPACE BELOW REPEATING AI SKILLS SECTION === */
+.sheet-theme-ai .sheet-skillgroup-training-ai {
+  margin-bottom: 24px !important;
+}
+
+/* ===== AI GEAR SECTION WRAPPER ===== */
+.sheet-theme-ai .sheet-gear-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  background: linear-gradient(to bottom right, #001820, #000e16);
+  border: 1px solid #00aacc;
+  border-radius: 12px;
+  box-shadow: inset 0 0 6px #00eaff33, 0 0 8px #00faff11;
+  box-sizing: border-box;
+}
+
+/* ===== GEAR SUBSECTIONS (SUMMARY + TIERS) ===== */
+.sheet-theme-ai .sheet-gear-summary,
+.sheet-theme-ai .sheet-gear-tiers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* default to 3; override for tiers below */
+  gap: 10px;
+  padding: 10px;
+  background: linear-gradient(to bottom, #001a26, #002733);
+  border: 1px solid #00cfff;
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px #00faff22;
+}
+
+.sheet-theme-ai .sheet-gear-tiers {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+/* ===== INDIVIDUAL CELL BLOCK ===== */
+.sheet-theme-ai .sheet-gear-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-align: center;
+}
+
+/* ===== LABEL STYLING ===== */
+.sheet-theme-ai .sheet-gear-cell .sheet-gear-label {
+  font-weight: bold;
+  color: #00eaff;
+  font-size: 0.75em;
+  letter-spacing: 0.3px;
+  text-shadow: 0 0 4px #00faff88;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ===== INPUT STYLING ===== */
+.sheet-theme-ai .sheet-gear-cell input[type="number"] {
+  width: 60px;
+  height: 28px;
+  padding: 3px 6px;
+  font-size: 13px;
+  text-align: center;
+  border: 1px solid #00cfff;
+  border-radius: 6px;
+  background: linear-gradient(to bottom, #001b24, #001015);
+  color: #00eaff;
+  box-shadow: inset 0 0 4px #00faff55;
+  box-sizing: border-box;
+}
+
+/* ===== SPACING BELOW AI GEAR SECTION ===== */
+.sheet-theme-ai .sheet-gear-wrapper {
+  margin-bottom: 16px;
+}
+
+/* ===== AI WEAPONS WRAPPER ===== */
+.sheet-theme-ai .sheet-weapon-wrapper {
+  background: linear-gradient(to bottom right, #001820, #000e16);
+  border: 1px solid #00aacc;
+  padding: 1em;
+  border-radius: 12px;
+  box-shadow: inset 0 0 6px #00faff33, 0 0 8px #00faff11;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+/* ===== AI WEAPON HEADER ===== */
+.sheet-theme-ai .sheet-weapon-header {
+  display: grid;
+  grid-template-columns: 40px 100px 90px repeat(12, 1fr);
+  gap: 6px;
+  background: linear-gradient(to right, #028ca5, #003b47);
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 0.75em;
+  padding: 6px 8px;
+  border: 1px solid #30c9e5;
+  border-radius: 8px;
+  text-align: center;
+  align-items: center;
+  box-shadow: inset 0 0 4px #00faff44;
+  text-shadow: 0 0 4px #00eaffaa;
+}
+
+/* ===== AI WEAPON ENTRY ROW ===== */
+.sheet-theme-ai .sheet-weapon-entry {
+  display: grid;
+  grid-template-columns: 40px 100px 90px repeat(12, 1fr);
+  gap: 6px;
+  align-items: center;
+  padding: 6px;
+  margin-bottom: 6px;
+  background: linear-gradient(to bottom, #00141d, #001015);
+  border: 1px dashed #00cfff88;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+/* ===== NOTES AREA ===== */
+textarea.sheet-weapon-notes {
+  height: 40px;
+  min-height: 40px;
+  max-height: 120px;
+  width: 100%;
+  resize: vertical;
+  overflow-x: hidden;
+  padding: 4px 6px;
+  font-size: 12px;
+  background: linear-gradient(to bottom, #001b24, #001015);
+  border: 1px solid #00cfff;
+  border-radius: 4px;
+  color: #00eaff;
+  box-shadow: inset 0 0 4px #00faff55;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+/* ===== INPUT FIELDS ===== */
+.sheet-theme-ai .sheet-weapon-entry input[type="text"],
+.sheet-theme-ai .sheet-weapon-entry input[type="number"] {
+  font-size: 0.85em;
+  padding: 3px 6px;
+  text-align: center;
+  border: 1px solid #00cfff;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, #001b24, #001015);
+  color: #00eaff;
+  width: 100%;
+  height: 28px;
+  box-sizing: border-box;
+  line-height: 1.2;
+  vertical-align: middle;
+  box-shadow: inset 0 0 4px #00faff55;
+  transform: translateY(-4px);
+}
+
+/* ===== SELECT STYLING ===== */
+.sheet-theme-ai .sheet-weapon-entry select {
+  font-size: 0.85em;
+  padding: 2px 4px;
+  height: 28px;
+  line-height: 24px;
+  background: linear-gradient(to bottom, #001b24, #001015);
+  border: 1px solid #00cfff;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align-last: center;
+  color: #00eaff;
+  text-shadow: 0 0 2px #00faff88;
+  vertical-align: middle;
+  box-shadow: inset 0 0 4px #00faff33;
+}
+
+/* ===== AI CHECKBOXES (Weapons + Armor – Unified Glow Style) ===== */
+.sheet-theme-ai .sheet-weapon-entry input[type="checkbox"],
+.sheet-theme-ai .sheet-armor-entry input[type="checkbox"],
+.sheet-theme-ai .sheet-items-entry input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #001b24;
+  border: 2px solid #00eaff;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 6px #00faff88, inset 0 0 4px #003f4f;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.sheet-theme-ai .sheet-weapon-entry input[type="checkbox"]:checked,
+.sheet-theme-ai .sheet-armor-entry input[type="checkbox"]:checked,
+.sheet-theme-ai .sheet-items-entry input[type="checkbox"]:checked {
+  background-color: #00eaff;
+  box-shadow: 0 0 8px #00faffaa, inset 0 0 4px #002e39;
+}
+
+.sheet-theme-ai .sheet-weapon-entry input[type="checkbox"]::before,
+.sheet-theme-ai .sheet-armor-entry input[type="checkbox"]::before,
+.sheet-theme-ai .sheet-items-entry input[type="checkbox"]::before {
+  content: "✔";
+  font-size: 14px;
+  color: #00141d;
+  transform: scale(0);
+  transition: transform 0.2s ease-in-out;
+}
+
+.sheet-theme-ai .sheet-weapon-entry input[type="checkbox"]:checked::before,
+.sheet-theme-ai .sheet-armor-entry input[type="checkbox"]:checked::before,
+.sheet-theme-ai .sheet-items-entry input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+  /* Anchor and center it in grid cell */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  position: relative; /* This is key for anchoring ::after */
+}
+
+.sheet-theme-ai .sheet-weapon-entry input[type="checkbox"]:checked::after {
+  content: "✔";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  color: #00faff;
+  text-shadow: 0 0 6px #00faffcc;
+  pointer-events: none;
+}
+
+/* ===== HOVER EFFECT ===== */
+.sheet-theme-ai .sheet-weapon-entry input[type="checkbox"]:hover {
+  box-shadow: 0 0 6px #00faff88, inset 0 0 4px #005c66;
+}
+
+.sheet-theme-ai .sheet-weapon-wrapper {
+  /* existing styles... */
+  margin-bottom: 18px; /* ← This adds the space below weapons */
+}
+
+/* ===== AI ARMOR WRAPPER ===== */
+.sheet-theme-ai .sheet-armor-wrapper {
+  background: linear-gradient(to bottom right, #001820, #000e16);
+  border: 1px solid #00aacc;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: inset 0 0 6px #00eaff33, 0 0 8px #00faff11;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+/* ===== SHARED GRID TEMPLATE ===== */
+.sheet-theme-ai .sheet-armor-header,
+.sheet-theme-ai .sheet-armor-entry,
+.sheet-theme-ai .sheet-armor-notes-row {
+  display: grid;
+  grid-template-columns:
+    minmax(180px, 1.5fr)
+    minmax(70px, 1fr)
+    minmax(70px, 1fr)
+    minmax(70px, 1fr)
+    minmax(70px, 1fr)
+    minmax(80px, 1fr)
+    70px
+    70px;
+  gap: 2px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* ===== HEADER STYLE ===== */
+.sheet-theme-ai .sheet-armor-header {
+  background: linear-gradient(to right, #00bcd4, #00728b);
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 13px;
+  padding: 4px 6px;
+  border: 1px solid #30c9e5;
+  border-radius: 8px 8px 0 0;
+  text-align: center;
+  text-shadow: 0 0 3px #00faff;
+  box-shadow: inset 0 0 4px #00faff22;
+}
+
+.sheet-theme-ai .sheet-armor-header > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 4px;
+  box-sizing: border-box;
+}
+
+/* ===== ENTRY ROW ===== */
+.sheet-theme-ai .sheet-armor-entry {
+  padding: 6px;
+  background: #00141d;
+  border: 1px dashed #00aacc;
+  border-top: none;
+  border-radius: 0;
+  align-items: center;
+}
+
+.sheet-theme-ai .sheet-armor-entry > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== NOTES ROW ===== */
+.sheet-theme-ai .sheet-armor-notes-row {
+  padding: 6px;
+  background: #00141d;
+  border: 1px dashed #00aacc;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+}
+
+/* ===== TEXTAREA ===== */
+.sheet-theme-ai .sheet-armor-notes {
+  grid-column: 1 / -1;
+  height: 40px;
+  font-size: 12px;
+  background: linear-gradient(to bottom, #001b24, #001015);
+  border: 1px solid #00cfff;
+  border-radius: 4px;
+  padding: 4px 6px;
+  box-sizing: border-box;
+  color: #00eaff;
+  resize: vertical;
+  line-height: 1.3em;
+  box-shadow: inset 0 0 4px #00faff33;
+}
+
+/* ===== INPUTS & SELECTS ===== */
+.sheet-theme-ai .sheet-armor-entry input,
+.sheet-theme-ai .sheet-armor-entry select {
+  width: 100%;
+  min-width: 100%;
+  height: 28px;
+  font-size: 13px;
+  padding: 2px 4px;
+  text-align: center;
+  border: 1px solid #00cfff;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, #001b24, #001015);
+  color: #00eaff;
+  box-shadow: inset 0 0 4px #00faff55;
+  box-sizing: border-box;
+}
+
+/* Remove spinner buttons for numbers */
+.sheet-theme-ai .sheet-armor-entry input[type="number"]::-webkit-inner-spin-button,
+.sheet-theme-ai .sheet-armor-entry input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.sheet-theme-ai .sheet-armor-entry input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* ===== SELECT ===== */
+.sheet-theme-ai .sheet-armor-entry select {
+  appearance: none;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  line-height: 1.2;
+  text-align-last: center;
+}
+
+.sheet-theme-ai .sheet-armor-wrapper {
+  /* existing styles... */
+  margin-bottom: 18px; /* ← space before gear block */
+}
+
+/* ===== AI ITEMS WRAPPER ===== */
+.sheet-theme-ai .sheet-items-wrapper {
+  background: linear-gradient(to bottom right, #001820, #000e16);
+  border: 1px solid #00aacc;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: inset 0 0 6px #00eaff33, 0 0 8px #00faff11;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+  margin-bottom: 24px; /* ← Spacer at end */
+}
+
+/* ===== HEADER ROW ===== */
+.sheet-theme-ai .sheet-items-header {
+  display: grid;
+  grid-template-columns:
+    minmax(180px, 1.5fr)
+    minmax(70px, 1fr)
+    minmax(120px, 1.2fr)
+    minmax(70px, 1fr)
+    70px
+    70px;
+  gap: 6px;
+  background: linear-gradient(to right, #00bcd4, #00728b);
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 0.75em;
+  padding: 6px 8px;
+  border: 1px solid #7dd4e4;
+  border-radius: 6px;
+  text-align: center;
+  align-items: center;
+  text-shadow: 0 0 4px #00faff88;
+}
+
+/* ===== ENTRY ROW ===== */
+.sheet-theme-ai .sheet-items-entry {
+  display: grid;
+  grid-template-columns:
+    minmax(180px, 1.5fr)
+    minmax(70px, 1fr)
+    minmax(120px, 1.2fr)
+    minmax(70px, 1fr)
+    70px
+    70px;
+  gap: 6px;
+  align-items: center;
+  padding: 6px;
+  background-color: #00141d;
+  border: 1px dashed #00cfff55;
+  border-top: none;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+/* ===== NOTES TEXTAREA ===== */
+.sheet-theme-ai .sheet-item-notes {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: 40px;
+  min-height: 40px;
+  max-height: 120px;
+  resize: vertical;
+  overflow-x: hidden;
+  font-size: 12px;
+  line-height: 1.3em;
+  padding: 4px 6px;
+  border: 1px solid #00cfff88;
+  border-radius: 4px;
+  background-color: #001b24;
+  box-sizing: border-box;
+  color: #00eaff;
+  font-family: inherit;
+  box-shadow: inset 0 0 4px #00faff44;
+}
+
+/* ===== INPUT STYLING ===== */
+.sheet-theme-ai .sheet-items-entry input[type="text"],
+.sheet-theme-ai .sheet-items-entry input[type="number"] {
+  font-size: 0.85em;
+  padding: 3px 6px;
+  text-align: center;
+  border: 1px solid #aadfea;
+  border-radius: 4px;
+  background-color: #f8feff;
+  width: 100%;
+  height: 28px;
+  box-sizing: border-box;
+  line-height: 1.2;
+  vertical-align: middle;
+}
+
+/* ===== AI NANITE GROUP WRAPPER (Pulsing Blue Glitchbox) ===== */
+.sheet-theme-ai .sheet-nanite-group-ai {
+  background: linear-gradient(to bottom right, #001820, #000e16);
+  padding: 1em;
+  border: 1px solid #00cfff;
+  border-radius: 12px;
+  margin-top: 1em;
+  margin-bottom: 24px; /* <-- Spacer below this section */
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+  box-shadow: inset 0 0 6px #00eaff33, 0 0 8px #00faff11;
+}
+
+/* ===== GRID STRUCTURE (HEADER / ENTRY / NOTES) ===== */
+.sheet-theme-ai .sheet-nanite-header,
+.sheet-theme-ai .sheet-nanite-entry,
+.sheet-theme-ai .sheet-nanite-notes-row {
+  display: grid;
+  grid-template-columns:
+    30px
+    minmax(160px, 1.5fr)
+    90px;
+  gap: 4px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* ===== HEADER STYLE ===== */
+.sheet-theme-ai .sheet-nanite-header {
+  background: linear-gradient(to right, #00cfff, #00728b);
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 13px;
+  padding: 4px 0;
+  border: 1px solid #00eaff;
+  border-radius: 8px 8px 0 0;
+  text-align: center;
+  text-shadow: 0 0 4px #00faff;
+}
+
+.sheet-theme-ai .sheet-nanite-header > * {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  padding: 0 4px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* ===== ENTRY ROW ===== */
+.sheet-theme-ai .sheet-nanite-entry {
+  background-color: #001a26;
+  color: #00eaff;
+  padding: 6px;
+  border: 1px dashed #00cfff;
+  border-top: none;
+  box-shadow: inset 0 0 4px #00eaff22;
+}
+
+.sheet-theme-ai .sheet-nanite-entry > * {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+/* ===== SELECT STYLE ===== */
+.sheet-theme-ai .sheet-nanite-entry select {
+  background: linear-gradient(to bottom, #001b24, #001015);
+  border: 1px solid #00cfff;
+  color: #00eaff;
+  height: 30px;
+  font-size: 14px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  box-shadow: inset 0 0 5px #00faff33;
+  appearance: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  transform: translateY(5px);
+}
+
+/* ===== NOTES ROW ===== */
+.sheet-theme-ai .sheet-nanite-notes-row {
+  background-color: #001a26;
+  padding: 6px;
+  border: 1px dashed #00cfff;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  margin-top: -6px;
+}
+
+/* ===== NOTES TEXTAREA ===== */
+.sheet-theme-ai .sheet-nanite-notes {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: 40px;
+  font-size: 12px;
+  background: linear-gradient(to bottom, #001b24, #001015);
+  color: #00eaff;
+  border: 1px solid #00cfff;
+  border-radius: 6px;
+  padding: 6px;
+  box-sizing: border-box;
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.3em;
+  box-shadow: inset 0 0 5px #00faff44;
+}
+
+/* ===== BASIC NANITE TECH – AI THEME ===== */
+.sheet-theme-ai .sheet-basic-nanite-header,
+.sheet-theme-ai .sheet-basic-nanite-entry,
+.sheet-theme-ai .sheet-basic-nanite-notes-row {
+  display: grid;
+  grid-template-columns:
+    30px
+    1.5fr
+    60px
+    60px
+    60px
+    60px;
+  gap: 4px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* ===== HEADER ROW STYLE ===== */
+.sheet-theme-ai .sheet-basic-nanite-header {
+  background: linear-gradient(to right, #00cfff, #00728b);
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 13px;
+  padding: 4px 0;
+  border: 1px solid #00eaff;
+  border-radius: 8px 8px 0 0;
+  height: 32px;
+  text-shadow: 0 0 4px #00faff;
+}
+
+.sheet-theme-ai .sheet-basic-nanite-header > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  font-size: 13px;
+  padding: 0 4px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* ===== ENTRY ROW ===== */
+.sheet-theme-ai .sheet-basic-nanite-entry {
+  background-color: #001a26;
+  color: #00eaff;
+  padding: 6px;
+  border: 1px dashed #00cfff;
+  border-top: none;
+  box-shadow: inset 0 0 4px #00eaff22;
+}
+
+.sheet-theme-ai .sheet-basic-nanite-entry > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== NOTES ROW BELOW ===== */
+.sheet-theme-ai .sheet-basic-nanite-notes-row {
+  background-color: #001a26;
+  padding: 6px;
+  border: 1px dashed #00cfff;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  margin-top: -6px;
+}
+
+/* ===== TEXTAREA ===== */
+.sheet-theme-ai .sheet-basic-nanite-notes {
+  grid-column: 1 / -1;
+  background: linear-gradient(to bottom, #001b24, #001015);
+  border: 1px solid #00cfff;
+  color: #00eaff;
+  border-radius: 6px;
+  font-size: 12px;
+  padding: 6px;
+  width: 100%;
+  resize: vertical;
+  box-sizing: border-box;
+  font-family: inherit;
+  box-shadow: inset 0 0 5px #00faff55;
+  line-height: 1.3em;
+  overflow-x: hidden;
+
+  /* NEW HEIGHT SETTINGS */
+  height: 28px;
+  min-height: 28px;
+  max-height: 120px;
+}
+
+/* ===== INPUT STYLING ===== */
+.sheet-theme-ai .sheet-basic-nanite-entry input[type="text"],
+.sheet-theme-ai .sheet-basic-nanite-entry input[type="number"] {
+  background: linear-gradient(to bottom, #001b24, #001015);
+  border: 1px solid #00cfff;
+  color: #00eaff;
+  border-radius: 6px;
+  width: 100%;
+  height: 30px;
+  padding: 2px 6px;
+  font-size: 13px;
+  text-align: center;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 4px #00faff66;
+}
+
+/* ===== SECTION SPACER BELOW ===== */
+.sheet-theme-ai .sheet-basic-nanite-notes-row::after {
+  content: "";
+  display: block;
+  height: 24px;
+  width: 100%;
+}
+
+/* ===== ADVANCED NANITE TECH – AI THEME ===== */
+.sheet-theme-ai .sheet-advanced-nanite-header,
+.sheet-theme-ai .sheet-advanced-nanite-entry,
+.sheet-theme-ai .sheet-advanced-nanite-notes-row {
+  display: grid;
+  grid-template-columns:
+    30px  /* Roll */
+    1.4fr /* Reaction */
+    60px  /* PP */
+    60px  /* Cycles */
+    60px  /* Level */
+    60px  /* XP */
+    1.5fr;/* Components */
+  gap: 2px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* ===== HEADER STYLING ===== */
+.sheet-theme-ai .sheet-advanced-nanite-header {
+  background: linear-gradient(to right, #00bcd4, #00728b);
+  color: #ffffff;
+  text-shadow: 0 0 4px #00faff;
+  font-weight: bold;
+  font-size: 0.75em;
+  border: 1px solid #00cfff;
+  border-radius: 6px 6px 0 0;
+  padding: 0;
+  height: 32px;
+}
+
+.sheet-theme-ai .sheet-advanced-nanite-header > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  padding: 0 4px;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* ===== ENTRY ROW ===== */
+.sheet-theme-ai .sheet-advanced-nanite-entry {
+  padding: 6px;
+  background: linear-gradient(to bottom, #001820, #000e16);
+  border: 1px dashed #00cfff99;
+  border-top: none;
+}
+
+.sheet-theme-ai .sheet-advanced-nanite-entry > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== NOTES BELOW ENTRY ===== */
+.sheet-theme-ai .sheet-advanced-nanite-notes-row {
+  padding: 6px;
+  background: linear-gradient(to bottom, #001820, #000e16);
+  border: 1px dashed #00cfff99;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  margin-top: -6px;
+}
+
+.sheet-theme-ai .sheet-advanced-nanite-notes {
+  grid-column: 1 / -1;
+  height: 28px;
+  min-height: 28px;
+  max-height: 120px;
+  font-size: 12px;
+  line-height: 1.3em;
+  font-family: inherit;
+  color: #00eaff;
+  background: linear-gradient(to bottom, #001b24, #001015);
+  border: 1px solid #00cfff;
+  border-radius: 6px;
+  padding: 4px 6px;
+  box-sizing: border-box;
+  resize: vertical;
+  overflow-x: hidden;
+  box-shadow: inset 0 0 5px #00faff55;
+}
+
+/* ===== INPUTS ===== */
+.sheet-theme-ai .sheet-advanced-nanite-entry input[type="text"],
+.sheet-theme-ai .sheet-advanced-nanite-entry input[type="number"] {
+  background: linear-gradient(to bottom, #001b24, #001015);
+  border: 1px solid #00cfff;
+  color: #00eaff;
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-size: 13px;
+  height: 30px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  box-shadow: inset 0 0 4px #00faff55;
+}
+
+/* ===== ROLL BUTTON POSITIONING ===== */
+.sheet-theme-ai .sheet-nanite-entry button[type="roll"],
+.sheet-theme-ai .sheet-basic-nanite-entry button[type="roll"],
+.sheet-theme-ai .sheet-advanced-nanite-entry button[type="roll"] {
+  margin-left: -10px;
+}
+
+/* ===== SPACER BELOW ADVANCED NANITE ===== */
+.sheet-theme-ai .sheet-advanced-nanite-notes-row::after {
+  content: "";
+  display: block;
+  height: 20px;
+}
+
+/* ===== AI PROFILE SECTION WRAPPER ===== */
+.sheet-theme-ai .sheet-profile-group {
+  margin-bottom: 1em;
+  padding: 1em;
+  background: linear-gradient(to bottom right, #00141d, #002733);
+  border: 1px solid #00aacc;
+  border-radius: 10px;
+  box-shadow: inset 0 0 8px #00eaff33, 0 0 8px #00cfff22;
+  box-sizing: border-box;
+}
+
+/* ===== PROFILE SUBTITLES (e.g., Description / Notes) ===== */
+.sheet-theme-ai .sheet-profile-group .section-subtitle {
+  font-size: 1em;
+  font-weight: bold;
+  color: #00eaff;
+  margin-bottom: 0.5em;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #00faff88;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+  text-shadow: 0 0 4px #00d0ff;
+}
+
+/* ===== TEXTAREA WRAPPER (Consistent with AI Notes) ===== */
+.sheet-theme-ai .sheet-textarea-wrapper {
+  padding: 6px;
+  background: linear-gradient(to bottom, #001820, #000e16);
+  border: 1px dashed #00cfff99;
+  border-radius: 6px;
+  box-sizing: border-box;
+  margin-top: 0.5em;
+  box-shadow: inset 0 0 6px #00eaff22;
+}
+
+/* ===== PROFILE TEXTAREAS (Compact + Neon) ===== */
+.sheet-theme-ai textarea.sheet-desc-box,
+.sheet-theme-ai textarea.sheet-bg-box,
+.sheet-theme-ai textarea.sheet-notes-box {
+  width: 100%;
+  height: 40px;
+  max-height: 120px;
+  font-size: 12px;
+  padding: 4px 6px;
+  border: 1px solid #00cfff;
+  background: linear-gradient(to bottom, #001b24, #001015);
+  border-radius: 6px;
+  color: #00eaff;
+  resize: vertical;
+  box-sizing: border-box;
+  line-height: 1.3em;
+  font-family: inherit;
+  box-shadow: inset 0 0 5px #00faff55;
+}
+
+.sheet-container {
+  background-color: #1a0c1c;
+  border: 6px solid;
+  border-radius: 10px;
+  padding: 1.5em;
+  background: 
+  linear-gradient(#150015, #150015) padding-box, 
+  linear-gradient(135deg, #900000, #660066, #00cccc) border-box;
+  box-shadow: 0 0 18px rgba(255, 0, 255, 0.25);
+}
+
+.sheet-toggle-row {
+  background-color: #2a0000;
+  padding: 0.75em 1em;
+  margin-bottom: 1.5em;
+  border: 1px solid #700000;
+  border-radius: 6px;
+  box-shadow: inset 0 0 5px #300000;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* ===== SHARED SECTION: HYBRID MAGENTA x NEON THEME ===== */
+.sheet-theme-shared {
+  background: linear-gradient(to bottom right, #1a001a, #100010);
+  color: #ffccff;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ff00ff;
+  box-shadow: 0 0 12px #ff00ff40, inset 0 0 8px #440044aa;
+  font-family: inherit;
+  margin-bottom: 2em; /* ← Spacer at the bottom */
+}
+
+/* Section Header */
+.sheet-theme-shared .section-title {
+  text-align: center;
+  color: #ffccff;
+  background: linear-gradient(to right, #700070, #ff00ff, #700070);
+  border: 1px solid #ff00ff;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 1em;
+  font-weight: bold;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  text-shadow: 0 0 6px #ff99ff;
+  box-shadow: 0 0 8px #ff00ff40, inset 0 0 4px #40004088;
+}
+
+/* Subcolumn Layout */
+.sheet-theme-shared .sheet-2colrow {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 0 6px;
+  box-sizing: border-box;
+}
+
+.sheet-theme-shared .sheet-col {
+  flex: 1 1 calc(50% - 12px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 240px;
+  box-sizing: border-box;
+}
+
+/* Section Subtitles */
+.sheet-theme-shared .section-subtitle {
+  background: linear-gradient(to right, #880088, #5a005a);
+  color: #ffe6ff;
+  border: 1px solid #c000ff;
+  border-radius: 6px;
+  padding: 6px 10px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1em;
+  margin-bottom: 6px;
+  text-shadow: 0 0 4px #ff99ff;
+}
+
+/* Subsection Containers */
+.sheet-theme-shared .sheet-shared-misc-group,
+.sheet-theme-shared .sheet-shared-wealth-group {
+  background-color: #220022;
+  border: 1px solid #c000c0;
+  border-radius: 6px;
+  padding: 12px;
+  box-shadow: inset 0 0 6px #ff00ff40;
+}
+
+/* Misc Table */
+.sheet-theme-shared .sheet-misc-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  box-sizing: border-box;
+}
+
+.sheet-theme-shared .sheet-misc-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #120012;
+  color: #ffccff;
+  font-size: 13px;
+  border: 1px solid #ff00ff;
+  box-shadow: 0 0 4px #ff00ff40;
+}
+
+.sheet-theme-shared .sheet-misc-table th,
+.sheet-theme-shared .sheet-misc-table td {
+  padding: 6px 8px;
+  text-align: center;
+  border: 1px solid #700070;
+}
+
+/* Inputs & Textareas */
+.sheet-theme-shared input[type="number"],
+.sheet-theme-shared textarea {
+  background: linear-gradient(to bottom, #1a001a, #0a000a);
+  color: #ffccff;
+  border: 1px solid #ff00ff;
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 13px;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+  box-shadow: inset 0 0 5px #ff99ff44;
+}
+
+/* Wealth Block Styling */
+.sheet-theme-shared .sheet-wealth-input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the group */
+  gap: 6px;
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.sheet-theme-shared .sheet-wealth-input-group label {
+  color: #ff99ff;
+  font-weight: bold;
+  font-size: 13px;
+  text-align: center;
+  width: 100%;
+}
+
+/* Stretch inputs full width inside group */
+.sheet-theme-shared .sheet-wealth-input {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background-color: #1a001a;
+  color: #ffccff;
+  border: 1px solid #ff00ff;
+  text-align: center;
+  box-shadow: inset 0 0 4px #ff00ff88;
+}
+
+/* Wealth Notes */
+.sheet-theme-shared .sheet-wealth-notes {
+  height: 60px;
+  resize: vertical;
+  line-height: 1.3em;
+  background: linear-gradient(to bottom, #1a001a, #0a000a);
+  color: #ffccff;
+  border: 1px solid #ff00ff;
+  border-radius: 4px;
+  padding: 6px;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 4px #ff99ff55;
+}
+/* Remove scroll + padding */
+.sheet-theme-shared .sheet-misc-wrapper {
+  overflow-x: hidden;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Remove borders + refine glow */
+.sheet-theme-shared .sheet-misc-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #120012;
+  color: #ffccff;
+  font-size: 13px;
+  border: none; /* Removed outer border */
+  box-shadow: inset 0 0 4px #ff00ff30;
+}
+
+/* Remove cell borders */
+.sheet-theme-shared .sheet-misc-table th,
+.sheet-theme-shared .sheet-misc-table td {
+  padding: 6px 8px;
+  text-align: center;
+  border: none; /* Removed grid lines */
+}
+
+
+/* ===== ROLL TEMPLATE: Base Container ===== */
+.sheet-rolltemplate-t4d .sheet-template-container {
+  border-radius: 10px;
+  padding: 1em;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 0.95em;
+  margin-bottom: 1em;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  border: 2px solid transparent;
+  background: #f4f4f4;
+  color: #111;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== TITLE BLOCK ===== */
+.sheet-rolltemplate-t4d .sheet-template-title {
+  font-size: 1.3em;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 0.5em;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* ===== SUBTITLE (Character Name) ===== */
+.sheet-rolltemplate-t4d .sheet-template-subtitle {
+  font-size: 0.9em;
+  text-align: center;
+  margin-bottom: 0.5em;
+  color: #555;
+  font-style: italic;
+}
+
+/* ===== CONTENT ROWS ===== */
+.sheet-rolltemplate-t4d .sheet-template-row {
+  margin: 0.4em 0;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px dashed #ccc;
+  padding-top: 6px;
+  align-items: center;
+}
+
+.sheet-rolltemplate-t4d .sheet-template-row .label {
+  font-weight: bold;
+  font-size: 0.9em;
+  color: inherit;
+}
+
+.sheet-rolltemplate-t4d .sheet-template-row .value {
+  font-weight: bold;
+  font-size: 1.1em;
+  padding: 4px 10px;
+  border-radius: 6px;
+  min-width: 36px;
+  text-align: center;
+  border: 1px solid #333;
+  box-shadow: 0 0 4px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+}
+
+/* ===== BIO THEME - UPGRADED STYLE ===== */
+.sheet-rolltemplate-t4d .sheet-theme-bio {
+  background: linear-gradient(to bottom, #320000, #5a0000); 
+  border: 2px solid #b00000;
+  color: #ff9999;
+  box-shadow: 0 0 10px #ff444480, 0 0 6px inset #40000080;
+}
+
+/* Bio Roll Titles */
+.sheet-rolltemplate-t4d .sheet-theme-bio .sheet-template-title {
+  color: #ff9999;
+  text-shadow: 0 0 2px #800000;
+}
+
+/* Bio Labels */
+.sheet-rolltemplate-t4d .sheet-theme-bio .label {
+  color: #ffdada;
+}
+
+/* Bio Values (Dice Result) */
+.sheet-rolltemplate-t4d .sheet-theme-bio .value {
+  background: none;
+  border: none;
+  color: #ff9999;
+  font-weight: bold;
+  font-size: 1.1em;
+  padding: 0;
+  border-radius: 0;
+  text-align: center;
+  box-shadow: none;
+  transition: none;
+}
+
+.sheet-rolltemplate-t4d .sheet-theme-bio .value:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 8px #ff9999aa;
+}
+
+/* Subtle bounce on hover */
+.sheet-rolltemplate-t4d .sheet-theme-bio .value:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px #ffccccaa;
+}
+
+/* ===== AI THEME ===== */
+.sheet-rolltemplate-t4d .sheet-theme-ai {
+  background: linear-gradient(to bottom, #001a1a, #002b2b);
+  border: 2px solid #00ffff;
+  color: #00ffff;
+  box-shadow: 0 0 10px #00f5ff80;
+}
+
+.sheet-rolltemplate-t4d .sheet-theme-ai .value {
+  background: #001f1f;
+  border-color: #00ffff;
+  color: #00ffff;
+  box-shadow: 0 0 6px #00ffff80;
+}

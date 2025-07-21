@@ -1,0 +1,1610 @@
+<!-- ===== TOP-LEVEL CONTAINER ===== -->
+<div class="sheet-container">
+
+  <!-- ===== TOGGLE CONTROLS ===== -->
+  <div class="sheet-toggle-wrapper">
+    <input type="checkbox" name="attr_AI_Mode" class="sheet-toggle" id="AI_Mode_Toggle" />
+    
+    <label for="AI_Mode_Toggle" class="sheet-toggle-label">
+      <span class="sheet-toggle-state">
+        <span class="sheet-toggle-ai">AI Mode</span>
+      </span>
+    </label>
+  <!-- ===== BIO ATTRIBUTE BLOCK ===== -->
+  <div class="sheet-section-block sheet-theme-bio">
+    <div class="sheet-group-title">
+      <h2 class="section-title">Bio Attributes</h2>
+    </div>
+
+    <div class="sheet-2colrow">
+
+      <!-- ===== BIO PRIMARY ATTRIBUTES ===== -->
+      <div class="sheet-col">
+        <div class="row sheet-primary-attributes-bio">
+          <h3 class="section-subtitle">Primary Attributes</h3>
+          <div class="sheet-attribute-wrapper">
+            <table class="sheet-attribute-table">
+              <thead>
+                <tr>
+                  <th>Attribute</th>
+                  <th>Score</th>
+                  <th>Modifier</th>
+                  <th>AP to Next</th>
+                  <th>Total AP Spent</th>
+                  <th>Temporary Modifier</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Strength</td>
+                  <td><input type="number" name="attr_STR" value="1" /></td>
+                  <td><input type="number" name="attr_STRMod" value="floor((@{STR}-10)/5)+@{STRTemp}" disabled /></td>
+                  <td><input type="number" name="attr_STRAPN" value="(@{STRMod}+3)" disabled /></td>
+                  <td><input type="number" name="attr_STRAPT" value="1" readonly /></td>
+                  <td><input type="number" name="attr_STRTemp" value="0" /></td>
+                </tr>
+                <tr><td>Dexterity</td>
+                  <td><input type="number" name="attr_DEX" value="1" /></td>
+                  <td><input type="number" name="attr_DEXMod" value="floor((@{DEX}-10)/5)+@{DEXTemp}" disabled /></td>
+                  <td><input type="number" name="attr_DEXAPN" value="(@{DEXMod}+3)" disabled /></td>
+                  <td><input type="number" name="attr_DEXAPT" value="1" readonly /></td>
+                  <td><input type="number" name="attr_DEXTemp" value="0" /></td>
+                </tr>
+                <tr><td>Constitution</td>
+                  <td><input type="number" name="attr_CON" value="1" /></td>
+                  <td><input type="number" name="attr_CONMod" value="floor((@{CON}-10)/5)+@{CONTemp}" disabled /></td>
+                  <td><input type="number" name="attr_CONAPN" value="(@{CONMod}+3)" disabled /></td>
+                  <td><input type="number" name="attr_CONAPT" value="1" readonly /></td>
+                  <td><input type="number" name="attr_CONTemp" value="0" /></td>
+                </tr>
+                <tr><td>Intelligence</td>
+                  <td><input type="number" name="attr_INT" value="1" /></td>
+                  <td><input type="number" name="attr_INTMod" value="floor((@{INT}-10)/5)+@{INTTemp}" disabled /></td>
+                  <td><input type="number" name="attr_INTAPN" value="(@{INTMod}+3)" disabled /></td>
+                  <td><input type="number" name="attr_INTAPT" value="1" readonly /></td>
+                  <td><input type="number" name="attr_INTTemp" value="0" /></td>
+                </tr>
+                <tr><td>Focus</td>
+                  <td><input type="number" name="attr_FOC" value="1" /></td>
+                  <td><input type="number" name="attr_FocMod" value="floor((@{FOC}-10)/5)+@{FocTemp}" disabled /></td>
+                  <td><input type="number" name="attr_FocAPN" value="(@{FocMod}+3)" disabled /></td>
+                  <td><input type="number" name="attr_FocAPT" value="1" readonly /></td>
+                  <td><input type="number" name="attr_FocTemp" value="0" /></td>
+                </tr>
+                <tr><td>Charisma</td>
+                  <td><input type="number" name="attr_CHA" value="1" /></td>
+                  <td><input type="number" name="attr_CHAMod" value="floor((@{CHA}-10)/5)+@{CHATemp}" disabled /></td>
+                  <td><input type="number" name="attr_CHAAPN" value="(@{CHAMod}+3)" disabled /></td>
+                  <td><input type="number" name="attr_CHAAPT" value="1" readonly /></td>
+                  <td><input type="number" name="attr_CHATemp" value="0" /></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== BIO SECONDARY ATTRIBUTES ===== -->
+      <div class="sheet-col">
+        <div class="row sheet-secondary-attributes-bio">
+          <h3 class="section-subtitle">Secondary Attributes</h3>
+          <div class="sheet-attribute-wrapper">
+            <table class="sheet-attribute-table">
+              <thead>
+                <tr>
+                  <th>Attribute</th>
+                  <th>Score</th>
+                  <th>Modifier</th>
+                  <th>Temporary Modifier</th>
+                  <th>Initiative Roll</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Initiative</td>
+                  <td><input type="number" name="attr_INIT" value="(floor((@{FOC}+@{DEX})/2))" disabled /></td>
+                  <td><input type="number" name="attr_InitMod" value="floor((@{INIT}-10)/5)+@{InitTemp}" disabled /></td>
+                  <td><input type="number" name="attr_InitTemp" value="0" /></td>
+                  <td>
+                    <button type="roll" name="roll_INIT"
+                      value="&{template:t4d} {{theme=bio}} {{title=Initiative}} {{character=@{character_name}}} {{result=[[2d4 - @{InitMod} + ?{Action Speed|0}]]}} &{tracker:+}">
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Education</td>
+                  <td><input type="number" name="attr_EDU" value="(floor((@{FOC}+@{INT})/2))" disabled /></td>
+                  <td><input type="number" name="attr_EduMod" value="floor((@{EDU}-10)/5)+@{EduTemp}" disabled /></td>
+                  <td><input type="number" name="attr_EduTemp" value="0" /></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Speed</td>
+                  <td><input type="number" name="attr_SPD" value="(floor((@{STR}+@{DEX})/2))" disabled /></td>
+                  <td><input type="number" name="attr_SPDMod" value="floor((@{SPD}-10)/5)+@{SpdTemp}" disabled /></td>
+                  <td><input type="number" name="attr_SPDTemp" value="0" /></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Movement</td>
+                  <td><input type="number" name="attr_MVMT" value="(@{SPD}*2+@{MvmtTemp})" disabled /></td>
+                  <td>--</td>
+                  <td><input type="number" name="attr_MvmtTemp" value="0" /></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Appearance</td>
+                  <td><input type="number" name="attr_APP" value="25" min="3" max="30" /></td>
+                  <td colspan="2"><input type="text" name="attr_AppDesc" value="Beautiful" readonly /></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- ===== AP Summary ===== -->
+          <div class="sheet-ap-summary">
+            <span class="sheet-ap-label">Total AP Spent:
+              <input type="number" name="attr_tAP" value="(@{STRAPT} + @{DEXAPT} + @{CONAPT} + @{INTAPT} + @{FOCAPT} + @{CHAAPT})" disabled />
+            </span>
+            <span class="sheet-ap-label">Unspent AP:
+              <input type="number" name="attr_uAP" value="0" />
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- End .sheet-2colrow -->
+  </div> <!-- End .sheet-section-block -->
+
+
+<!-- ===== BIO STABILITY BLOCK ===== -->
+<div class="sheet-section-block sheet-theme-bio">
+  <div class="sheet-group-title">
+    <h2 class="section-title">Bio Stability</h2>
+  </div>
+
+  <div class="sheet-3colrow sheet-stability-wrapper">
+
+    <!-- ===== Bio Saving Throws ===== -->
+    <div class="sheet-col">
+      <div class="row sheet-saves-block">
+        <h3 class="section-subtitle">Bio Saving Throws</h3>
+        <div class="sheet-save-wrapper">
+          <table class="sheet-save-table">
+            <thead>
+              <tr>
+                <th>Attribute</th>
+                <th>Score</th>
+                <th>Temporary Modifier</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <button type="roll" name="roll_PHYS"
+                    value="&{template:t4d} {{theme=bio}} {{title=Physical Resist}} {{character=@{character_name}}} {{result=[[1d20 + @{PHYS} + @{StressPenalty} + ?{Other Modifiers|0}]]}}">
+                  </button> Physical
+                </td>
+                <td><input type="number" name="attr_PHYS" value="(floor((@{STR}+@{CON})/4)+@{PhysTemp})" disabled /></td>
+                <td><input type="number" name="attr_PhysTemp" value="0" /></td>
+              </tr>
+              <tr>
+                <td>
+                  <button type="roll" name="roll_MENT"
+                    value="&{template:t4d} {{theme=bio}} {{title=Mental Resist}} {{character=@{character_name}}} {{result=[[1d20 + @{MENT} + @{StressPenalty} + ?{Other Modifiers|0}]]}}">
+                  </button> Mental
+                </td>
+                <td><input type="number" name="attr_MENT" value="(floor((@{INT}+@{FOC})/4)+@{MentTemp})" disabled /></td>
+                <td><input type="number" name="attr_MentTemp" value="0" /></td>
+              </tr>
+              <tr>
+                <td>
+                  <button type="roll" name="roll_EVAS"
+                    value="&{template:t4d} {{theme=bio}} {{title=Evasion}} {{character=@{character_name}}} {{result=[[1d20 + @{EVAS} + @{StressPenalty} + ?{Other Modifiers|0}]]}}">
+                  </button> Evasion
+                </td>
+                <td><input type="number" name="attr_EVAS" value="(floor((@{FOC}+@{DEX})/4)+@{EvasTemp})" disabled /></td>
+                <td><input type="number" name="attr_EvasTemp" value="0" /></td>
+              </tr>
+              <tr>
+                <td>
+                  <button type="roll" name="roll_SOC"
+                    value="&{template:t4d} {{theme=bio}} {{title=Social Resist}} {{character=@{character_name}}} {{result=[[1d20 + @{SOC} + @{StressPenalty} + ?{Other Modifiers|0}]]}}">
+                  </button> Social
+                </td>
+                <td><input type="number" name="attr_SOC" value="(floor((@{CHA}+@{INT})/4)+@{SocTemp})" disabled /></td>
+                <td><input type="number" name="attr_SocTemp" value="0" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Bio Status ===== -->
+    <div class="sheet-col">
+      <div class="row sheet-status-block">
+        <h3 class="section-subtitle">Bio Status</h3>
+        <div class="sheet-status-wrapper">
+          <table class="sheet-status-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Max</th>
+                <th>Current</th>
+                <th>Min</th>
+                <th>Temp</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>HP</td>
+                <td><input type="number" name="attr_MAXHP" value="(floor((@{STR}+@{CON})/2)+@{HpTemp})" disabled /></td>
+                <td><input type="number" name="attr_CURHP" value="0" /></td>
+                <td><input type="number" name="attr_MINHP" value="(@{PHYS}*-1)" disabled /></td>
+                <td><input type="number" name="attr_HpTemp" value="0" /></td>
+              </tr>
+              <tr>
+                <td>MP</td>
+                <td><input type="number" name="attr_MAXMP" value="(floor((@{CON}+@{FOC})/2)+@{MpTemp})" disabled /></td>
+                <td><input type="number" name="attr_CURMP" value="0" /></td>
+                <td><input type="number" name="attr_MINMP" value="(@{MENT}*-1)" disabled /></td>
+                <td><input type="number" name="attr_MpTemp" value="0" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Bio Stress ===== -->
+    <div class="sheet-col">
+      <div class="row sheet-stress-block">
+        <h3 class="section-subtitle">Stress</h3>
+        <div class="sheet-stress-wrapper">
+          <select class="sheet-stress-select" name="attr_StressLevel">
+            <option value="0">No Stress</option>
+            <option value="-2">1 Stress</option>
+            <option value="-5">2 Stress</option>
+            <option value="-10">3 Stress</option>
+            <option value="-15">4 Stress</option>
+            <option value="2">Inspired</option>
+          </select>
+          <div class="sheet-stress-penalty">
+            <label class="sheet-stress-label" for="attr_StressPenalty">Penalty:</label>
+            <input type="number" name="attr_StressPenalty" value="@{StressLevel}" disabled />
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- End .sheet-stability-wrapper -->
+</div> <!-- End .sheet-section-block -->
+
+
+<!-- ===== BIO SKILLS BLOCK ===== -->
+<div class="sheet-section-block sheet-theme-bio">
+  <div class="sheet-group-title">
+    <h2 class="section-title">Bio Skills</h2>
+  </div>
+
+  <div class="sheet-2colrow sheet-skills-wrapper">
+
+    <!-- ===== Bio Combat Skills Column ===== -->
+    <div class="sheet-col">
+      <div class="row sheet-skillgroup-combat">
+        <h3 class="section-subtitle">Bio Combat Skills</h3>
+
+        <div class="sheet-skill-header">
+          <span class="sheet-skill-spacer"></span>
+          <span class="sheet-skill-label">Skill</span>
+          <span class="sheet-skill-label">Level</span>
+          <span class="sheet-skill-label">XP</span>
+        </div>
+
+        <!-- Simple Weapons -->
+        <div class="sheet-skill-entry">
+        <button type="roll" name="roll_SimpleWeapons"
+          value="&{template:t4d} {{theme=bio}} {{title=Simple Weapons}} {{character=@{character_name}}} {{result=[[1d20 + @{SimpleWeaponsLevel} + @{StressPenalty} + ?{Attribute|Strength, @{StrMod}|Dexterity, @{DexMod}|Constitution, @{ConMod}|Intelligence, @{IntMod}|Focus, @{FocMod}|Charisma, @{ChaMod}|Initiative, @{InitMod}|Education, @{EduMod}|Speed, @{SpdMod}|None, 0} + ?{Other Modifiers|0}]]}}">
+        </button>
+          <input type="text" name="attr_SimpleWeaponsLabel" value="Simple Weapons" disabled>
+          <input type="number" name="attr_SimpleWeaponsLevel" value="4" min="4">
+          <input type="number" name="attr_SimpleWeaponsXP" min="0">
+        </div>
+
+        <!-- Projectile Weapons -->
+        <div class="sheet-skill-entry">
+        <button type="roll" name="roll_ProjectileWeapons"
+          value="&{template:t4d} {{theme=bio}} {{title=Projectile Weapons}} {{character=@{character_name}}} {{result=[[1d20 + @{ProjectileWeaponsLevel} + @{StressPenalty} + ?{Attribute|Strength, @{StrMod}|Dexterity, @{DexMod}|Constitution, @{ConMod}|Intelligence, @{IntMod}|Focus, @{FocMod}|Charisma, @{ChaMod}|Initiative, @{InitMod}|Education, @{EduMod}|Speed, @{SpdMod}|None, 0} + ?{Other Modifiers|0}]]}}">
+        </button>
+          <input type="text" name="attr_ProjectileWeaponsLabel" value="Projectile Weapons" disabled>
+          <input type="number" name="attr_ProjectileWeaponsLevel" value="2" min="2">
+          <input type="number" name="attr_ProjectileWeaponsXP" min="0">
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Bio Detection Skills Column ===== -->
+    <div class="sheet-col">
+      <div class="row sheet-skillgroup-detection">
+        <h3 class="section-subtitle">Bio Detection Skills</h3>
+
+        <div class="sheet-skill-header">
+          <span class="sheet-skill-spacer"></span>
+          <span class="sheet-skill-label">Skill</span>
+          <span class="sheet-skill-label">Level</span>
+          <span class="sheet-skill-label">XP</span>
+        </div>
+
+        <!-- Perception -->
+        <div class="sheet-skill-entry">
+          <button type="roll" name="roll_Perc"
+            value="&{template:t4d} {{theme=bio}} {{title=Perception}} {{character=@{character_name}}} {{result=[[1d20 + @{PercLevel} + @{StressPenalty} + ?{Attribute|Strength, @{StrMod}|Dexterity, @{DexMod}|Constitution, @{ConMod}|Intelligence, @{IntMod}|Focus, @{FocMod}|Charisma, @{ChaMod}|Initiative, @{InitMod}|Education, @{EduMod}|Speed, @{SpdMod}} + ?{Other Modifiers|0}]]}}">
+          </button>
+          <input type="text" name="attr_PercLabel" value="Perception" disabled>
+          <input type="number" name="attr_PercLevel" value="2" min="2">
+          <input type="number" name="attr_PercXP" min="0">
+        </div>
+
+        <!-- Intuition -->
+        <div class="sheet-skill-entry">
+          <button type="roll" name="roll_Intuit"
+            value="&{template:t4d} {{theme=bio}} {{title=Intuition}} {{character=@{character_name}}} {{result=[[1d20 + @{IntuitLevel} + @{StressPenalty} + ?{Attribute|Strength, @{StrMod}|Dexterity, @{DexMod}|Constitution, @{ConMod}|Intelligence, @{IntMod}|Focus, @{FocMod}|Charisma, @{ChaMod}|Initiative, @{InitMod}|Education, @{EduMod}|Speed, @{SpdMod}} + ?{Other Modifiers|0}]]}}">
+          </button>
+          <input type="text" name="attr_IntuitLabel" value="Intuition" disabled>
+          <input type="number" name="attr_IntuitLevel" value="0" min="0">
+          <input type="number" name="attr_IntuitXP" min="0">
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- End .sheet-2colrow -->
+</div> <!-- End .sheet-section-block -->
+
+<!-- ===== BIO TRAINING PACKAGES BLOCK ===== -->
+<div class="sheet-section-block sheet-theme-bio">
+  <div class="sheet-group-title">
+    <h2 class="section-title">Bio Training Packages</h2>
+  </div>
+
+  <div class="sheet-skillgroup-training">
+    <div class="sheet-skill-header">
+      <span class="sheet-skill-label sheet-skill-spacer"></span>
+      <span class="sheet-skill-label">Skill</span>
+      <span class="sheet-skill-label">Level</span>
+      <span class="sheet-skill-label">XP</span>
+    </div>
+
+    <fieldset class="repeating_skills">
+      <div class="sheet-skill-entry">
+        <button type="roll" name="roll_training"
+          value="&{template:t4d} {{theme=bio}} {{title=@{SkillName}}} {{character=@{character_name}}} {{result=[[1d20 + @{SkillLevel} + @{StressPenalty} + ?{Attribute|Strength, @{StrMod}|Dexterity, @{DexMod}|Constitution, @{ConMod}|Intelligence, @{IntMod}|Focus, @{FocMod}|Charisma, @{ChaMod}|Initiative, @{InitMod}|Education, @{EduMod}|Speed, @{SpdMod}} + ?{Other Modifiers|0}]]}}">
+        </button>
+        <input type="text" name="attr_SkillName" placeholder="Skill">
+        <input type="number" name="attr_SkillLevel" value="0" min="0">
+        <input type="number" name="attr_SkillXP" value="0" min="0">
+        <textarea name="attr_SkillNotes" class="sheet-training-notes">Notes</textarea>
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+
+<!-- ===== BIO GEAR BLOCK ===== -->
+<div class="sheet-section-block sheet-theme-bio">
+  <div class="sheet-group-title">
+    <h2 class="section-title">Bio Gear</h2>
+  </div>
+
+  <div class="sheet-gear-wrapper sheet-gear-layout">
+
+    <!-- Hidden Gear Calculations -->
+    <input type="hidden" name="attr_ItemReadiedTotal" value="0" />
+    <input type="hidden" name="attr_WeaponReadiedTotal" value="0" />
+    <input type="hidden" name="attr_ArmorReadiedTotal" value="0" />
+    <input type="hidden" name="attr_ItemTotal" value="0" />
+    <input type="hidden" name="attr_WeaponTotal" value="0" />
+    <input type="hidden" name="attr_ArmorTotal" value="0" />
+    <input type="hidden" name="attr_EncumPenalty" value="0" />
+    <input type="hidden" name="attr_CarriedWeight" value="@{ItemTotal}+@{WeaponTotal}+@{ArmorTotal}" />
+
+<!-- Load Summary -->
+<div class="sheet-gear-block sheet-gear-summary">
+  <div class="sheet-gear-cell">
+    <span class="sheet-gear-label">Readied Items</span>
+    <input type="number" name="attr_ReadiedCurrent" value="@{ItemReadiedTotal}+@{WeaponReadiedTotal}+@{ArmorReadiedTotal}" disabled />
+  </div>
+
+  <div class="sheet-gear-cell">
+    <span class="sheet-gear-label">Max Readied</span>
+    <input type="number" value="5" disabled />
+  </div>
+
+  <div class="sheet-gear-cell">
+    <span class="sheet-gear-label">Current Load</span>
+    <input type="number" name="attr_CarriedCurrent" value="@{CarriedWeight}" disabled />
+  </div>
+
+  <div class="sheet-gear-cell">
+    <span class="sheet-gear-label" title="Add your total weapon and armor delay.">Init Penalty</span>
+    <input type="number" name="attr_InitiativePenalty" value="0" />
+  </div>
+</div>
+
+    <!-- Load Tiers -->
+    <div class="sheet-gear-block sheet-gear-tiers">
+      <div class="sheet-gear-cell">
+        <span class="sheet-gear-label">Light Load</span>
+        <input type="number" name="attr_Encumbrance" value="((floor(@{STR}/5))-2+5+@{StrTemp})" disabled />
+      </div>
+
+      <div class="sheet-gear-cell">
+        <span class="sheet-gear-label">Moderate Load (-2)</span>
+        <input type="number" name="attr_ModerateLoad" value="((floor(@{STR}/5))-2+5+@{StrTemp})*2" disabled />
+      </div>
+
+      <div class="sheet-gear-cell">
+        <span class="sheet-gear-label">Heavy Load (-5)</span>
+        <input type="number" name="attr_HeavyLoad" value="((floor(@{STR}/5))-2+5+@{StrTemp})*3" disabled />
+      </div>
+
+      <div class="sheet-gear-cell">
+        <span class="sheet-gear-label">Max Carry (-10)</span>
+        <input type="number" name="attr_MaxLoad" value="((floor(@{STR}/5))-2+5+@{StrTemp})*4" disabled />
+      </div>
+
+      <div class="sheet-gear-cell">
+        <span class="sheet-gear-label">Push/Drag (-15)</span>
+        <input type="number" name="attr_PushDrag" value="((floor(@{STR}/5))-2+5+@{StrTemp})*5" disabled />
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== BIO WEAPONS BLOCK ===== -->
+<div class="sheet-section-block sheet-theme-bio">
+  <div class="sheet-group-title">
+    <h2 class="section-title">Bio Weapons</h2>
+  </div>
+
+  <div class="sheet-weapon-wrapper sheet-weapons-layout">
+    <!-- Weapon Header Row -->
+    <div class="sheet-weapon-header">
+      <span class="sheet-weapon-spacer"></span>
+      <span>Weapon</span>
+      <span>Type</span>
+      <span>Atk Bonus</span>
+      <span>Damage</span>
+      <span>Spd</span>
+      <span>Ammo</span>
+      <span>Mag</span>
+      <span>Range</span>
+      <span>HP</span>
+      <span>Max HP</span>
+      <span>Enc</span>
+      <span>Cost</span>
+      <span>Readied</span>
+      <span>Carried</span>
+    </div>
+
+    <!-- WRAPPER TO REMOVE DEFAULT FIELDSET STYLING -->
+    <div class="sheet-weapon-repeater-wrapper">
+      <fieldset class="repeating_weapons">
+        <!-- Entry Row -->
+        <div class="sheet-weapon-entry">
+          <button type="roll" name="roll_attack"
+            value="&{template:t4d} {{theme=bio}} {{title=@{WeaponName}}} {{character=@{character_name}}} {{result=[[1d20 + @{WeaponSkill} + @{WeaponAtkBonus} + @{StressPenalty} + ?{Other Modifier|0}]]}} {{damage=[[ @{WeaponDamage} ]]}}">
+          </button>
+          <input type="text" name="attr_WeaponName" placeholder="Weapon" />
+          <select name="attr_WeaponSkill">
+            <option value="@{SimpleWeaponsLevel}+@{SpdMod}">Simple</option>
+            <option value="@{ProjectileWeaponsLevel}+@{DexMod}">Projectile</option>
+          </select>
+          <input type="number" name="attr_WeaponAtkBonus" value="0" />
+          <input type="text" name="attr_WeaponDamage" />
+          <input type="number" name="attr_WeaponSPD" value="0" />
+          <input type="number" name="attr_WeaponAmmo" value="0" />
+          <input type="number" name="attr_WeaponMag" value="0" />
+          <input type="text" name="attr_WeaponRange" value="0" />
+          <input type="number" name="attr_WeaponHP" value="0" />
+          <input type="number" name="attr_WeaponMaxHP" value="0" />
+          <input type="number" name="attr_WeaponWeight" value="0" />
+          <input type="number" name="attr_WeaponCost" value="0" />
+          <input type="checkbox" name="attr_WeaponReadied" value="1" />
+          <input type="checkbox" name="attr_WeaponCarried" value="1" />
+        </div>
+
+        <!-- Notes Row -->
+        <div class="sheet-weapon-notes-row">
+          <textarea name="attr_WeaponNotes" class="sheet-weapon-notes" placeholder="Notes..."></textarea>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BIO ARMOR BLOCK ===== -->
+<div class="sheet-section-block sheet-theme-bio">
+  <div class="sheet-group-title">
+    <h2 class="section-title">Bio Armor</h2>
+  </div>
+
+  <div class="sheet-armor-wrapper sheet-armor-layout">
+    <!-- Armor Header -->
+    <div class="sheet-armor-header">
+      <span>Armor</span>
+      <span>Max</span>
+      <span>Current</span>
+      <span>Init Mod</span>
+      <span>Enc</span>
+      <span>Cost</span>
+      <span>Readied</span>
+      <span>Carried</span>
+    </div>
+
+    <!-- Repeating Armor Entries -->
+    <fieldset class="repeating_armor">
+      <div class="sheet-armor-entry">
+        <input type="text" name="attr_ArmorName" placeholder="Armor" />
+        <input type="number" name="attr_MaxArmor" value="0" />
+        <input type="number" name="attr_CurArmor" value="0" />
+        <input type="number" name="attr_SpdArmor" value="0" />
+        <input type="number" name="attr_ArmorWeight" value="0" />
+        <input type="text" name="attr_CostArmor" value="0" />
+        <input type="checkbox" name="attr_ArmorReadied" value="1" />
+        <input type="checkbox" name="attr_ArmorCarried" value="1" />
+      </div>
+
+      <!-- Notes below entry -->
+      <div class="sheet-armor-notes-row">
+        <textarea name="attr_ArmorNotes" class="sheet-armor-notes" placeholder="Notes..."></textarea>
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+<!-- ===== BIO ITEMS BLOCK ===== -->
+<div class="sheet-section-block sheet-theme-bio">
+  <div class="sheet-group-title">
+    <h2 class="section-title">Bio Items</h2>
+  </div>
+
+  <div class="sheet-items-wrapper sheet-items-layout">
+    <!-- Items Header -->
+    <div class="sheet-items-header">
+      <span>Item</span>
+      <span>#</span>
+      <span>Location</span>
+      <span>Enc</span>
+      <span>Readied</span>
+      <span>Carried</span>
+    </div>
+
+    <!-- Repeating Item Entries -->
+    <fieldset class="repeating_items">
+      <div class="sheet-items-entry">
+        <input type="text" name="attr_ItemName" placeholder="Item" />
+        <input type="number" name="attr_ItemNumber" value="1" />
+        <input type="text" name="attr_ItemLocation" />
+        <input type="number" name="attr_ItemWeight" value="0" />
+        <input type="checkbox" name="attr_ItemReadied" value="1" />
+        <input type="checkbox" name="attr_ItemCarried" value="1" />
+      </div>
+
+      <!-- Notes below entry -->
+      <div class="sheet-items-notes-row">
+        <textarea name="attr_ItemNotes" class="sheet-item-notes" placeholder="Notes..."></textarea>
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+
+<!-- ===== BIO NANITE TECH BLOCK ===== -->
+<div class="sheet-section-block sheet-theme-bio">
+  <div class="sheet-group-title">
+    <h2 class="section-title">Bio Nanite Tech</h2>
+  </div>
+
+<!-- ===== Nanite Accelerators ===== -->
+<div class="sheet-subsection-block sheet-nanite-group">
+  <h3 class="section-subtitle">Nanite Accelerators</h3>
+
+  <div class="sheet-nanite-header">
+    <span class="sheet-nanite-spacer"></span>
+    <span>Accelerator</span>
+    <span>Type</span>
+  </div>
+
+  <fieldset class="repeating_catalyst">
+    <div class="sheet-nanite-block">
+      <div class="sheet-nanite-entry sheet-nanite-accelerator">
+        <button type="roll" name="roll_Catalyst"
+          value="&{template:t4d} {{theme=bio}} {{title=@{CatalystName}}} {{character=@{character_name}}} {{effect=Regain MP}} {{result=[[ @{CatalystType} ]]}}">
+        </button>
+        <input type="text" name="attr_CatalystName" placeholder="Catalyst" />
+        <select name="attr_CatalystType">
+          <option value="1d4">Minor</option>
+          <option value="5d4">Major</option>
+        </select>
+      </div>
+      <div class="sheet-nanite-notes-row">
+        <textarea name="attr_CatalystNotes" class="sheet-nanite-notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+ <!-- ===== Basic Nanite Tech ===== -->
+<div class="sheet-subsection-block sheet-nanite-group">
+  <h3 class="section-subtitle">Basic Nanite Tech</h3>
+
+  <div class="sheet-basic-nanite-header">
+    <span class="sheet-roll-spacer"></span>
+    <span>Reaction</span>
+    <span>MP</span>
+    <span>Speed</span>
+    <span>Level</span>
+    <span>XP</span>
+  </div>
+
+  <fieldset class="repeating_BasicReactions">
+    <div class="sheet-nanite-block">
+      <div class="sheet-basic-nanite-entry">
+        <button type="roll" name="roll_BasicReaction"
+          value="&{template:t4d} {{theme=bio}} {{title=@{BasicReactionName}}} {{character=@{character_name}}} {{result=[[1d20 + @{BasicReactionLevel} + @{StressPenalty} + ?{Attribute|Strength, @{StrMod}|Dexterity, @{DexMod}|Constitution, @{ConMod}|Intelligence, @{IntMod}|Focus, @{FocMod}|Charisma, @{ChaMod}|Initiative, @{InitMod}|Education, @{EduMod}|Speed, @{SpdMod}} + ?{Other Modifiers|0}]]}}">
+        </button>
+        <input type="text" name="attr_BasicReactionName" placeholder="Basic Reaction" />
+        <input type="number" name="attr_BasicReactionMp" value="0" />
+        <input type="number" name="attr_BasicReactionSpd" value="0" />
+        <input type="number" name="attr_BasicReactionLevel" value="0" />
+        <input type="number" name="attr_BasicReactionXP" value="0" />
+      </div>
+      <div class="sheet-basic-nanite-notes-row">
+        <textarea name="attr_BasicReactionNotes" class="sheet-basic-nanite-notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+  <!-- ===== Advanced Nanite Tech ===== -->
+<div class="sheet-subsection-block sheet-nanite-group">
+  <h3 class="section-subtitle">Advanced Nanite Tech</h3>
+
+  <div class="sheet-advanced-nanite-header">
+    <span class="sheet-roll-spacer"></span>
+    <span>Reaction</span>
+    <span>MP</span>
+    <span>Speed</span>
+    <span>Level</span>
+    <span>XP</span>
+    <span>Components</span>
+  </div>
+
+  <fieldset class="repeating_combinations">
+    <div class="sheet-nanite-block">
+      <div class="sheet-advanced-nanite-entry">
+        <button type="roll" name="roll_CombinationReaction"
+          value="&{template:t4d} {{theme=bio}} {{title=@{CombinationName}}} {{character=@{character_name}}} {{result=[[1d20 + @{CombinationLevel} + @{StressPenalty} + ?{Attribute|Strength, @{StrMod}|Dexterity, @{DexMod}|Constitution, @{ConMod}|Intelligence, @{IntMod}|Focus, @{FocMod}|Charisma, @{ChaMod}|Initiative, @{InitMod}|Education, @{EduMod}|Speed, @{SpdMod}} + ?{Other Modifiers|0}]]}}">
+        </button>
+        <input type="text" name="attr_CombinationName" placeholder="Combination Reaction" />
+        <input type="number" name="attr_CombinationMp" value="0" />
+        <input type="number" name="attr_CombinationSpd" value="0" />
+        <input type="number" name="attr_CombinationLevel" value="0" />
+        <input type="number" name="attr_CombinationXP" value="0" />
+        <input type="text" name="attr_Components" placeholder="List basic reactions" />
+      </div>
+      <div class="sheet-advanced-nanite-notes-row">
+        <textarea name="attr_CombinationNotes" class="sheet-advanced-nanite-notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </fieldset>
+</div>
+</div>
+<!-- ===== BIO DESCRIPTION / BACKGROUND / NOTES BLOCK ===== -->
+<div class="sheet-section-block sheet-theme-bio">
+  <div class="sheet-group-title">
+    <h2 class="section-title">Bio Profile</h2>
+  </div>
+
+  <!-- ===== Bio Description ===== -->
+  <div class="sheet-subsection-block sheet-profile-group sheet-profile-desc">
+    <h3 class="section-subtitle">Physical Description and Personality</h3>
+    <div class="sheet-profile-notes-row">
+      <textarea class="sheet-desc-box" name="attr_physDescription"
+        placeholder="Describe the character’s physical features, mannerisms, and behavior."></textarea>
+    </div>
+  </div>
+
+  <!-- ===== Bio Background ===== -->
+  <div class="sheet-subsection-block sheet-profile-group sheet-profile-bg">
+    <h3 class="section-subtitle">Background</h3>
+    <div class="sheet-profile-notes-row">
+      <textarea class="sheet-bg-box" name="attr_Background"
+        placeholder="Character's history, origin, motivations..."></textarea>
+    </div>
+  </div>
+
+  <!-- ===== Bio Notes ===== -->
+  <div class="sheet-subsection-block sheet-profile-group sheet-profile-notes">
+    <h3 class="section-subtitle">Notes</h3>
+    <div class="sheet-profile-notes-row">
+      <textarea class="sheet-notes-box" name="attr_GenNotes"
+        placeholder="Miscellaneous notes, reminders, or session info."></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ===== AI ATTRIBUTE BLOCK ===== -->
+<div class="sheet-section-block sheet-theme-ai">
+  <div class="sheet-group-title">
+    <h2 class="section-title">AI Attributes</h2>
+  </div>
+
+  <div class="sheet-2colrow">
+
+    <!-- ===== AI PRIMARY ATTRIBUTES ===== -->
+    <div class="sheet-col">
+      <div class="row sheet-primary-attributes-ai">
+        <h3 class="section-subtitle">Primary Attributes</h3>
+        <div class="sheet-attribute-wrapper">
+          <table class="sheet-attribute-table">
+            <thead>
+              <tr>
+                <th>Attribute</th>
+                <th>Score</th>
+                <th>Modifier</th>
+                <th>AP to Next</th>
+                <th>Total AP Spent</th>
+                <th>Temporary Modifier</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Processing</td>
+                <td><input type="number" name="attr_PRC" value="1" /></td>
+                <td><input type="number" name="attr_PRCMod" value="floor((@{PRC}-10)/5)+@{PRCTemp}" disabled /></td>
+                <td><input type="number" name="attr_PRCAPN" value="(@{PRCMod}+3)" disabled /></td>
+                <td><input type="number" name="attr_PRCAPT" value="1" readonly /></td>
+                <td><input type="number" name="attr_PRCTemp" value="0" /></td></tr>
+
+              <tr><td>Sensor</td>
+                <td><input type="number" name="attr_SEN" value="1" /></td>
+                <td><input type="number" name="attr_SENMod" value="floor((@{SEN}-10)/5)+@{SENTemp}" disabled /></td>
+                <td><input type="number" name="attr_SENAPN" value="(@{SENMod}+3)" disabled /></td>
+                <td><input type="number" name="attr_SENAPT" value="1" readonly /></td>
+                <td><input type="number" name="attr_SENTemp" value="0" /></td></tr>
+
+              <tr><td>Architecture</td>
+                <td><input type="number" name="attr_ARC" value="1" /></td>
+                <td><input type="number" name="attr_ARCMod" value="floor((@{ARC}-10)/5)+@{ARCTemp}" disabled /></td>
+                <td><input type="number" name="attr_ARCAPN" value="(@{ARCMod}+3)" disabled /></td>
+                <td><input type="number" name="attr_ARCAPT" value="1" readonly /></td>
+                <td><input type="number" name="attr_ARCTemp" value="0" /></td></tr>
+
+              <tr><td>Logic</td>
+                <td><input type="number" name="attr_LOG" value="1" /></td>
+                <td><input type="number" name="attr_LOGMod" value="floor((@{LOG}-10)/5)+@{LOGTemp}" disabled /></td>
+                <td><input type="number" name="attr_LOGAPN" value="(@{LOGMod}+3)" disabled /></td>
+                <td><input type="number" name="attr_LOGAPT" value="1" readonly /></td>
+                <td><input type="number" name="attr_LOGTemp" value="0" /></td></tr>
+
+              <tr><td>Core</td>
+                <td><input type="number" name="attr_COR" value="1" /></td>
+                <td><input type="number" name="attr_CORMod" value="floor((@{COR}-10)/5)+@{CORTemp}" disabled /></td>
+                <td><input type="number" name="attr_CORAPN" value="(@{CORMod}+3)" disabled /></td>
+                <td><input type="number" name="attr_CORAPT" value="1" readonly /></td>
+                <td><input type="number" name="attr_CORTemp" value="0" /></td></tr>
+
+              <tr><td>Social</td>
+                <td><input type="number" name="attr_SOCIAL" value="1" /></td>
+                <td><input type="number" name="attr_SOCIALMod" value="floor((@{SOCIAL}-10)/5)+@{SOCIALTemp}" disabled /></td>
+                <td><input type="number" name="attr_SOCIALAPN" value="(@{SOCIALMod}+3)" disabled /></td>
+                <td><input type="number" name="attr_SOCIALAPT" value="1" readonly /></td>
+                <td><input type="number" name="attr_SOCIALTemp" value="0" /></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== AI SECONDARY ATTRIBUTES ===== -->
+    <div class="sheet-col">
+      <div class="row sheet-secondary-attributes-ai">
+        <h3 class="section-subtitle">Secondary Attributes</h3>
+        <div class="sheet-attribute-wrapper">
+          <table class="sheet-attribute-table">
+            <thead>
+              <tr>
+                <th>Attribute </th>
+                <th>Score </th>
+                <th>Modifier </th>
+                <th>Temporary Modifier</th>
+                <th>Queue Roll</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Queue</td>
+                <td><input type="number" name="attr_QUEUE" value="(floor((@{COR}+@{SEN})/2))" disabled /></td>
+                <td><input type="number" name="attr_QueueMod" value="floor((@{QUEUE}-10)/5)+@{QueueTemp}" disabled /></td>
+                <td><input type="number" name="attr_QueueTemp" value="0" /></td>
+                <td>
+        <button type="roll" name="roll_TrainingSkill_AI"
+          value="&{template:t4d} {{theme=ai}} {{title=@{SkillName_ai}}} {{character=@{character_name}}} {{result=[[1d20 + @{SkillLevel_ai} + @{FragmentPenalty} + ?{Attribute|Processing, @{PrcMod}|Sensor, @{SenMod}|Architecture, @{ArcMod}|Logic, @{LogMod}|Core, @{CorMod}|Social, @{SocialMod}|Queue, @{QueueMod}|Learning, @{LeaMod}|Cycles, @{CycMod}} + ?{Other Modifiers|0}]]}}"></button>
+                </td>
+              </tr>
+              <tr><td>Learning</td>
+                <td><input type="number" name="attr_LEA" value="(floor((@{COR}+@{LOG})/2))" disabled /></td>
+                <td><input type="number" name="attr_LeaMod" value="floor((@{LEA}-10)/5)+@{LeaTemp}" disabled /></td>
+                <td><input type="number" name="attr_LeaTemp" value="0" /></td>
+                <td></td></tr>
+
+              <tr><td>Cycles</td>
+                <td><input type="number" name="attr_CYC" value="(floor((@{PRC}+@{SEN})/2))" disabled /></td>
+                <td><input type="number" name="attr_CYCMod" value="floor((@{CYC}-10)/5)+@{CycTemp}" disabled /></td>
+                <td><input type="number" name="attr_CycTemp" value="0" /></td>
+                <td></td></tr>
+
+              <tr><td>Latency</td>
+                <td><input type="number" name="attr_LATN" value="(@{CYC}*2+@{LatnTemp})" disabled /></td>
+                <td>--</td>
+                <td><input type="number" name="attr_LatnTemp" value="0" /></td>
+                <td></td></tr>
+
+              <tr><td>Likeness</td>
+                <td><input type="number" name="attr_LIKE" value="3" min="3" max="30" /></td>
+                <td colspan="2">
+                  <input type="text" name="attr_LikeDesc" class="sheet-ai-likeness-desc" value="NA" readonly />
+                </td>
+                <td></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ===== AP Summary ===== -->
+        <div class="sheet-ap-summary">
+          <span class="sheet-ap-label">Total AP Spent:
+            <input type="number" name="attr_tAP_AI" value="(@{PRCAPT} + @{SENAPT} + @{ARCAPT} + @{LOGAPT} + @{CORAPT} + @{SOCIALAPT})" disabled />
+          </span>
+          <span class="sheet-ap-label">Unspent AP:
+            <input type="number" name="attr_uAP_AI" value="0" />
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- End .sheet-2colrow -->
+</div> <!-- End .sheet-section-block -->
+
+<!-- ===== AI VITAL SYSTEMS BLOCK ===== -->
+<div class="sheet-section-block sheet-theme-ai">
+  <div class="sheet-group-title">
+    <h2 class="section-title">AI Vital Systems</h2>
+  </div>
+
+  <div class="sheet-3colrow sheet-vitals-wrapper">
+
+    <!-- ===== AI SAVING THROWS ===== -->
+    <div class="sheet-col">
+      <div class="row sheet-saves-block-ai">
+        <h3 class="section-subtitle">AI Saving Throws</h3>
+        <div class="sheet-save-wrapper">
+          <table class="sheet-save-table">
+            <thead>
+              <tr>
+                <th>Attribute</th>
+                <th>Score</th>
+                <th>Temporary Modifier</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <button type="roll" name="roll_OVER"
+                    value="&{template:t4d} {{theme=ai}} {{title=Overload Resist}} {{character=@{character_name}}} {{result=[[1d20 + @{OVER} + @{FragmentPenalty} + ?{Other Modifiers|0}]]}}"></button>
+                  Overload
+                </td>
+                <td><input type="number" name="attr_OVER" value="(floor((@{PRC}+@{ARC})/4)+@{OverTemp})" disabled /></td>
+                <td><input type="number" name="attr_OverTemp" value="0" /></td>
+              </tr>
+              <tr>
+                <td>
+                  <button type="roll" name="roll_INTE"
+                    value="&{template:t4d} {{theme=ai}} {{title=Integrity Resist}} {{character=@{character_name}}} {{result=[[1d20 + @{INTE} + @{FragmentPenalty} + ?{Other Modifiers|0}]]}}"></button>
+                  Integrity
+                </td>
+                <td><input type="number" name="attr_INTE" value="(floor((@{LOG}+@{COR})/4)+@{InteTemp})" disabled /></td>
+                <td><input type="number" name="attr_InteTemp" value="0" /></td>
+              </tr>
+              <tr>
+                <td>
+                  <button type="roll" name="roll_BYPA"
+                    value="&{template:t4d} {{theme=ai}} {{title=Bypass Resist}} {{character=@{character_name}}} {{result=[[1d20 + @{BYPA} + @{FragmentPenalty} + ?{Other Modifiers|0}]]}}"></button>
+                  Bypass
+                </td>
+                <td><input type="number" name="attr_BYPA" value="(floor((@{COR}+@{SEN})/4)+@{BypaTemp})" disabled /></td>
+                <td><input type="number" name="attr_BypaTemp" value="0" /></td>
+              </tr>
+              <tr>
+                <td>
+                  <button type="roll" name="roll_FIR"
+                    value="&{template:t4d} {{theme=ai}} {{title=Firewall Resist}} {{character=@{character_name}}} {{result=[[1d20 + @{FIR} + @{FragmentPenalty} + ?{Other Modifiers|0}]]}}"></button>
+                  Firewall
+                </td>
+                <td><input type="number" name="attr_FIR" value="(floor((@{SOCIAL}+@{LOG})/4)+@{FirTemp})" disabled /></td>
+                <td><input type="number" name="attr_FirTemp" value="0" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== AI STATUS ===== -->
+    <div class="sheet-col">
+      <div class="row sheet-status-block-ai">
+        <h3 class="section-subtitle">AI Status</h3>
+        <div class="sheet-status-wrapper">
+          <table class="sheet-status-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Max</th>
+                <th>Current</th>
+                <th>Min</th>
+                <th>Temp</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>IP</td>
+                <td><input type="number" name="attr_MAXIP" value="(floor((@{PRC}+@{ARC})/2)+@{IpTemp})" disabled /></td>
+                <td><input type="number" name="attr_CURIP" value="0" /></td>
+                <td><input type="number" name="attr_MINIP" value="(@{OVER}*-1)" disabled /></td>
+                <td><input type="number" name="attr_IpTemp" value="0" /></td>
+              </tr>
+              <tr>
+                <td>PP</td>
+                <td><input type="number" name="attr_MAXPP" value="(floor((@{ARC}+@{COR})/2)+@{PpTemp})" disabled /></td>
+                <td><input type="number" name="attr_CURPP" value="0" /></td>
+                <td><input type="number" name="attr_MINPP" value="(@{INTE}*-1)" disabled /></td>
+                <td><input type="number" name="attr_PpTemp" value="0" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== AI FRAGMENTATION ===== -->
+    <div class="sheet-col">
+      <div class="row sheet-fragment-block">
+        <h3 class="section-subtitle">Fragmentation</h3>
+        <div class="sheet-fragment-wrapper">
+          <select class="sheet-fragment-select" name="attr_FragmentLevel">
+            <option value="0">No Fragment</option>
+            <option value="-2">1 Fragment</option>
+            <option value="-5">2 Fragments</option>
+            <option value="-10">3 Fragments</option>
+            <option value="-15">4 Fragments</option>
+            <option value="2">Overclocked</option>
+          </select>
+          <div class="sheet-fragment-penalty">
+            <label class="sheet-fragment-label" for="attr_FragmentPenalty">Penalty:</label>
+            <input type="number" name="attr_FragmentPenalty" value="@{FragmentLevel}" disabled />
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- End .sheet-vitals-wrapper -->
+</div> <!-- End .sheet-section-block -->
+
+<!-- ===== AI SKILLS SECTION ===== -->
+<div class="sheet-section-block sheet-theme-ai">
+  <div class="sheet-group-title">
+    <h2 class="section-title">AI Skills</h2>
+  </div>
+
+  <div class="sheet-2colrow sheet-skills-wrapper">
+
+    <!-- ===== AI Combat Skills Column ===== -->
+    <div class="sheet-col">
+      <div class="row sheet-skillgroup-combat-ai">
+        <h3 class="section-subtitle">AI Combat Skills</h3>
+
+        <div class="sheet-skill-header">
+          <span class="sheet-skill-spacer"></span>
+          <span class="sheet-skill-label">Skill</span>
+          <span class="sheet-skill-label">Level</span>
+          <span class="sheet-skill-label">XP</span>
+        </div>
+
+        <!-- Simple Weapons -->
+        <div class="sheet-skill-entry">
+<button type="roll" name="roll_SimpleWeapons_AI"
+  value="&{template:t4d} {{theme=ai}} {{title=Simple Weapons}} {{character=@{character_name}}} {{result=[[1d20 + @{SimpleWeaponsLevel_AI} + @{FragmentPenalty} + ?{Attribute|Processing, @{PrcMod}|Sensor, @{SenMod}|Architecture, @{ArcMod}|Logic, @{LogMod}|Core, @{CorMod}|Social, @{SocialMod}|Queue, @{QueueMod}|Learning, @{LeaMod}|Cycles, @{CycMod}|None, 0} + ?{Other Modifiers|0}]]}}">
+</button>
+          <input type="text" value="Simple Weapons" disabled>
+          <input type="number" name="attr_SimpleWeaponsLevel_AI" value="4" min="4">
+          <input type="number" name="attr_SimpleWeaponsXP_AI" min="0">
+        </div>
+
+        <!-- Projectile Weapons -->
+        <div class="sheet-skill-entry">
+<button type="roll" name="roll_ProjectileWeapons_AI"
+  value="&{template:t4d} {{theme=ai}} {{title=Projectile Weapons}} {{character=@{character_name}}} {{result=[[1d20 + @{ProjectileWeaponsLevel_AI} + @{FragmentPenalty} + ?{Attribute|Processing, @{PrcMod}|Sensor, @{SenMod}|Architecture, @{ArcMod}|Logic, @{LogMod}|Core, @{CorMod}|Social, @{SocialMod}|Queue, @{QueueMod}|Learning, @{LeaMod}|Cycles, @{CycMod}|None, 0} + ?{Other Modifiers|0}]]}}">
+</button>
+          <input type="text" value="Projectile Weapons" disabled>
+          <input type="number" name="attr_ProjectileWeaponsLevel_AI" value="2" min="2">
+          <input type="number" name="attr_ProjectileWeaponsXP_AI" min="0">
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== AI Detection Skills Column ===== -->
+    <div class="sheet-col">
+      <div class="row sheet-skillgroup-detection-ai">
+        <h3 class="section-subtitle">AI Detection Skills</h3>
+
+        <div class="sheet-skill-header">
+          <span class="sheet-skill-spacer"></span>
+          <span class="sheet-skill-label">Skill</span>
+          <span class="sheet-skill-label">Level</span>
+          <span class="sheet-skill-label">XP</span>
+        </div>
+
+        <!-- Perception -->
+        <div class="sheet-skill-entry">
+          <button type="roll" name="roll_Perception_AI"
+            value="&{template:t4d} {{theme=ai}} {{title=Perception}} {{character=@{character_name}}} {{result=[[1d20 + @{PercLevel_AI} + @{FragmentPenalty} + ?{Attribute|Processing, @{PrcMod}|Sensor, @{SenMod}|Architecture, @{ArcMod}|Logic, @{LogMod}|Core, @{CorMod}|Social, @{SocialMod}|Queue, @{QueueMod}|Learning, @{LeaMod}|Cycles, @{CycMod}} + ?{Other Modifiers|0}]]}}"></button>
+          <input type="text" value="Perception" disabled>
+          <input type="number" name="attr_PercLevel_AI" value="2" min="2">
+          <input type="number" name="attr_PercXP_AI" min="0">
+        </div>
+
+        <!-- Intuition -->
+        <div class="sheet-skill-entry">
+          <button type="roll" name="roll_Intuition_AI"
+            value="&{template:t4d} {{theme=ai}} {{title=Intuition}} {{character=@{character_name}}} {{result=[[1d20 + @{IntuitLevel_AI} + @{FragmentPenalty} + ?{Attribute|Processing, @{PrcMod}|Sensor, @{SenMod}|Architecture, @{ArcMod}|Logic, @{LogMod}|Core, @{CorMod}|Social, @{SocialMod}|Queue, @{QueueMod}|Learning, @{LeaMod}|Cycles, @{CycMod}} + ?{Other Modifiers|0}]]}}"></button>
+          <input type="text" value="Intuition" disabled>
+          <input type="number" name="attr_IntuitLevel_AI" value="0" min="0">
+          <input type="number" name="attr_IntuitXP_AI" min="0">
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- End .sheet-2colrow -->
+</div> <!-- End .sheet-section-block -->
+
+
+<!-- ===== AI TRAINING PACKAGES SECTION ===== -->
+<div class="sheet-section-block sheet-theme-ai">
+  <div class="sheet-group-title">
+    <h2 class="section-title">AI Training Packages</h2>
+  </div>
+
+  <div class="sheet-subsection-block sheet-skillgroup-training-ai">
+    <div class="sheet-skill-header">
+      <span class="sheet-skill-spacer"></span>
+      <span class="sheet-skill-label">Skill</span>
+      <span class="sheet-skill-label">Level</span>
+      <span class="sheet-skill-label">XP</span>
+    </div>
+
+    <fieldset class="repeating_skillsai">
+      <div class="sheet-skill-entry">
+        <button type="roll" name="roll_TrainingSkill_AI"
+          value="&{template:t4d} {{theme=ai}} {{title=@{SkillName_ai}}} {{character=@{character_name}}} {{result=[[1d20 + @{SkillLevel_ai} + @{FragmentPenalty} + ?{Attribute|Processing, @{PrcMod}|Sensor, @{SenMod}|Architecture, @{ArcMod}|Logic, @{LogMod}|Core, @{CorMod}|Social, @{SocialMod}|Queue, @{QueueMod}|Learning, @{LeaMod}|Cycles, @{CycMod}} + ?{Other Modifiers|0}]]}}"></button>
+        <input type="text" name="attr_SkillName_ai" placeholder="Skill">
+        <input type="number" name="attr_SkillLevel_ai" value="0" min="0">
+        <input type="number" name="attr_SkillXP_ai" min="0">
+        <textarea name="attr_SkillNotes_ai" class="sheet-training-notes" placeholder="Notes..."></textarea>
+      </div>
+    </fieldset>
+  </div>
+  </div>
+
+<!-- ===== AI GEAR BLOCK (Corrected) ===== -->
+<div class="sheet-section-block sheet-theme-ai">
+  <div class="sheet-group-title">
+    <h2 class="section-title">AI Hardware</h2>
+  </div>
+
+  <div class="sheet-gear-wrapper sheet-gear-layout">
+
+    <!-- Hidden Gear Calculations (EXACT MIRROR OF BIO) -->
+    <input type="hidden" name="attr_ItemReadiedTotal_ai" value="0" />
+    <input type="hidden" name="attr_WeaponReadiedTotal_ai" value="0" />
+    <input type="hidden" name="attr_ArmorReadiedTotal_ai" value="0" />
+    <input type="hidden" name="attr_ItemTotal_ai" value="0" />
+    <input type="hidden" name="attr_WeaponTotal_ai" value="0" />
+    <input type="hidden" name="attr_ArmorTotal_ai" value="0" />
+    <input type="hidden" name="attr_EncumPenalty_ai" value="0" />
+
+    <!-- Corrected EXACTLY AS IN BIO -->
+    <input type="hidden" name="attr_CarriedWeight_ai" value="@{ItemTotal_ai}+@{WeaponTotal_ai}+@{ArmorTotal_ai}" />
+
+<!-- Load Summary (EXACT BIO MIRROR with _ai) -->
+<div class="sheet-gear-block sheet-gear-summary">
+  <div class="sheet-gear-cell">
+    <span class="sheet-gear-label">Readied Items</span>
+    <input type="number" name="attr_ReadiedCurrent_ai" value="@{ItemReadiedTotal_ai}+@{WeaponReadiedTotal_ai}+@{ArmorReadiedTotal_ai}" disabled />
+  </div>
+
+  <div class="sheet-gear-cell">
+    <span class="sheet-gear-label">Max Readied</span>
+    <input type="number" value="5" disabled />
+  </div>
+
+  <div class="sheet-gear-cell">
+    <span class="sheet-gear-label">Current Load</span>
+    <input type="number" name="attr_CarriedCurrent_ai" value="@{CarriedWeight_ai}" disabled />
+  </div>
+
+  <div class="sheet-gear-cell">
+    <span class="sheet-gear-label" title="Add your total weapon and armor delay.">Init Penalty</span>
+    <input type="number" name="attr_InitiativePenalty_ai" value="0" />
+  </div>
+</div>
+
+    <!-- Load Tiers -->
+    <div class="sheet-gear-block sheet-gear-tiers">
+      <div class="sheet-gear-cell">
+        <span class="sheet-gear-label">Light Load</span>
+        <input type="number" name="attr_Encumbrance_ai" value="((floor(@{PRC}/5))-2+5+@{PRCTemp})" disabled />
+      </div>
+
+      <div class="sheet-gear-cell">
+        <span class="sheet-gear-label">Moderate Load (-2)</span>
+        <input type="number" name="attr_ModerateLoad_ai" value="((floor(@{PRC}/5))-2+5+@{PRCTemp})*2" disabled />
+      </div>
+
+      <div class="sheet-gear-cell">
+        <span class="sheet-gear-label">Heavy Load (-5)</span>
+        <input type="number" name="attr_HeavyLoad_ai" value="((floor(@{PRC}/5))-2+5+@{PRCTemp})*3" disabled />
+      </div>
+
+      <div class="sheet-gear-cell">
+        <span class="sheet-gear-label">Max Carry (-10)</span>
+        <input type="number" name="attr_MaxLoad_ai" value="((floor(@{PRC}/5))-2+5+@{PRCTemp})*4" disabled />
+      </div>
+
+      <div class="sheet-gear-cell">
+        <span class="sheet-gear-label">Push/Drag (-15)</span>
+        <input type="number" name="attr_PushDrag_ai" value="((floor(@{PRC}/5))-2+5+@{PRCTemp})*5" disabled />
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ===== AI WEAPONS BLOCK ===== -->
+<div class="sheet-section-block sheet-theme-ai">
+  <div class="sheet-group-title">
+    <h2 class="section-title">AI Weapons</h2>
+  </div>
+
+    <div class="sheet-weapon-wrapper sheet-weapons-layout">
+      <!-- Header Row -->
+      <div class="sheet-weapon-header">
+        <span class="sheet-weapon-spacer"></span>
+        <span>Weapon</span>
+        <span>Type</span>
+        <span>Atk Bonus</span>
+        <span>Damage</span>
+        <span>Spd</span>
+        <span>Ammo</span>
+        <span>Mag</span>
+        <span>Range</span>
+        <span>HP</span>
+        <span>Max HP</span>
+        <span>Enc</span>
+        <span>Cost</span>
+        <span>Readied</span>
+        <span>Carried</span>
+      </div>
+
+      <!-- Weapon Entry -->
+      <fieldset class="repeating_weaponsai">
+        <div class="sheet-weapon-entry">
+          <button type="roll" name="roll_attack"
+            value="&{template:t4d} {{theme=ai}} {{title=@{WeaponName_ai}}} {{character=@{character_name}}} {{result=[[1d20 + @{WeaponSkill_ai} + @{WeaponAtkBonus_ai} + @{FragmentPenalty} + ?{Other Modifier|0}]]}} {{damage=[[ @{WeaponDamage_ai} ]]}}">
+          </button>
+
+          <input type="text" name="attr_WeaponName_ai" placeholder="Weapon" />
+
+          <select name="attr_WeaponSkill_ai">
+          <option value="@{SimpleWeaponsLevel_AI}+@{CycMod}">Simple</option>
+           <option value="@{ProjectileWeaponsLevel_AI}+@{SenMod}">Projectile</option>
+          </select>
+          <input type="number" name="attr_WeaponAtkBonus_ai" value="0" />
+          <input type="text" name="attr_WeaponDamage_ai" />
+          <input type="number" name="attr_WeaponCyc_ai" value="0" />
+          <input type="number" name="attr_WeaponAmmo_ai" value="0" />
+          <input type="number" name="attr_WeaponMag_ai" value="0" />
+          <input type="text" name="attr_WeaponRange_ai" value="0" />
+          <input type="number" name="attr_WeaponHP_ai" value="0" />
+          <input type="number" name="attr_WeaponMaxHP_ai" value="0" />
+          <input type="number" name="attr_WeaponWeight_ai" value="0" />
+          <input type="number" name="attr_WeaponCost_ai" value="0" />
+          <input type="checkbox" name="attr_WeaponReadied_ai" value="1" />
+          <input type="checkbox" name="attr_WeaponCarried_ai" value="1" />
+        </div>
+
+        <!-- COMPACT NOTES BOX -->
+        <textarea name="attr_WeaponNotes_ai" class="sheet-weapon-notes" placeholder="Notes..."></textarea>
+    </fieldset>
+      </div>
+  </div>
+<!-- ===== AI ARMOR BLOCK ===== -->
+<div class="sheet-section-block sheet-theme-ai">
+  <div class="sheet-group-title">
+    <h2 class="section-title">AI Armor</h2>
+  </div>
+
+  <div class="sheet-subsection-block">
+    <div class="sheet-armor-wrapper sheet-armor-layout">
+
+      <!-- Armor Header -->
+      <div class="sheet-armor-header">
+        <span>Armor</span>
+        <span>Max</span>
+        <span>Current</span>
+        <span>Cyc Mod</span>
+        <span>Enc</span>
+        <span>Cost</span>
+        <span>Readied</span>
+        <span>Carried</span>
+      </div>
+
+      <!-- Repeating Armor Entries -->
+      <fieldset class="repeating_armorai">
+        <div class="sheet-armor-entry">
+          <input type="text" name="attr_ArmorName_ai" placeholder="Armor" />
+          <input type="number" name="attr_MaxArmor_ai" value="0" />
+          <input type="number" name="attr_CurArmor_ai" value="0" />
+          <input type="number" name="attr_CycArmor_ai" value="0" />
+          <input type="number" name="attr_ArmorWeight_ai" value="0" />
+          <input type="text" name="attr_CostArmor_ai" value="0" />
+          <input type="checkbox" name="attr_ArmorReadied_ai" value="1" />
+          <input type="checkbox" name="attr_ArmorCarried_ai" value="1" />
+        </div>
+
+        <!-- Notes Below Entry -->
+        <div class="sheet-armor-notes-row">
+          <textarea name="attr_ArmorNotes_ai" class="sheet-armor-notes" placeholder="Notes..."></textarea>
+       
+      </fieldset>
+      </div>
+    </div>
+  </div>
+
+<!-- ===== AI ITEMS SECTION ===== -->
+<div class="sheet-section-block sheet-theme-ai">
+  <div class="sheet-group-title">
+    <h2 class="section-title">AI Items</h2>
+  </div>
+
+  <div class="sheet-items-wrapper sheet-items-layout">
+    <!-- Items Header -->
+    <div class="sheet-items-header">
+      <span>Item</span>
+      <span>#</span>
+      <span>Location</span>
+      <span>Enc</span>
+      <span>Readied</span>
+      <span>Carried</span>
+    </div>
+
+    <!-- Repeating Item Entries -->
+<fieldset class="repeating_itemsai">
+  <div class="sheet-items-entry">
+    <input type="text" name="attr_ItemName_ai" placeholder="Item" />
+    <input type="number" name="attr_ItemNumber_ai" value="1" />
+    <input type="text" name="attr_ItemLocation_ai" value="" />
+    <input type="number" name="attr_ItemWeight_ai" value="0" />
+    <input type="checkbox" name="attr_ItemReadied_ai" value="1" />
+    <input type="checkbox" name="attr_ItemCarried_ai" value="1" />
+  </div>
+
+  <div class="sheet-items-notes-row">
+    <textarea name="attr_ItemNotes_ai" class="sheet-item-notes" placeholder="Notes..."></textarea>
+  
+</fieldset>
+</div>
+</div>
+<!-- ===== AI NANITE TECH SECTION ===== -->
+<div class="sheet-section-block sheet-theme-ai">
+  <div class="sheet-group-title">
+    <h2 class="section-title">AI Nanite Tech</h2>
+  </div>
+
+  <!-- ===== Nanite Accelerators ===== -->
+  <div class="sheet-subsection-block sheet-nanite-group-ai">
+    <h3 class="section-subtitle">Nanite Accelerators</h3>
+
+    <div class="sheet-nanite-header">
+      <span class="sheet-skill-spacer"></span>
+      <span>Accelerator</span>
+      <span>Type</span>
+    </div>
+
+    <fieldset class="repeating_catalystai">
+      <div class="sheet-nanite-entry">
+        <button type="roll" name="roll_skill"
+          value="&{template:t4d} {{theme=ai}} {{title=@{CatalystName_ai}}} {{character=@{character_name}}} {{effect=Regain PP}} {{result=[[ @{CatalystType_ai} ]]}}">
+        </button>
+        <input type="text" name="attr_CatalystName_ai" placeholder="Catalyst" />
+        <select name="attr_CatalystTypeai">
+          <option value="1d4">Minor</option>
+          <option value="5d4">Major</option>
+        </select>
+      </div>
+      <div class="sheet-nanite-notes-row">
+        <textarea name="attr_CatalystNotes_ai" class="sheet-nanite-notes" placeholder="Notes..."></textarea>
+    </fieldset>
+  </div>
+  <!-- ===== Basic Nanite Tech ===== -->
+  <div class="sheet-subsection-block sheet-nanite-group-ai">
+    <h3 class="section-subtitle">Basic Nanite Tech</h3>
+
+    <div class="sheet-basic-nanite-header">
+      <span class="sheet-skill-spacer"></span>
+      <span>Reaction</span>
+      <span>PP</span>
+      <span>Cycles</span>
+      <span>Level</span>
+      <span>XP</span>
+    </div>
+
+    <fieldset class="repeating_BasicReactionsai">
+      <div class="sheet-basic-nanite-entry">
+        <button type="roll" name="roll_BasicReaction_ai"
+          value="&{template:t4d} {{theme=ai}} {{title=@{BasicReactionName_ai}}} {{character=@{character_name}}} {{result=[[1d20 + @{BasicReactionLevel_ai} + @{FragmentPenalty} + ?{Attribute|Processing, @{PRCMod}|Sensor, @{SENMod}|Architecture, @{ARCMod}|Logic, @{LOGMod}|Core, @{CORMod}|Social, @{SOCIALMod}|Queue, @{QUEUEMod}|Learning, @{LEAMod}|Cycles, @{CYCMod}} + ?{Other Modifiers|0}]]}}">
+        </button>
+        <input type="text" name="attr_BasicReactionName_ai" placeholder="Basic Reaction" />
+        <input type="number" name="attr_BasicReactionPP_ai" value="0" />
+        <input type="number" name="attr_BasicReactionCyc_ai" value="0" />
+        <input type="number" name="attr_BasicReactionLevel_ai" value="0" />
+        <input type="number" name="attr_BasicReactionXP_ai" value="0" />
+      </div>
+      <div class="sheet-basic-nanite-notes-row">
+        <textarea name="attr_BasicReactionNotes_ai" class="sheet-basic-nanite-notes" placeholder="Notes..."></textarea>
+      </div>
+    </fieldset>
+  </div>
+
+  <!-- ===== Advanced Nanite Tech ===== -->
+  <div class="sheet-subsection-block sheet-nanite-group-ai">
+    <h3 class="section-subtitle">Advanced Nanite Tech</h3>
+
+    <div class="sheet-advanced-nanite-header">
+      <span class="sheet-skill-spacer"></span>
+      <span>Reaction</span>
+      <span>PP</span>
+      <span>Cycles</span>
+      <span>Level</span>
+      <span>XP</span>
+      <span>Components</span>
+    </div>
+
+    <fieldset class="repeating_combinationsai">
+      <div class="sheet-advanced-nanite-entry">
+        <button type="roll" name="roll_CombinationReaction_ai"
+          value="&{template:t4d} {{theme=ai}} {{title=@{CombinationName_ai}}} {{character=@{character_name}}} {{result=[[1d20 + @{CombinationLevel_ai} + @{FragmentPenalty} + ?{Attribute|Processing, @{PrcMod}|Sensor, @{SenMod}|Architecture, @{ArcMod}|Logic, @{LogMod}|Core, @{CorMod}|Social, @{SocialMod}|Queue, @{QueueMod}|Learning, @{LeaMod}|Cycles, @{CycMod}} + ?{Other Modifiers|0}]]}}">
+        </button>
+        <input type="text" name="attr_CombinationName_ai" placeholder="Combination Reaction" />
+        <input type="number" name="attr_CombinationMp_ai" value="0" />
+        <input type="number" name="attr_CombinationCyc_ai" value="0" />
+        <input type="number" name="attr_CombinationLevel_ai" value="0" />
+        <input type="number" name="attr_CombinationXP_ai" value="0" />
+        <input type="text" name="attr_Components_ai" placeholder="List basic reactions" />
+      </div>
+      <div class="sheet-advanced-nanite-notes-row">
+        <textarea name="attr_CombinationNotes_ai" class="sheet-advanced-nanite-notes" placeholder="Notes..."></textarea>
+      </div>
+    </fieldset>
+  </div>
+</div>
+<!-- ===== AI DESCRIPTION / BACKGROUND / NOTES BLOCK ===== -->
+<div class="sheet-section-block sheet-theme-ai">
+  <div class="sheet-group-title">
+    <h2 class="section-title">AI Profile</h2>
+  </div>
+
+  <!-- ===== AI Description ===== -->
+  <div class="sheet-subsection-block sheet-profile-group sheet-profile-desc-ai">
+    <h3 class="section-subtitle">Physical Description and Personality</h3>
+    <div class="sheet-profile-notes-row">
+      <textarea class="sheet-desc-box" name="attr_physDescription_ai"
+        placeholder="Describe the character’s physical features, mannerisms, and behavior."></textarea>
+    </div>
+  </div>
+
+  <!-- ===== AI Background ===== -->
+  <div class="sheet-subsection-block sheet-profile-group sheet-profile-bg-ai">
+    <h3 class="section-subtitle">Background</h3>
+    <div class="sheet-profile-notes-row">
+      <textarea class="sheet-bg-box" name="attr_Background_ai"
+        placeholder="Character's history, origin, motivations..."></textarea>
+    </div>
+  </div>
+
+  <!-- ===== AI Notes ===== -->
+  <div class="sheet-subsection-block sheet-profile-group sheet-profile-notes-ai">
+    <h3 class="section-subtitle">Notes</h3>
+    <div class="sheet-profile-notes-row">
+      <textarea class="sheet-notes-box" name="attr_GenNotes_ai"
+        placeholder="Miscellaneous notes, reminders, or session info."></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SHARED SECTION ===== -->
+<div class="sheet-section-block sheet-theme-shared">
+  <div class="sheet-group-title">
+    <h2 class="section-title">Shared Section</h2>
+  </div>
+
+  <div class="sheet-2colrow sheet-shared-wrapper">
+
+    <!-- ===== Misc Section ===== -->
+    <div class="sheet-col">
+      <div class="row sheet-shared-misc-group">
+        <h3 class="section-subtitle">Misc</h3>
+        <div class="sheet-misc-wrapper">
+          <table class="sheet-misc-table">
+            <thead>
+              <tr><th>Attribute</th><th>Value</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Luck</td>
+                <td><input type="number" name="attr_LUCK" value="0" /></td>
+              </tr>
+              <tr>
+                <td>Influence</td>
+                <td><input type="number" name="attr_INFL" value="0" /></td>
+              </tr>
+              <tr>
+                <td>Interim</td>
+                <td><input type="number" name="attr_INTERIM" value="0" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Wealth Section ===== -->
+    <div class="sheet-col">
+      <div class="row sheet-shared-wealth-group">
+        <h3 class="section-subtitle">Wealth</h3>
+        <div class="sheet-wealth-wrapper">
+          <div class="sheet-wealth-input-group">
+            <label for="attr_Wealth">Wealth</label>
+            <input type="number" name="attr_Wealth" value="0" min="0" class="sheet-wealth-input" />
+          </div>
+
+          <div class="sheet-wealth-input-group">
+            <label for="attr_Income">Income</label>
+            <input type="number" name="attr_Income" value="0" min="0" class="sheet-wealth-input" />
+          </div>
+        </div>
+
+        <!-- Notes below inputs -->
+        <div class="sheet-wealth-notes-row">
+          <textarea name="attr_WealthNotes" class="sheet-wealth-notes"
+            placeholder="Describe income streams, digital assets, or notes."></textarea>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- End .sheet-2colrow -->
+</div> <!-- End .sheet-section-block -->
+
+<!-- SCRIPT BLOCK -->
+<script type="text/worker">
+  // ===== STATIC TABLES =====
+  const ApTable = ['1','2','3','4','5','7','9','11','13','15','18','21','24','27','30','34','38','42','46','50','55','60','65','70','75','81','87','93','99','105','112','119','126','133','140','148','156','164','172','180','189','198','207','216','225','235','245','255','265','275','286','297','308','319','330','342','354','366','378','390','403','416','429','442','455','469','483','497','511','525','540','555','570','585','600','616','632','648','664','680','697','714','731','748','765','783','801','819','837','855','874','893','912','931','950'];
+
+  const HumanAppTable = ['Revolting','Hideous','Hideous','Hideous','Ugly','Ugly','Ugly','Ugly','Unattractive','Unattractive','Unattractive','Unattractive','Average','Average','Average','Average','Attractive','Attractive','Attractive','Attractive','Beautiful','Beautiful','Beautiful','Beautiful','Gorgeous','Gorgeous','Gorgeous','Perfection'];
+
+  const LikeTable = ['Corrupt Shell','Fragmented Data','Fragmented Data','Fragmented Data','Uncanny Static','Uncanny Static','Uncanny Static','Uncanny Static','Broken Render','Broken Render','Unattractive','Broken Render','Baseline Interface','Baseline Interface','Baseline Interface','Baseline Interface','Adaptive Persona','Adaptive Persona','Adaptive Persona','Adaptive Persona','Emotive Resonance','Emotive Resonance','Emotive Resonance','Emotive Resonance','Enthralling Projection','Enthralling Projection','Enthralling Projection','Divine Algorithm'];
+
+  // ===== AUTO-DESCRIPTORS (Bio & AI) =====
+  on("change:APP", () => {
+    getAttrs(["APP"], v => {
+      setAttrs({ AppDesc: HumanAppTable[parseInt(v.APP) - 3 || 0] });
+    });
+  });
+
+  on("change:LIKE", () => {
+    getAttrs(["LIKE"], v => {
+      setAttrs({ LikeDesc: LikeTable[parseInt(v.LIKE) - 3 || 0] });
+    });
+  });
+
+  on("sheet:opened", () => {
+    getAttrs(["APP", "LIKE"], v => {
+      setAttrs({
+        AppDesc: HumanAppTable[parseInt(v.APP) - 3 || 0],
+        LikeDesc: LikeTable[parseInt(v.LIKE) - 3 || 0]
+      });
+    });
+  });
+
+  // ===== AP LOOKUPS (AI & Bio) =====
+  const statToAPT = {
+    PRC: "PRCAPT", SEN: "SENAPT", ARC: "ARCAPT", LOG: "LOGAPT", COR: "CORAPT", SOCIAL: "SOCIALAPT",
+    STR: "STRAPT", DEX: "DEXAPT", CON: "CONAPT", INT: "INTAPT", FOC: "FOCAPT", CHA: "CHAAPT"
+  };
+
+  Object.entries(statToAPT).forEach(([stat, aptField]) => {
+    on(`change:${stat}`, () => {
+      getAttrs([stat], v => {
+        setAttrs({ [aptField]: ApTable[parseInt(v[stat]) - 1 || 0] });
+      });
+    });
+  });
+
+// ===== GENERIC REPEATING SUM FUNCTION (DO NOT MODIFY) =====
+const repeatingSum = (destinations, section, fields) => {
+  if (!Array.isArray(destinations)) destinations = [destinations];
+  if (!Array.isArray(fields)) fields = [fields];
+  getSectionIDs(`repeating_${section}`, idArray => {
+    const attrArray = idArray.reduce((m, id) => [...m, ...fields.map(field => `repeating_${section}_${id}_${field}`)], []);
+    getAttrs(attrArray, v => {
+      const getValue = (section, id, field) => v[`repeating_${section}_${id}_${field}`] === 'on' ? 1 : parseFloat(v[`repeating_${section}_${id}_${field}`]) || 0;
+      const output = {};
+      destinations.forEach((destination, index) => {
+        output[destination] = idArray.reduce((total, id) => total + getValue(section, id, fields[index]), 0);
+      });
+      setAttrs(output);
+    });
+  });
+};
+
+// ===== BIO SECTION SUMS =====
+on('change:repeating_items remove:repeating_items', () => repeatingSum("ItemTotal", "items", ["ItemWeight", "ItemNumber", "ItemCarried"]));
+on('change:repeating_weapons remove:repeating_weapons', () => repeatingSum("WeaponTotal", "weapons", ["WeaponWeight", "WeaponCarried"]));
+on('change:repeating_armor remove:repeating_armor', () => repeatingSum("ArmorTotal", "armor", ["ArmorWeight", "ArmorCarried"]));
+
+on('change:repeating_items remove:repeating_items', () => repeatingSum("ItemReadiedTotal", "items", "ItemReadied"));
+on('change:repeating_weapons remove:repeating_weapons', () => repeatingSum("WeaponReadiedTotal", "weapons", "WeaponReadied"));
+on('change:repeating_armor remove:repeating_armor', () => repeatingSum("ArmorReadiedTotal", "armor", "ArmorReadied"));
+
+// ===== AI SECTION SUMS (Fixed & Corrected Arrays) =====
+on('change:repeating_items_ai remove:repeating_items_ai', () => {
+  repeatingSum(["ItemTotal_ai", "ItemReadiedTotal_ai"], "items_ai", [["ItemWeight_ai", "ItemNumber_ai", "ItemCarried_ai"], ["ItemReadied_ai"]]);
+});
+
+on('change:repeating_weapons_ai remove:repeating_weapons_ai', () => {
+  repeatingSum(["WeaponTotal_ai", "WeaponReadiedTotal_ai"], "weapons_ai", [["WeaponWeight_ai", "WeaponCarried_ai"], ["WeaponReadied_ai"]]);
+});
+
+on('change:repeating_armor_ai remove:repeating_armor_ai', () => {
+  repeatingSum(["ArmorTotal_ai", "ArmorReadiedTotal_ai"], "armor_ai", [["ArmorWeight_ai", "ArmorCarried_ai"], ["ArmorReadied_ai"]]);
+});
+
+
+</script>
+
+<rolltemplate class="sheet-rolltemplate-t4d">
+  <div class="sheet-template-container sheet-theme-{{theme}}">
+    <div class="sheet-template-header">
+      {{#title}}<span class="sheet-template-title">{{title}}</span>{{/title}}
+      {{#subtitle}}<span class="sheet-template-subtitle">{{subtitle}}</span>{{/subtitle}}
+    </div>
+    <div class="sheet-template-body">
+      {{#character}}<div class="sheet-template-row"><span class="label">Character:</span> {{character}}</div>{{/character}}
+      {{#effect}}<div class="sheet-template-row"><span class="label">Effect:</span> {{effect}}</div>{{/effect}}
+      {{#result}}<div class="sheet-template-row"><span class="label">Result:</span> {{result}}</div>{{/result}}
+      {{#damage}}<div class="sheet-template-row"><span class="label">Damage:</span> {{damage}}</div>{{/damage}}
+      {{#speed}}<div class="sheet-template-row"><span class="label">Speed:</span> {{speed}}</div>{{/speed}}
+      {{#cycles}}<div class="sheet-template-row"><span class="label">Cycles:</span> {{cycles}}</div>{{/cycles}}
+    </div>
+  </div>
+</rolltemplate>
