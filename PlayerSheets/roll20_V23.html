@@ -516,7 +516,7 @@
         <!-- Entry Row -->
         <div class="sheet-weapon-entry">
 <button type="roll" name="roll_SimpleWeapons"
-  value="&{template:t4d} {{theme=bio}} {{title=Simple Weapons}} {{character=@{character_name}}} {{Skill=@{SimpleWeaponsLevel}}} {{Stress=@{StressPenalty}}} {{result=[[1d20 + @{WeaponSkill} + @{WeaponAtkBonus} + ?{Other Modifier|0} + @{StressPenalty}]]}} {{damage=[[@{WeaponDamage}]]}} {{Action Speed=@{WeaponSPD}}}">
+  value="&{template:t4d} {{theme=bio}} {{title=Simple Weapons}} {{character=@{character_name}}} {{Skill=@{SimpleWeaponsLevel}}} {{Stress=@{StressPenalty}}} {{result=[[1d20 + @{WeaponSkill} @{WeaponAtkBonus} + ?{Other Modifier|0} + @{StressPenalty}]]}} {{damage=[[@{WeaponDamage}]]}} {{Action Speed=@{WeaponSPD}}}">
 </button>
           <input type="text" name="attr_WeaponName" placeholder="Weapon" />
           <select name="attr_WeaponSkill">
@@ -1238,8 +1238,11 @@
       <!-- Weapon Entry -->
       <fieldset class="repeating_weaponsai">
         <div class="sheet-weapon-entry">
-<button type="roll" name="roll_attack"
-  value="&{template:t4d} {{theme=ai}} {{title=@{WeaponName_ai}}} {{character=@{character_name}}} {{Skill=@{WeaponSkill_ai}}} {{Bonus=@{WeaponAtkBonus_ai}}} {{CYC=@{CYC}}} {{Fragment=@{FragmentPenalty}}} {{result=[[1d20 + @{WeaponSkill_ai} + @{WeaponAtkBonus_ai} + @{CYC} + @{FragmentPenalty} + ?{Other Modifier|0}]]}} {{damage=[[ @{WeaponDamage_ai} ]]}}">
+<button type="roll" name="roll_SimpleWeapons_AI"
+  value="&{template:t4d} {{theme=ai}} {{title=@{WeaponName_ai}}} {{character=@{character_name}}}
+  {{Skill=@{WeaponSkill_ai}}} {{Bonus=@{WeaponAtkBonus_ai}}} {{Fragment=@{FragmentPenalty}}}
+  {{result=[[1d20 + @{WeaponSkill_ai} @{WeaponAtkBonus_ai} + @{FragmentPenalty} + ?{Other Modifier|0}]]}}
+  {{damage=[[ @{WeaponDamage_ai} ]]}} {{Action Speed=@{WeaponCyc_ai}}}">
 </button>
           <input type="text" name="attr_WeaponName_ai" placeholder="Weapon" />
 
