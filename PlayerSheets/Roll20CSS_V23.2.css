@@ -3297,3 +3297,6 @@ textarea.sheet-weapon-notes {
   color: #00ffff;
   box-shadow: 0 0 6px #00ffff80;
 }
+.sheet-hidden {
+  display: none;
+}
