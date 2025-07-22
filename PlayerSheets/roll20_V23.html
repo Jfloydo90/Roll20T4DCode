@@ -513,8 +513,8 @@
       <fieldset class="repeating_weapons">
         <!-- Entry Row -->
         <div class="sheet-weapon-entry">
-       <button type="roll" name="roll_attack"
-  value="&{template:t4d} {{theme=bio}} {{title=@{WeaponName}}} {{character=@{character_name}}} {{Skill=@{WeaponSkill}}} {{Bonus=@{WeaponAtkBonus}}} {{Stress=@{StressPenalty}}} {{result=[[1d20 + @{WeaponSkill} + @{WeaponAtkBonus} + @{StressPenalty} + ?{Other Modifier|0}]]}} {{damage=[[ @{WeaponDamage} ]]}}">
+<button type="roll" name="roll_SimpleWeapons"
+  value="&{template:t4d} {{theme=bio}} {{title=Simple Weapons}} {{character=@{character_name}}} {{Skill=@{SimpleWeaponsLevel}}} {{SPD=@{SPD}}} {{Stress=@{StressPenalty}}} {{result=[[1d20 + @{SimpleWeaponsLevel} + @{SPD} + @{StressPenalty} + ?{Other Modifier|0}]]}} {{damage=[[ @{WeaponDamage} ]]}}">
 </button>
           <input type="text" name="attr_WeaponName" placeholder="Weapon" />
           <select name="attr_WeaponSkill">
@@ -780,49 +780,50 @@
                 <th>Temporary Modifier</th>
               </tr>
             </thead>
-            <tbody>
-              <tr><td>Processing</td>
-                <td><input type="number" name="attr_PRC" value="1" /></td>
-                <td><input type="number" name="attr_PRCMod" value="floor((@{PRC}-10)/5)+@{PRCTemp}" disabled /></td>
-                <td><input type="number" name="attr_PRCAPN" value="(@{PRCMod}+3)" disabled /></td>
-                <td><input type="number" name="attr_PRCAPT" value="1" readonly /></td>
-                <td><input type="number" name="attr_PRCTemp" value="0" /></td></tr>
-
-              <tr><td>Sensor</td>
-                <td><input type="number" name="attr_SEN" value="1" /></td>
-                <td><input type="number" name="attr_SENMod" value="floor((@{SEN}-10)/5)+@{SENTemp}" disabled /></td>
-                <td><input type="number" name="attr_SENAPN" value="(@{SENMod}+3)" disabled /></td>
-                <td><input type="number" name="attr_SENAPT" value="1" readonly /></td>
-                <td><input type="number" name="attr_SENTemp" value="0" /></td></tr>
-
-              <tr><td>Architecture</td>
-                <td><input type="number" name="attr_ARC" value="1" /></td>
-                <td><input type="number" name="attr_ARCMod" value="floor((@{ARC}-10)/5)+@{ARCTemp}" disabled /></td>
-                <td><input type="number" name="attr_ARCAPN" value="(@{ARCMod}+3)" disabled /></td>
-                <td><input type="number" name="attr_ARCAPT" value="1" readonly /></td>
-                <td><input type="number" name="attr_ARCTemp" value="0" /></td></tr>
-
-              <tr><td>Logic</td>
-                <td><input type="number" name="attr_LOG" value="1" /></td>
-                <td><input type="number" name="attr_LOGMod" value="floor((@{LOG}-10)/5)+@{LOGTemp}" disabled /></td>
-                <td><input type="number" name="attr_LOGAPN" value="(@{LOGMod}+3)" disabled /></td>
-                <td><input type="number" name="attr_LOGAPT" value="1" readonly /></td>
-                <td><input type="number" name="attr_LOGTemp" value="0" /></td></tr>
-
-              <tr><td>Core</td>
-                <td><input type="number" name="attr_COR" value="1" /></td>
-                <td><input type="number" name="attr_CORMod" value="floor((@{COR}-10)/5)+@{CORTemp}" disabled /></td>
-                <td><input type="number" name="attr_CORAPN" value="(@{CORMod}+3)" disabled /></td>
-                <td><input type="number" name="attr_CORAPT" value="1" readonly /></td>
-                <td><input type="number" name="attr_CORTemp" value="0" /></td></tr>
-
-              <tr><td>Social</td>
-                <td><input type="number" name="attr_SOCIAL" value="1" /></td>
-                <td><input type="number" name="attr_SOCIALMod" value="floor((@{SOCIAL}-10)/5)+@{SOCIALTemp}" disabled /></td>
-                <td><input type="number" name="attr_SOCIALAPN" value="(@{SOCIALMod}+3)" disabled /></td>
-                <td><input type="number" name="attr_SOCIALAPT" value="1" readonly /></td>
-                <td><input type="number" name="attr_SOCIALTemp" value="0" /></td></tr>
-            </tbody>
+<tbody>
+  <tr><td>Processing</td>
+    <td><input type="number" name="attr_PRC" value="1" /></td>
+    <td><input type="number" name="attr_PRCMod" readonly /></td>
+    <td><input type="number" name="attr_PRCAPN" value="(@{PRCMod}+3)" disabled /></td>
+    <td><input type="number" name="attr_PRCAPT" value="1" readonly /></td>
+    <td><input type="number" name="attr_PRCTemp" value="0" /></td>
+  </tr>
+  <tr><td>Sensor</td>
+    <td><input type="number" name="attr_SEN" value="1" /></td>
+    <td><input type="number" name="attr_SENMod" readonly /></td>
+    <td><input type="number" name="attr_SENAPN" value="(@{SENMod}+3)" disabled /></td>
+    <td><input type="number" name="attr_SENAPT" value="1" readonly /></td>
+    <td><input type="number" name="attr_SENTemp" value="0" /></td>
+  </tr>
+  <tr><td>Architecture</td>
+    <td><input type="number" name="attr_ARC" value="1" /></td>
+    <td><input type="number" name="attr_ARCMod" readonly /></td>
+    <td><input type="number" name="attr_ARCAPN" value="(@{ARCMod}+3)" disabled /></td>
+    <td><input type="number" name="attr_ARCAPT" value="1" readonly /></td>
+    <td><input type="number" name="attr_ARCTemp" value="0" /></td>
+  </tr>
+  <tr><td>Logic</td>
+    <td><input type="number" name="attr_LOG" value="1" /></td>
+    <td><input type="number" name="attr_LOGMod" readonly /></td>
+    <td><input type="number" name="attr_LOGAPN" value="(@{LOGMod}+3)" disabled /></td>
+    <td><input type="number" name="attr_LOGAPT" value="1" readonly /></td>
+    <td><input type="number" name="attr_LOGTemp" value="0" /></td>
+  </tr>
+  <tr><td>Core</td>
+    <td><input type="number" name="attr_COR" value="1" /></td>
+    <td><input type="number" name="attr_CORMod" readonly /></td>
+    <td><input type="number" name="attr_CORAPN" value="(@{CORMod}+3)" disabled /></td>
+    <td><input type="number" name="attr_CORAPT" value="1" readonly /></td>
+    <td><input type="number" name="attr_CORTemp" value="0" /></td>
+  </tr>
+  <tr><td>Social</td>
+    <td><input type="number" name="attr_SOCIAL" value="1" /></td>
+    <td><input type="number" name="attr_SOCIALMod" readonly /></td>
+    <td><input type="number" name="attr_SOCIALAPN" value="(@{SOCIALMod}+3)" disabled /></td>
+    <td><input type="number" name="attr_SOCIALAPT" value="1" readonly /></td>
+    <td><input type="number" name="attr_SOCIALTemp" value="0" /></td>
+  </tr>
+</tbody>
           </table>
         </div>
       </div>
@@ -1229,10 +1230,9 @@
       <!-- Weapon Entry -->
       <fieldset class="repeating_weaponsai">
         <div class="sheet-weapon-entry">
-          <button type="roll" name="roll_attack"
-            value="&{template:t4d} {{theme=ai}} {{title=@{WeaponName_ai}}} {{character=@{character_name}}} {{result=[[1d20 + @{WeaponSkill_ai} + @{WeaponAtkBonus_ai} + @{FragmentPenalty} + ?{Other Modifier|0}]]}} {{damage=[[ @{WeaponDamage_ai} ]]}}">
-          </button>
-
+<button type="roll" name="roll_attack"
+  value="&{template:t4d} {{theme=ai}} {{title=@{WeaponName_ai}}} {{character=@{character_name}}} {{Skill=@{WeaponSkill_ai}}} {{Bonus=@{WeaponAtkBonus_ai}}} {{CYC=@{CYC}}} {{Fragment=@{FragmentPenalty}}} {{result=[[1d20 + @{WeaponSkill_ai} + @{WeaponAtkBonus_ai} + @{CYC} + @{FragmentPenalty} + ?{Other Modifier|0}]]}} {{damage=[[ @{WeaponDamage_ai} ]]}}">
+</button>
           <input type="text" name="attr_WeaponName_ai" placeholder="Weapon" />
 
           <select name="attr_WeaponSkill_ai">
@@ -1572,20 +1572,22 @@
 
   const calcMod = (score, temp) => Math.floor((score - 10) / 5) + temp;
 
-  const attributes = [
-    "STR", "DEX", "CON", "INT", "FOC", "CHA"
-  ];
+const attributes = [
+  "STR", "DEX", "CON", "INT", "FOC", "CHA",
+  "PRC", "SEN", "ARC", "LOG", "COR", "SOCIAL"
+];
 
-  attributes.forEach(attr => {
-    on(`change:${attr} change:${attr}Temp`, () => {
-      getAttrs([attr, `${attr}Temp`], values => {
-        const base = parseInt(values[attr]) || 0;
-        const temp = parseInt(values[`${attr}Temp`]) || 0;
-        const mod = calcMod(base, temp);
-        setAttrs({ [`${attr}Mod`]: mod });
-      });
+attributes.forEach(attr => {
+  on(`change:${attr} change:${attr}Temp`, () => {
+    getAttrs([attr, `${attr}Temp`], values => {
+      const base = parseInt(values[attr]) || 0;
+      const temp = parseInt(values[`${attr}Temp`]) || 0;
+      const mod = calcMod(base, temp);
+      setAttrs({ [`${attr}Mod`]: mod });
     });
   });
+});
+
 
 // ===== GENERIC REPEATING SUM FUNCTION (DO NOT MODIFY) =====
 const repeatingSum = (destinations, section, fields) => {
