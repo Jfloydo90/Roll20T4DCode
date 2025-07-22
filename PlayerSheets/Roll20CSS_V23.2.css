@@ -225,7 +225,7 @@ input[name="attr_AI_Mode"]:checked ~ .sheet-theme-ai {
 }
 
 .sheet-theme-bio button[type="roll"]::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background-color: transparent;
@@ -712,16 +712,13 @@ input[name="attr_AI_Mode"]:checked ~ .sheet-theme-ai {
   color: #330000;
   box-sizing: border-box;
   overflow: auto;
-  
+
   background: linear-gradient(to bottom, #fffafc, #ffe6e6);
   border: 1px solid #e0b0b0;
   border-radius: 6px;
-  box-shadow:
-    inset 0 0 6px #ffccccaa,
-    0 0 4px #66000033;
+  box-shadow: inset 0 0 6px #ffccccaa, 0 0 4px #66000033;
   transition: border 0.2s, box-shadow 0.2s;
 }
-
 
 /* ===== Input Styling ===== */
 .sheet-theme-bio .sheet-weapon-entry input[type="text"],
@@ -824,14 +821,14 @@ input[name="attr_AI_Mode"]:checked ~ .sheet-theme-ai {
 .sheet-theme-bio .sheet-armor-entry {
   display: grid;
   grid-template-columns:
-  minmax(180px, 1.5fr)  /* Armor Name */
-  50px                   /* Max */
-  50px                   /* Current */
-  50px                   /* Init Mod */
-  50px                   /* Enc */
-  50px                   /* Cost */
-  50px                   /* Readied */
-  50px;                  /* Carried */
+    minmax(180px, 1.5fr) /* Armor Name */
+    50px /* Max */
+    50px /* Current */
+    50px /* Init Mod */
+    50px /* Enc */
+    50px /* Cost */
+    50px /* Readied */
+    50px; /* Carried */
   gap: 6px;
   align-items: center;
   box-sizing: border-box;
@@ -936,8 +933,12 @@ input[name="attr_AI_Mode"]:checked ~ .sheet-theme-ai {
   line-height: normal;
 }
 
-.sheet-theme-bio .sheet-armor-entry input[type="number"]::-webkit-inner-spin-button,
-.sheet-theme-bio .sheet-armor-entry input[type="number"]::-webkit-outer-spin-button {
+.sheet-theme-bio
+  .sheet-armor-entry
+  input[type="number"]::-webkit-inner-spin-button,
+.sheet-theme-bio
+  .sheet-armor-entry
+  input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -1010,12 +1011,12 @@ input[name="attr_AI_Mode"]:checked ~ .sheet-theme-ai {
 .sheet-theme-bio .sheet-items-notes-row {
   display: grid;
   grid-template-columns:
-    minmax(180px, 1.5fr)   /* Item Name */
-    minmax(70px, 1fr)      /* # */
-    minmax(120px, 1.2fr)   /* Location */
-    minmax(70px, 1fr)      /* Enc */
-    70px                   /* Readied */
-    70px;                  /* Carried */
+    minmax(180px, 1.5fr) /* Item Name */
+    minmax(70px, 1fr) /* # */
+    minmax(120px, 1.2fr) /* Location */
+    minmax(70px, 1fr) /* Enc */
+    70px /* Readied */
+    70px; /* Carried */
   gap: 2px;
   align-items: center;
   box-sizing: border-box;
@@ -1109,8 +1110,12 @@ input[name="attr_AI_Mode"]:checked ~ .sheet-theme-ai {
   box-shadow: inset 0 0 4px #ffcccc88;
 }
 
-.sheet-theme-bio .sheet-items-entry input[type="number"]::-webkit-inner-spin-button,
-.sheet-theme-bio .sheet-items-entry input[type="number"]::-webkit-outer-spin-button {
+.sheet-theme-bio
+  .sheet-items-entry
+  input[type="number"]::-webkit-inner-spin-button,
+.sheet-theme-bio
+  .sheet-items-entry
+  input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -1184,9 +1189,9 @@ input[name="attr_AI_Mode"]:checked ~ .sheet-theme-ai {
 .sheet-theme-bio .sheet-nanite-notes-row {
   display: grid;
   grid-template-columns:
-    30px                     /* Roll */
-    minmax(160px, 1.5fr)     /* Accelerator Name */
-    90px;                    /* Type Dropdown */
+    30px /* Roll */
+    minmax(160px, 1.5fr) /* Accelerator Name */
+    90px; /* Type Dropdown */
   gap: 2px;
   align-items: center;
   box-sizing: border-box;
@@ -1294,12 +1299,12 @@ input[name="attr_AI_Mode"]:checked ~ .sheet-theme-ai {
 .sheet-theme-bio .sheet-basic-nanite-notes-row {
   display: grid;
   grid-template-columns:
-    30px                 /* Roll Button */
-    1.5fr                /* Reaction */
-    60px                 /* MP */
-    60px                 /* Speed */
-    60px                 /* Level */
-    60px;                /* XP */
+    30px /* Roll Button */
+    1.5fr /* Reaction */
+    60px /* MP */
+    60px /* Speed */
+    60px /* Level */
+    60px; /* XP */
   gap: 2px;
   align-items: center;
   box-sizing: border-box;
@@ -1369,9 +1374,7 @@ input[name="attr_AI_Mode"]:checked ~ .sheet-theme-ai {
   line-height: 1.3em;
   font-family: inherit;
   color: #330000;
-  box-shadow:
-    inset 0 0 6px #ffccccaa,
-    0 0 4px #66000033;
+  box-shadow: inset 0 0 6px #ffccccaa, 0 0 4px #66000033;
 }
 
 /* ===== INPUTS ===== */
@@ -1397,13 +1400,13 @@ input[name="attr_AI_Mode"]:checked ~ .sheet-theme-ai {
 .sheet-theme-bio .sheet-advanced-nanite-notes-row {
   display: grid;
   grid-template-columns:
-    30px                 /* Roll Button */
-    1.4fr                /* Reaction */
-    60px                 /* MP */
-    60px                 /* Speed */
-    60px                 /* Level */
-    60px                 /* XP */
-    1.5fr;               /* Components */
+    30px /* Roll Button */
+    1.4fr /* Reaction */
+    60px /* MP */
+    60px /* Speed */
+    60px /* Level */
+    60px /* XP */
+    1.5fr; /* Components */
   gap: 2px;
   align-items: center;
   box-sizing: border-box;
@@ -1487,9 +1490,7 @@ input[name="attr_AI_Mode"]:checked ~ .sheet-theme-ai {
   line-height: 1.3em;
   font-family: inherit;
   color: #330000;
-  box-shadow:
-    inset 0 0 6px #ffccccaa,
-    0 0 4px #66000033;
+  box-shadow: inset 0 0 6px #ffccccaa, 0 0 4px #66000033;
 }
 
 /* ===== INPUTS ===== */
@@ -1572,9 +1573,7 @@ input[name="attr_AI_Mode"]:checked ~ .sheet-theme-ai {
   box-sizing: border-box;
   line-height: 1.3em;
   font-family: inherit;
-  box-shadow:
-    inset 0 0 6px #ffccccaa,
-    0 0 4px #66000033;
+  box-shadow: inset 0 0 6px #ffccccaa, 0 0 4px #66000033;
 }
 
 /* ===== AI ATTRIBUTE WRAPPER: COLUMNS ===== */
@@ -1651,7 +1650,7 @@ input[name="attr_AI_Mode"]:checked ~ .sheet-theme-ai {
   border-collapse: collapse;
   border-spacing: 0;
   background: linear-gradient(to bottom, #001a26, #002733);
-  color:#ffffff;
+  color: #ffffff;
   border-radius: 12px;
   font-size: 10px;
   text-align: center;
@@ -1663,7 +1662,7 @@ input[name="attr_AI_Mode"]:checked ~ .sheet-theme-ai {
 
 /* ===== TABLE HEADERS ===== */
 .sheet-theme-ai .sheet-attribute-table thead th {
-  background: #00728B;
+  background: #00728b;
   color: #ffffff !important;
   font-weight: bold;
   border: none !important;
@@ -1743,7 +1742,7 @@ input[name="attr_AI_Mode"]:checked ~ .sheet-theme-ai {
 }
 
 .sheet-theme-ai button[type="roll"]::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background-color: transparent;
@@ -1849,7 +1848,7 @@ input[name="attr_AI_Mode"]:checked ~ .sheet-theme-ai {
 .sheet-theme-ai .section-subtitle {
   font-size: 16px;
   text-transform: uppercase;
-  color: #ffffff!important;
+  color: #ffffff !important;
   text-align: center;
   background: linear-gradient(to right, #028ca5, #003b47);
   padding: 6px 12px;
@@ -1991,7 +1990,6 @@ input[name="attr_AI_Mode"]:checked ~ .sheet-theme-ai {
   box-sizing: border-box;
 }
 
-
 /* ===== AI SKILL PANELS ===== */
 .sheet-theme-ai .sheet-skillgroup-combat-ai,
 .sheet-theme-ai .sheet-skillgroup-detection-ai,
@@ -2026,7 +2024,7 @@ input[name="attr_AI_Mode"]:checked ~ .sheet-theme-ai {
   grid-template-columns: 40px 1.5fr 0.75fr 0.75fr;
   align-items: center;
   font-weight: bold;
-  background: linear-gradient(to right, #00728B, #004a5a);
+  background: linear-gradient(to right, #00728b, #004a5a);
   color: #ffffff;
   padding: 4px 6px;
   border: 1px solid #00cfff;
@@ -2107,7 +2105,10 @@ input[name="attr_AI_Mode"]:checked ~ .sheet-theme-ai {
 .sheet-theme-ai .sheet-gear-summary,
 .sheet-theme-ai .sheet-gear-tiers {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* default to 3; override for tiers below */
+  grid-template-columns: repeat(
+    4,
+    1fr
+  ); /* default to 3; override for tiers below */
   gap: 10px;
   padding: 10px;
   background: linear-gradient(to bottom, #001a26, #002733);
@@ -2302,8 +2303,6 @@ textarea.sheet-weapon-notes {
 .sheet-theme-ai .sheet-armor-entry input[type="checkbox"]:checked::before,
 .sheet-theme-ai .sheet-items-entry input[type="checkbox"]:checked::before {
   transform: scale(1);
-}
-
   /* Anchor and center it in grid cell */
   display: flex;
   align-items: center;
@@ -2311,7 +2310,6 @@ textarea.sheet-weapon-notes {
   margin: 0 auto;
   position: relative; /* This is key for anchoring ::after */
 }
-
 .sheet-theme-ai .sheet-weapon-entry input[type="checkbox"]:checked::after {
   content: "✔";
   position: absolute;
@@ -2448,8 +2446,12 @@ textarea.sheet-weapon-notes {
 }
 
 /* Remove spinner buttons for numbers */
-.sheet-theme-ai .sheet-armor-entry input[type="number"]::-webkit-inner-spin-button,
-.sheet-theme-ai .sheet-armor-entry input[type="number"]::-webkit-outer-spin-button {
+.sheet-theme-ai
+  .sheet-armor-entry
+  input[type="number"]::-webkit-inner-spin-button,
+.sheet-theme-ai
+  .sheet-armor-entry
+  input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -2798,13 +2800,13 @@ textarea.sheet-weapon-notes {
 .sheet-theme-ai .sheet-advanced-nanite-notes-row {
   display: grid;
   grid-template-columns:
-    30px  /* Roll */
+    30px /* Roll */
     1.4fr /* Reaction */
-    60px  /* PP */
-    60px  /* Cycles */
-    60px  /* Level */
-    60px  /* XP */
-    1.5fr;/* Components */
+    60px /* PP */
+    60px /* Cycles */
+    60px /* Level */
+    60px /* XP */
+    1.5fr; /* Components */
   gap: 2px;
   align-items: center;
   box-sizing: border-box;
@@ -2969,9 +2971,8 @@ textarea.sheet-weapon-notes {
   border: 6px solid;
   border-radius: 10px;
   padding: 1.5em;
-  background: 
-  linear-gradient(#150015, #150015) padding-box, 
-  linear-gradient(135deg, #900000, #660066, #00cccc) border-box;
+  background: linear-gradient(#150015, #150015) padding-box,
+    linear-gradient(135deg, #900000, #660066, #00cccc) border-box;
   box-shadow: 0 0 18px rgba(255, 0, 255, 0.25);
 }
 
@@ -3176,7 +3177,6 @@ textarea.sheet-weapon-notes {
   border: none; /* Removed grid lines */
 }
 
-
 /* ===== ROLL TEMPLATE: Base Container ===== */
 .sheet-rolltemplate-t4d .sheet-template-container {
   border-radius: 10px;
@@ -3235,13 +3235,13 @@ textarea.sheet-weapon-notes {
   min-width: 36px;
   text-align: center;
   border: 1px solid #333;
-  box-shadow: 0 0 4px rgba(0,0,0,0.2);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease;
 }
 
 /* ===== BIO THEME - UPGRADED STYLE ===== */
 .sheet-rolltemplate-t4d .sheet-theme-bio {
-  background: linear-gradient(to bottom, #320000, #5a0000); 
+  background: linear-gradient(to bottom, #320000, #5a0000);
   border: 2px solid #b00000;
   color: #ff9999;
   box-shadow: 0 0 10px #ff444480, 0 0 6px inset #40000080;
