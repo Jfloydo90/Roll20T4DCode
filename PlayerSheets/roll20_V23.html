@@ -99,31 +99,33 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Initiative</td>
-                  <td><input type="number" name="attr_INIT" value="(floor((@{FOC}+@{DEX})/2))" disabled /></td>
-                  <td><input type="number" name="attr_InitMod" value="floor((@{INIT}-10)/5)+@{InitTemp}" disabled /></td>
-                  <td><input type="number" name="attr_InitTemp" value="0" /></td>
-                  <td>
-                    <button type="roll" name="roll_INIT"
-                      value="&{template:t4d} {{theme=bio}} {{title=Initiative}} {{character=@{character_name}}} {{result=[[2d4 - @{InitMod} + ?{Action Speed|0}]]}} &{tracker:+}">
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Education</td>
-                  <td><input type="number" name="attr_EDU" value="(floor((@{FOC}+@{INT})/2))" disabled /></td>
-                  <td><input type="number" name="attr_EduMod" value="floor((@{EDU}-10)/5)+@{EduTemp}" disabled /></td>
-                  <td><input type="number" name="attr_EduTemp" value="0" /></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>Speed</td>
-                  <td><input type="number" name="attr_SPD" value="(floor((@{STR}+@{DEX})/2))" disabled /></td>
-                  <td><input type="number" name="attr_SPDMod" value="floor((@{SPD}-10)/5)+@{SpdTemp}" disabled /></td>
-                  <td><input type="number" name="attr_SPDTemp" value="0" /></td>
-                  <td></td>
-                </tr>
+              <tr>
+                <td>Initiative</td>
+                <td><input type="number" name="attr_INIT" value="(floor((@{FOC}+@{DEX})/2))" disabled /></td>
+                <td><input type="number" name="attr_InitMod" readonly /></td>
+                <td><input type="number" name="attr_InitTemp" value="0" /></td>
+                <td>
+                  <button type="roll" name="roll_INIT"
+                    value="&{template:t4d} {{theme=bio}} {{title=Initiative}} {{character=@{character_name}}} {{result=[[2d4 - @{InitMod} + ?{Action Speed|0}]]}} &{tracker:+}">
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Education</td>
+                <td><input type="number" name="attr_EDU" value="(floor((@{FOC}+@{INT})/2))" disabled /></td>
+                <td><input type="number" name="attr_EduMod" readonly /></td>
+                <td><input type="number" name="attr_EduTemp" value="0" /></td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td>Speed</td>
+                <td><input type="number" name="attr_SPD" value="(floor((@{STR}+@{DEX})/2))" disabled /></td>
+                <td><input type="number" name="attr_SPDMod" readonly /></td>
+                <td><input type="number" name="attr_SPDTemp" value="0" /></td>
+                <td></td>
+              </tr>
                 <tr>
                   <td>Movement</td>
                   <td><input type="number" name="attr_MVMT" value="(@{SPD}*2+@{MvmtTemp})" disabled /></td>
@@ -514,11 +516,11 @@
         <!-- Entry Row -->
         <div class="sheet-weapon-entry">
 <button type="roll" name="roll_SimpleWeapons"
-  value="&{template:t4d} {{theme=bio}} {{title=Simple Weapons}} {{character=@{character_name}}} {{Skill=@{SimpleWeaponsLevel}}} {{SPD=@{SPD}}} {{Stress=@{StressPenalty}}} {{result=[[1d20 + @{SimpleWeaponsLevel} + @{SPD} + @{StressPenalty} + ?{Other Modifier|0}]]}} {{damage=[[ @{WeaponDamage} ]]}}">
+  value="&{template:t4d} {{theme=bio}} {{title=Simple Weapons}} {{character=@{character_name}}} {{Skill=@{SimpleWeaponsLevel}}} {{Stress=@{StressPenalty}}} {{result=[[1d20 + @{WeaponSkill} + @{WeaponAtkBonus} + ?{Other Modifier|0} + @{StressPenalty}]]}} {{damage=[[@{WeaponDamage}]]}} {{Action Speed=@{WeaponSPD}}}">
 </button>
           <input type="text" name="attr_WeaponName" placeholder="Weapon" />
           <select name="attr_WeaponSkill">
-            <option value="@{SimpleWeaponsLevel}+@{SpdMod}">Simple</option>
+            <option value="@{SimpleWeaponsLevel}+@{SPDMod}">Simple</option>
             <option value="@{ProjectileWeaponsLevel}+@{DexMod}">Projectile</option>
           </select>
           <input type="number" name="attr_WeaponAtkBonus" value="0" />
@@ -845,26 +847,32 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td>Queue</td>
-                <td><input type="number" name="attr_QUEUE" value="(floor((@{COR}+@{SEN})/2))" disabled /></td>
-                <td><input type="number" name="attr_QueueMod" value="floor((@{QUEUE}-10)/5)+@{QueueTemp}" disabled /></td>
-                <td><input type="number" name="attr_QueueTemp" value="0" /></td>
-                <td>
+            <tr>
+              <td>Queue</td>
+              <td><input type="number" name="attr_QUEUE" value="(floor((@{COR}+@{SEN})/2))" disabled /></td>
+              <td><input type="number" name="attr_QueueMod" readonly /></td>
+              <td><input type="number" name="attr_QueueTemp" value="0" /></td>
+              <td>
         <button type="roll" name="roll_TrainingSkill_AI"
           value="&{template:t4d} {{theme=ai}} {{title=@{SkillName_ai}}} {{character=@{character_name}}} {{result=[[1d20 + @{SkillLevel_ai} + @{FragmentPenalty} + ?{Attribute|Processing, @{PrcMod}|Sensor, @{SenMod}|Architecture, @{ArcMod}|Logic, @{LogMod}|Core, @{CorMod}|Social, @{SocialMod}|Queue, @{QueueMod}|Learning, @{LeaMod}|Cycles, @{CycMod}} + ?{Other Modifiers|0}]]}}"></button>
                 </td>
               </tr>
-              <tr><td>Learning</td>
-                <td><input type="number" name="attr_LEA" value="(floor((@{COR}+@{LOG})/2))" disabled /></td>
-                <td><input type="number" name="attr_LeaMod" value="floor((@{LEA}-10)/5)+@{LeaTemp}" disabled /></td>
-                <td><input type="number" name="attr_LeaTemp" value="0" /></td>
-                <td></td></tr>
 
-              <tr><td>Cycles</td>
-                <td><input type="number" name="attr_CYC" value="(floor((@{PRC}+@{SEN})/2))" disabled /></td>
-                <td><input type="number" name="attr_CYCMod" value="floor((@{CYC}-10)/5)+@{CycTemp}" disabled /></td>
-                <td><input type="number" name="attr_CycTemp" value="0" /></td>
-                <td></td></tr>
+            <tr>
+              <td>Learning</td>
+              <td><input type="number" name="attr_LEA" value="(floor((@{COR}+@{LOG})/2))" disabled /></td>
+              <td><input type="number" name="attr_LeaMod" readonly /></td>
+              <td><input type="number" name="attr_LeaTemp" value="0" /></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td>Cycles</td>
+              <td><input type="number" name="attr_CYC" value="(floor((@{PRC}+@{SEN})/2))" disabled /></td>
+              <td><input type="number" name="attr_CycMod" readonly /></td>
+              <td><input type="number" name="attr_CycTemp" value="0" /></td>
+              <td></td>
+            </tr>
 
               <tr><td>Latency</td>
                 <td><input type="number" name="attr_LATN" value="(@{CYC}*2+@{LatnTemp})" disabled /></td>
@@ -1574,9 +1582,11 @@
 
 const attributes = [
   "STR", "DEX", "CON", "INT", "FOC", "CHA",
-  "PRC", "SEN", "ARC", "LOG", "COR", "SOCIAL"
+  "PRC", "SEN", "ARC", "LOG", "COR", "SOCIAL",
+  "SPD", "INIT", "EDU", "QUEUE", "LEA", "CYC"
 ];
 
+// Create Mod values for all stats
 attributes.forEach(attr => {
   on(`change:${attr} change:${attr}Temp`, () => {
     getAttrs([attr, `${attr}Temp`], values => {
@@ -1585,6 +1595,64 @@ attributes.forEach(attr => {
       const mod = calcMod(base, temp);
       setAttrs({ [`${attr}Mod`]: mod });
     });
+  });
+});
+
+// Secondary Stat Calculations
+on("change:STR change:DEX", () => {
+  getAttrs(["STR", "DEX"], values => {
+    const str = parseInt(values.STR) || 0;
+    const dex = parseInt(values.DEX) || 0;
+    const spd = Math.floor((str + dex) / 2);
+    setAttrs({ SPD: spd });
+  });
+});
+
+on("change:FOC change:DEX", () => {
+  getAttrs(["FOC", "DEX"], values => {
+    const foc = parseInt(values.FOC) || 0;
+    const dex = parseInt(values.DEX) || 0;
+    const init = Math.floor((foc + dex) / 2);
+    setAttrs({ INIT: init });
+  });
+});
+
+on("change:FOC change:INT", () => {
+  getAttrs(["FOC", "INT"], values => {
+    const foc = parseInt(values.FOC) || 0;
+    const int_ = parseInt(values.INT) || 0;
+    const edu = Math.floor((foc + int_) / 2);
+    setAttrs({ EDU: edu });
+  });
+});
+
+// QUEUE = (COR + SEN) / 2
+on("change:COR change:SEN", () => {
+  getAttrs(["COR", "SEN"], values => {
+    const cor = parseInt(values.COR) || 0;
+    const sen = parseInt(values.SEN) || 0;
+    const queue = Math.floor((cor + sen) / 2);
+    setAttrs({ QUEUE: queue });
+  });
+});
+
+// LEA = (COR + LOG) / 2
+on("change:COR change:LOG", () => {
+  getAttrs(["COR", "LOG"], values => {
+    const cor = parseInt(values.COR) || 0;
+    const log = parseInt(values.LOG) || 0;
+    const lea = Math.floor((cor + log) / 2);
+    setAttrs({ LEA: lea });
+  });
+});
+
+// CYC = (PRC + SEN) / 2
+on("change:PRC change:SEN", () => {
+  getAttrs(["PRC", "SEN"], values => {
+    const prc = parseInt(values.PRC) || 0;
+    const sen = parseInt(values.SEN) || 0;
+    const cyc = Math.floor((prc + sen) / 2);
+    setAttrs({ CYC: cyc });
   });
 });
 
